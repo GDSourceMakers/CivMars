@@ -12,10 +12,10 @@ public class TerrainGen{
             FileStream file = new FileStream("./file.txt", FileMode.Create);
             StreamWriter wf = new StreamWriter(file);
 
-            int gen = 200;
+            int gen = 700;
             System.Random rand = new System.Random(seed);
             
-            Tile[,] map = new Tile[200, 200];
+            Tile[,] map = new Tile[700, 700];
 
             bool t = false;
 
