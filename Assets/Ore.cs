@@ -72,7 +72,7 @@ public class Ore : Tile
     public Ore(System.Random rnk, int xpos, int ypos)
         : base(xpos, ypos)
     {
-        this.type = (OreType)rnk.Next(1, 7);
+        this.type = (OreType)rnk.Next(1, 6);
 
 
     }

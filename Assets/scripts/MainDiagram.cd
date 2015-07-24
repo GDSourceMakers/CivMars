@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="civmain.MainBuilding" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Class1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Miner">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Miner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Building">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.SpecMine">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAIAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpecMine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Oxigenerator">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAIAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Oxigeneration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Generator">
+    <Position X="5.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAQAAAAAAAAAgAAAAAAAAAAQ=</HashCode>
+      <FileName>Generato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.UniverzalMiner">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAIAAAAAAAABAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>UniverzalMiner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.WareHouse">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WareHouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Item">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Ore">
+    <Position X="15.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Coal">
+    <Position X="18" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>coal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Iron">
+    <Position X="15.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Iron.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Uranium">
+    <Position X="14" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Uranium.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Food">
+    <Position X="21.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Food.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Tool">
+    <Position X="20.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.ResearchFacility">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACABAAAAAAAAAA=</HashCode>
+      <FileName>ResearchFacility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Stone">
+    <Position X="12.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Stone.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Furnace">
+    <Position X="3" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Furnace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Producer">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Producer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Assembler">
+    <Position X="5.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assembler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.IronIngot">
+    <Position X="16.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IronIngot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.IronPipe">
+    <Position X="15" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IronPipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Player">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAQAAEAAAAAAAAIAAAAQAAACAAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.StoneBrick">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StoneBrick.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.IronPlate">
+    <Position X="19.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IronPlate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.NuclearReactor">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NuclearReactor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.GlassPlane">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GlassPLane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.InteriorPlate">
+    <Position X="23" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InteriorPlate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.Roof">
+    <Position X="24.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Roof.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.RefrinedUranium">
+    <Position X="20" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RefrinedUranium.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="civmain.UraniumRefiner">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>UraniumRefiner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="civmain.OreType">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OreType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
