@@ -12,6 +12,7 @@ public class TerrainGen{
             FileStream file = new FileStream("./file.txt", FileMode.Create);
             StreamWriter wf = new StreamWriter(file);
 
+
             int gen = 50;
             float[,] h2 = new float[,] { {3f, 15f}, {2f,20f}, {1f,22f}, {0.2f,30f}, {0.1f,40f}, {0.001f,45}};
             System.Random rand = new System.Random(5000);

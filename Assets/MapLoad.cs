@@ -38,7 +38,7 @@ public class MapLoad
             for (int yPos = 0; yPos < map.mapHeight; yPos++)
             {
 
-                Debug.Log(xPos + "," + yPos);
+                //Debug.Log(xPos + "," + yPos);
 
                 GameObject go =  GameObject.Instantiate(mapPiece);
 
@@ -53,7 +53,7 @@ public class MapLoad
 
                 curr.transform.localPosition = (pos);
 
-                Debug.Log("Tile Done");
+                //Debug.Log("Tile Done");
             }
         }
     }
