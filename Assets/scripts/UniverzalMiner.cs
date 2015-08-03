@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
+
     public class UniverzalMiner:Miner
     {
         public int capacity;
@@ -16,4 +16,4 @@ namespace civmain
             throw new System.NotImplementedException();
         }
     }
-}
+

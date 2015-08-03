@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
+
     public class SpecMine : Miner
     {
         public OreType type;
@@ -15,4 +15,4 @@ namespace civmain
             throw new System.NotImplementedException();
         }
     }
-}
+

@@ -11,9 +11,9 @@ public class Map
 
     public Map(Tile[,] inmap)
     {
-        mapHeight = (int)Math.Sqrt(inmap.Length);
+       this.mapHeight = (int)Math.Sqrt(inmap.Length);
 
-        mapArray = new Tile[mapHeight, mapHeight, 2];
+        this.mapArray = new Tile[mapHeight, mapHeight, 2];
 
         for (int i = 0; i < mapHeight; i++)
         {

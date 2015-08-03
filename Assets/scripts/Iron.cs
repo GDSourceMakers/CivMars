@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
-    public class Iron:Ore
+ 
+    public class IronOre:Ore
     {
+        public string name = "Iron" + "Ore";
+
     }
-}
+

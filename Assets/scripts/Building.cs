@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
-    public abstract class Building
+ 
+    public class Building
     {
+        public List<Item> buildingMaterials;
+
+
         public void Usage()
         {
             throw new System.NotImplementedException();
         }
     }
-}
+

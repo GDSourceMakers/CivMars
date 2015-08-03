@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
     public class Assembler:Producer
     {
         public int speed;
@@ -14,4 +13,4 @@ namespace civmain
             throw new System.NotImplementedException();
         }
     }
-}
+

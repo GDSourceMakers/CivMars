@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
+
     public class Miner : Generator
     {
 
@@ -13,4 +13,4 @@ namespace civmain
             throw new System.NotImplementedException();
         }
     }
-}
+
