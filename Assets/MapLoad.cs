@@ -40,8 +40,8 @@ public class MapLoad
 
                 //Debug.Log(xPos + "," + yPos);
 
-                GameObject go =  GameObject.Instantiate(mapPiece);
-
+                GameObject go = GameObject.Instantiate(mapPiece);
+                go.name = "Tile_" + xPos + "_" + yPos;
                 SpriteRenderer curr = go.GetComponent<SpriteRenderer>();
 
                 curr.sprite = sprites[((int)map.mapArray[xPos, yPos, 0].type)];
@@ -58,4 +58,15 @@ public class MapLoad
         }
     }
 
+
+    public static void MapUpdate(int x, int y, Map map)
+    {
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Texturas");
+
+        GameObject go = GameObject.Find("Tile_" + x + "_" + y);
+        SpriteRenderer curr = go.GetComponent<SpriteRenderer>();
+
+        curr.sprite = sprites[((int)map.mapArray[x, y, 0].type)];
+
+    }
 }

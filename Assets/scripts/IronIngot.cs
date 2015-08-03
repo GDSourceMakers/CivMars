@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
     public class IronIngot:Item
     {
+        public string name = "IronIngot";
     }
-}
+

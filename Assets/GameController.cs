@@ -6,40 +6,56 @@ public class GameController : MonoBehaviour
 {
 
     public Map map;
+    public Player playerclass;
 
+    //map Load
     public Sprite[] sprites;
     public GameObject mapPiece;
     public float tileSize;
     public Vector2 posMultiplyer;
 
-
+    //Ore gen
     public float orePercent;
     public float oreReducer;
 
+    //UI
+    public GUIHandler guiHandler;
+    //Base GUI
     public GameObject load;
     public GameObject menu;
     public Text bar;
     public float loadProgress;
 
 
-    public bool MapLoaded = false;
+    public bool gameIsOn = false;
 
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
     }
 
+    void OnLevelWasLoaded(int level)
+    {
+        if (level == 1)
+        {
+            guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
+            playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
+
+    }
 
     public void Update()
     {
-        if (Application.loadedLevelName == "Main" && !MapLoaded)
+        if (Application.loadedLevelName == "Main" && !gameIsOn)
         {
 
             Debug.Log("Jeej!");
 
             sprites = Resources.LoadAll<Sprite>("Texturas");
 
-            Tile[,] t = TerrainGen.Generate(orePercent, oreReducer, 1245);
+            Tile[,] t = TerrainGen.Generate(orePercent, oreReducer, 666421, 2);
+
+            
 
             map = new Map(t);
             Debug.Log(t.Length == null);
@@ -47,10 +63,11 @@ public class GameController : MonoBehaviour
 
             MapLoad.MapDraw(map, mapPiece, sprites, tileSize);
 
-            MapLoaded = true;
+            gameIsOn = true;
+
+            Camera.main.GetComponent<CameraChase>().MapLoaded();
         }
     }
-
 
     public void StartGame()
     {
@@ -72,8 +89,8 @@ public class GameController : MonoBehaviour
 
         //while (!async.isDone)
         //{
-            loadProgress = async.progress * 100;
-            bar.text = loadProgress + "!!";
+        loadProgress = async.progress * 100;
+        bar.text = loadProgress + "!!";
 
             yield return async;
         //}
@@ -82,5 +99,26 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void TogleInventory()
+    {
+        if (!(guiHandler.inventoryOn))
+        {
+            Debug.Log("Opening");
+            guiHandler.actionGroup.SetActive(false);
+            guiHandler.InventoryDisplay.gameObject.SetActive(true);
+            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            guiHandler.inventoryOn = true;
+            return;
+        }
+        else
+        {
+            Debug.Log("Closing");
+            guiHandler.actionGroup.SetActive(true);
+            guiHandler.InventoryDisplay.gameObject.SetActive(false);
+            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            guiHandler.inventoryOn = false;
+            return;
+        }
+    }
 
 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
+
     public class RefrinedUranium:Item
     {
+        public string name = "RefrinedUranium";
+
     }
-}
+

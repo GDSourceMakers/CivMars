@@ -7,10 +7,10 @@
       <FileName>Assets\Tile.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Ore">
+  <Class Name="OreTile">
     <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Ore.cs</FileName>
     </TypeIdentifier>
   </Class>

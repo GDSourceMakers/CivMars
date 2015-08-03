@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace civmain
-{
+ 
+
     public class UraniumRefiner:Producer
     {
         public int speed;
@@ -14,4 +14,4 @@ namespace civmain
             throw new System.NotImplementedException();
         }
     }
-}
+
