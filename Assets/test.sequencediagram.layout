@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sequenceDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="test">
+  <SequenceDesignerModelMoniker Id="7c2b76a4-7939-4194-9a73-c082577290e4" />
+  <nestedChildShapes>
+    <lifelineShape Id="5b7261d4-bc29-4d8e-bfb7-7e6975b1f995" absoluteBounds="1.025, 1, 0.15, 3.5754166666666656" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="8f73ac60-3939-43f4-a8f9-01d3c669d245" absoluteBounds="0.52362778306007374, 0.6, 1.1527444338798523, 0.4" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="b043a81e-8389-4b4d-a956-b3344ee9ecbf" absoluteBounds="1.025, 1, 0, 3.625">
+          <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+        </lifelineHoverShape>
+        <dotNetExecutionSpecificationShape Id="b7a67125-34dc-45a5-86ea-82fba8aab5bd" absoluteBounds="1.025, 1.3, 0.125, 0.55" customColor="184, 204, 215" visualStyleMode="Modified">
+          <behaviorExecutionSpecificationMoniker Id="3dabc6fe-81fd-4981-a845-ec0bd8463dfe" LastKnownName="BehaviorExecutionSpecification" />
+        </dotNetExecutionSpecificationShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <lifelineShape Id="a185916f-d828-498b-9577-b80226f67c6a" absoluteBounds="3.075, 1, 0.15, 2.895833333333333" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="71fbd26c-302e-4787-850a-79d7c85f2d97" LastKnownName="Lifeline1" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="487afd61-19fb-41c1-a0b8-3ef91b261b45" absoluteBounds="2.6500000000000004, 0.58958333333333335, 1, 0.41041666666666665" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="71fbd26c-302e-4787-850a-79d7c85f2d97" LastKnownName="Lifeline1" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="7ef5e290-e64f-45f0-96bb-dd7c281460f4" absoluteBounds="3.075, 1, 0, 2.875">
+          <lifelineMoniker Id="71fbd26c-302e-4787-850a-79d7c85f2d97" LastKnownName="Lifeline1" />
+        </lifelineHoverShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <lifelineShape Id="20af6998-9dcd-4bcb-8894-7d024e81cea9" absoluteBounds="7.175, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="59782dfc-c141-4009-8d08-d51d699f173e" LastKnownName="Lifeline2" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="915b5444-53e5-4d91-9d92-5af507befe68" absoluteBounds="6.75, 0.6, 1, 0.4" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="59782dfc-c141-4009-8d08-d51d699f173e" LastKnownName="Lifeline2" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="e36aee9f-792a-47f8-a9cb-ac21ca783cf3" absoluteBounds="7.175, 1, 0, 7">
+          <lifelineMoniker Id="59782dfc-c141-4009-8d08-d51d699f173e" LastKnownName="Lifeline2" />
+        </lifelineHoverShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <lifelineShape Id="4e5608b5-6061-4170-b35d-d4c9e2975a82" absoluteBounds="5.125, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="64bc699a-196a-4a0c-9e7b-7b64e21b4fc8" LastKnownName="Lifeline3" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="00cdda62-3109-4eed-8336-8f75d5a1376b" absoluteBounds="4.7, 0.6, 1, 0.4" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="64bc699a-196a-4a0c-9e7b-7b64e21b4fc8" LastKnownName="Lifeline3" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="ac41eeb4-651f-42d2-a182-9f740877a2d1" absoluteBounds="5.125, 1, 0, 7">
+          <lifelineMoniker Id="64bc699a-196a-4a0c-9e7b-7b64e21b4fc8" LastKnownName="Lifeline3" />
+        </lifelineHoverShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <asyncMessageConnector edgePoints="[(3.15 : 1.3); (1.15 : 1.3)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="e24617ce-6c7e-4c7d-802a-63014f02e313" customColor="Black" visible="true" visualStyleMode="Modified" messageId="00000000-0000-0000-0000-000000000000">
+      <relativeChildShapes />
+      <nodes>
+        <lifelineShapeMoniker Id="a185916f-d828-498b-9577-b80226f67c6a" />
+        <dotNetExecutionSpecificationShapeMoniker Id="b7a67125-34dc-45a5-86ea-82fba8aab5bd" />
+      </nodes>
+    </asyncMessageConnector>
+    <interactionUseShape Id="e71b66d5-d81b-4321-9843-7b96a5ac0091" absoluteBounds="0.77499999999999991, 2.15, 0.65, 0.62" customColor="White" visible="true">
+      <interactionUseMoniker Id="10b10fcf-f21c-4cea-bc44-f6ccc7d6e189" LastKnownName="as" />
+    </interactionUseShape>
+  </nestedChildShapes>
+</sequenceDesignerDiagram>

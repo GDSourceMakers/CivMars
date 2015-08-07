@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="7c2b76a4-7939-4194-9a73-c082577290e4" name="test" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="41ca0c3d-47d3-4677-b32c-f81a83d8e703" name="test" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="3dabc6fe-81fd-4981-a845-ec0bd8463dfe" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="c4da5e36-c225-450f-a6a4-269b8d7d3707" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="05be7ada-72a7-428e-8f56-c96507e5cd16" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="3a3ef193-6ee3-4b49-a39f-c7779cf16877" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="05be7ada-72a7-428e-8f56-c96507e5cd16" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="38582e07-450d-4c21-896a-c5f20d69a6f7" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="60b8369e-edf6-4114-a31d-1322d7c201ac" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="71fbd26c-302e-4787-850a-79d7c85f2d97" LastKnownName="Lifeline1" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="3a3ef193-6ee3-4b49-a39f-c7779cf16877" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="c4da5e36-c225-450f-a6a4-269b8d7d3707" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6084c400-007b-4a8d-8627-07aa1c3350ae" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <interactionUse Id="10b10fcf-f21c-4cea-bc44-f6ccc7d6e189" name="as">
+            <coveredLifelines>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </coveredLifelines>
+            <interactionUseOccurrenceSpecifications>
+              <interactionUseOccurrenceSpecificationMoniker Id="93720af9-12bb-4c6d-95b7-f9cbcd6226c1" LastKnownName="InteractionUseOccurrenceSpecification" />
+            </interactionUseOccurrenceSpecifications>
+          </interactionUse>
+          <interactionUseOccurrenceSpecification Id="93720af9-12bb-4c6d-95b7-f9cbcd6226c1" name="InteractionUseOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="5bc8934f-7392-4257-bf24-973ced9809f3" LastKnownName="GameController" />
+            </covered>
+          </interactionUseOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="5bc8934f-7392-4257-bf24-973ced9809f3" name="GameController" isActor="false" lifelineDisplayName="GameController">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="05be7ada-72a7-428e-8f56-c96507e5cd16" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="c4da5e36-c225-450f-a6a4-269b8d7d3707" LastKnownName="ExecutionOccurrenceSpecification" />
+              <interactionUseOccurrenceSpecificationMoniker Id="93720af9-12bb-4c6d-95b7-f9cbcd6226c1" LastKnownName="InteractionUseOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="71fbd26c-302e-4787-850a-79d7c85f2d97" name="Lifeline1" isActor="false" lifelineDisplayName="Lifeline1">
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="60b8369e-edf6-4114-a31d-1322d7c201ac" LastKnownName="MessageOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="64bc699a-196a-4a0c-9e7b-7b64e21b4fc8" name="Lifeline3" isActor="false" lifelineDisplayName="Lifeline3" />
+          <lifeline Id="59782dfc-c141-4009-8d08-d51d699f173e" name="Lifeline2" isActor="false" lifelineDisplayName="Lifeline2" />
+        </lifelines>
+        <messages>
+          <message Id="0a2f0fdc-ddef-458f-b822-4ab8dffc8cef" messageKind="Complete" messageSort="AsynchCall" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="60b8369e-edf6-4114-a31d-1322d7c201ac" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="3a3ef193-6ee3-4b49-a39f-c7779cf16877" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="38582e07-450d-4c21-896a-c5f20d69a6f7" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6084c400-007b-4a8d-8627-07aa1c3350ae" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

@@ -10,7 +10,7 @@ using UnityEngine;
 
 
 
-        public Inventory Inventory = new Inventory();
+        public Inventory Inventory = new Inventory(10);
 
         public int eatSpeed;
         public int breathAmount;
@@ -46,7 +46,7 @@ using UnityEngine;
             Vector2 pos = new Vector2(-1 * (int)Mathf.Round(transform.position.y * 10) / 10, (int)Mathf.Round(transform.position.x * 10) / 10);
 
 
-            Tile ore = ((Tile)GameCon.map.mapArray[(int)pos.x, (int)pos.y, 0]);
+            GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
 
             if (ore.GetType() == typeof(OreTile))
             {
@@ -57,7 +57,7 @@ using UnityEngine;
                 mined = (((Item)Activator.CreateInstance(null, ore.type.ToString() + "Ore").Unwrap()));
                 mined.amount = 1;
                 Inventory.Add(mined);
-                GameCon.guiHandler.InventoryDisplay.UpdateInventory(Inventory);
+                GameCon.guiHandler.InventoryDisplay.UpdateInventory();
                 Debug.Log(((OreTile)ore).amount);
 
                 if (((OreTile)ore).Mine(1))
@@ -75,7 +75,7 @@ using UnityEngine;
             Vector2 pos = new Vector2(-1 * (int)Mathf.Round(transform.position.y * 10) / 10, (int)Mathf.Round(transform.position.x * 10) / 10);
 
 
-            Tile ore = ((Tile)GameCon.map.mapArray[(int)pos.x, (int)pos.y, 0]);
+            GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
 
             if (ore.GetType() == typeof(OreTile))
             {

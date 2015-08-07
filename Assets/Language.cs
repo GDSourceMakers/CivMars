@@ -7,16 +7,16 @@ public abstract class Language
 
     static public string[,] Names =
     {
-    {"CoalOre","Coal Ore"},
-    {"StoneOre","Stone"},
-    {"SandOre","Sand"},
-    {"IronOre","Iron Ore"},
-    {"UraniumOre","Uran Ore"},
-    {"CoalOre","Coal Ore"},
-    {"CoalOre","Coal Ore"}
+    {"CoalOre",     "Coal Ore", "szén érc"  },
+    {"StoneOre",    "Stone",    "kő"        },
+    {"SandOre",     "Sand",     "homok"     },
+    {"IronOre",     "Iron Ore", "vas érc"   },
+    {"UraniumOre",  "Uran Ore", "urán érc"  },
+    {"CoalOre",     "Coal Ore", ""          },
+    {"CoalOre",     "Coal Ore", ""          }
     };
 
-    public static string Get(System.Object itemObject)
+    public static string Get(System.Object itemObject, int language)
     {
         string name = "Unlocalized Name";
 
@@ -25,7 +25,12 @@ public abstract class Language
         
             if (Names[i,0] == itemObject.GetType().ToString())
             {
-                name = Names[i, 1];
+                if (language == 2)
+                {
+                    name = Names[i, 0];
+                    break;
+                }
+                name = Names[i, language+1];
             }
         }
 

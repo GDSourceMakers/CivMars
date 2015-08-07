@@ -1,10 +1,10 @@
 ﻿
-public class OreTile : Tile
+public class OreTile : GeneratedTile
 {
     public float amount;
     public float[] miningTime = {0,4,4.5f,5,7,14,3,3};
 
-    public Tile[,] Spread(Tile[,] map, float h, System.Random rnd, float reduce, float amountReduce)
+    public GeneratedTile[,] Spread(GeneratedTile[,] map, float h, System.Random rnd, float reduce, float amountReduce)
     {
         int l = (int)System.Math.Sqrt(map.Length);
 

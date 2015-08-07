@@ -6,7 +6,7 @@ public class TerrainGen{
 
 
 
-        public static Tile[,] Generate(float h, float reduce , int seed,int maxOre)
+        public static GeneratedTile[,] Generate(float h, float reduce , int seed,int maxOre)
         {
 
             FileStream file = new FileStream("./file.txt", FileMode.Create);
@@ -16,9 +16,9 @@ public class TerrainGen{
             int gen = 50;
             float[,] h2 = new float[,] { {3f, 15f}, {2f,20f}, {1f,22f}, {0.2f,30f}, {0.1f,40f}, {0.001f,45}};
             System.Random rand = new System.Random(seed);
-            
-            Tile[,] map = new Tile[50, 50];
-            Tile initial;
+
+            GeneratedTile[,] map = new GeneratedTile[50, 50];
+            GeneratedTile initial;
 
             bool t = false;
 
@@ -27,7 +27,7 @@ public class TerrainGen{
             {
                 for (int j = 0; j < gen; j++)
                 {
-                    map[i, j] = new Tile(i, j);
+                    map[i, j] = new GeneratedTile(i, j);
                 }
             }
 
