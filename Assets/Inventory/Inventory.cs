@@ -134,9 +134,10 @@ public class Inventory
     {
         if ((i.amount + rAmount) > (i.maxStackSize))
         {
+			int reamaining = (i.amount + rAmount) - i.maxStackSize;
             i.amount = i.maxStackSize;
             Debug.Log(i.amount);
-            return (i.amount + rAmount) - i.maxStackSize;
+            return reamaining;
         }
         else
         {
