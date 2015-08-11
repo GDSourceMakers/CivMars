@@ -45,7 +45,7 @@ public class MapLoad
                 go.name = "Tile_" + xPos + "_" + yPos;
                 SpriteRenderer curr = go.GetComponent<SpriteRenderer>();
 
-                Debug.Log(xPos + "," + yPos);
+                //Debug.Log(xPos + "," + yPos);
                 curr.sprite = GeneratedSprites[((int)map.mapGenerated[xPos, yPos].type)];
 
                 curr.transform.parent = showLay.transform;

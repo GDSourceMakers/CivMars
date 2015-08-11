@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour
         }
         else if (!(guiHandler.dualinventoryOn))
         {
-            Debug.Log("Opening");
+            //Debug.Log("Opening");
             guiHandler.actionGroup.SetActive(false);
             guiHandler.DualInventory.SetOtherInv(other);
             guiHandler.DualInventory.gameObject.SetActive(true);

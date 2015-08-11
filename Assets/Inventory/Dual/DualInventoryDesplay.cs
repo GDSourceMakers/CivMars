@@ -61,8 +61,8 @@ public class DualInventoryDesplay : MonoBehaviour
                     drawedInv[i].GetComponent<DualInventoryElement>().thisinv = player;
                     drawedInv[i].GetComponent<DualInventoryElement>().index = i;
 
-                    Debug.Log(inv.inventory[i].GetType());
-                    Debug.Log("Drawed " + i);
+                    //Debug.Log(inv.inventory[i].GetType());
+                    //Debug.Log("Drawed " + i);
                     #endregion
                 }
                 else
@@ -111,8 +111,8 @@ public class DualInventoryDesplay : MonoBehaviour
                     drawedInv[i].GetComponent<DualInventoryElement>().thisinv = other;
                     drawedInv[i].GetComponent<DualInventoryElement>().index = i;
 
-                    Debug.Log(inv.inventory[i].GetType());
-                    Debug.Log("Drawed " + i);
+                    //Debug.Log(inv.inventory[i].GetType());
+                    //Debug.Log("Drawed " + i);
                     #endregion
                 }
                 else

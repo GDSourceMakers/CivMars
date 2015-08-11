@@ -48,7 +48,7 @@ public class DualInventoryElement : MonoBehaviour
     public void Set(string setName)
     {
         this.name = setName;
-        Debug.Log(setName);
+        //Debug.Log(setName);
 
         nameDisplay.GetComponent<Text>().text = setName.ToString();
     }
@@ -63,7 +63,7 @@ public class DualInventoryElement : MonoBehaviour
     {
         Set(item.amount);
 
-        Debug.Log(GameCon.language);
+        //Debug.Log(GameCon.language);
         Set(Language.Get(item, GameCon.language));
     }
     #endregion
@@ -72,6 +72,11 @@ public class DualInventoryElement : MonoBehaviour
     public void Transfer()
     {
         Debug.Log("Transfer");
+        if (Input.GetButton("Specific"))
+        {
+			thisinv.TransferItemAmount(other, index, 1);
+            return;
+        }
 
 
         other.TransferItem(thisinv, index);
