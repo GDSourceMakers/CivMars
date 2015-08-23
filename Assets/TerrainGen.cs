@@ -42,7 +42,7 @@ public class TerrainGen{
                     {
                         map[i, j] = initial;
 
-                        map = ((OreTile)map[i, j]).Spread(map, h, rand, reduce, rand.Next(1,maxOre));
+                        map = ((OreTile)map[i, j]).Spread(map, h, rand, reduce);
 
                         t = false;
                     }

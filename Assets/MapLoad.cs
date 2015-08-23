@@ -6,7 +6,7 @@ public class MapLoad
 
 
 
-    public static void MapDraw(Map map, GameObject mapPiece, Sprite[] GeneratedSprites, GameObject[] BuildingSprites, float tileSize)
+    public static void MapDraw(Map map, GameObject mapPiece, Sprite[] GeneratedSprites, GameObject[] BuildingPrefabs, float tileSize)
     {
 
         Vector2 posMultiplyer = new Vector2((tileSize / 2), -(tileSize / 2));
@@ -33,10 +33,10 @@ public class MapLoad
         Debug.Log(map.mapHeight);
 
         #region load generated
-        for (int xPos = 0; xPos < map.mapHeight; xPos++)
+        for (int yPos = 0; yPos < map.mapHeight; yPos++)
         {
 
-            for (int yPos = 0; yPos < map.mapHeight; yPos++)
+            for (int xPos = 0; xPos < map.mapHeight; xPos++)
             {
 
                 //Debug.Log(xPos + "," + yPos);
@@ -50,7 +50,7 @@ public class MapLoad
 
                 curr.transform.parent = showLay.transform;
 
-                Vector2 pos = new Vector3(yPos, -xPos) * tileSize;
+                Vector2 pos = new Vector3(xPos, -yPos) * tileSize;
                 pos = pos + posMultiplyer;
 
                 curr.transform.localPosition = (pos);
@@ -60,8 +60,9 @@ public class MapLoad
         }
         #endregion
 
-
-        #region Building load
+		
+        #region Building load OUT DATED
+		/*
         for (int xPos = 0; xPos < map.mapHeight; xPos++)
         {
 
@@ -69,15 +70,24 @@ public class MapLoad
             {
                 if (map.mapBuilt[xPos, yPos] != null)
                 {
-                    //Debug.Log(xPos + "," + yPos);
+					//Debug.Log(xPos + "," + yPos);
 
-                    GameObject go = GameObject.Instantiate(BuildingSprites[((int)map.mapBuilt[xPos, yPos].Textura)]);
+					foreach (GameObject i in BuildingPrefabs)
+					{
+						Debug.Log(map.mapBuilt[xPos, yPos].GetType().ToString());
+						if (i.name == map.mapBuilt[xPos, yPos].GetType().ToString())
+						{
+							GameObject go = GameObject.Instantiate(i);
 
-                    go.GetComponent<BuildingBehaviour>().properties = map.mapBuilt[xPos, yPos];
+							Vector3 pos = new Vector3(yPos + posMultiplyer.x, -xPos + posMultiplyer.y, -5) * tileSize;
 
-                    Vector3 pos = new Vector3(yPos + posMultiplyer.x, -xPos + posMultiplyer.y, -5) * tileSize;
+							go.transform.localPosition = (pos);
 
-                    go.transform.localPosition = (pos);
+							break;
+						}
+					}
+
+                    
 
                     
 
@@ -85,6 +95,7 @@ public class MapLoad
                 }
             }
         }
+		*/
         #endregion
 
 

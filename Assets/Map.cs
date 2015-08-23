@@ -1,37 +1,139 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using UnityEngine;
+using System.Collections;
+using System.IO;
 
-public class Map
+public class Map : MonoBehaviour
 {
-    public int mapHeight;
-    public GeneratedTile[,] mapGenerated;
-    public Building[,] mapBuilt;
+	public int seed;
+	public int mapHeight = 50;
 
-    public int seed;
 
-    public Map(GeneratedTile[,] inmap)
-    {
-       this.mapHeight = (int)Math.Sqrt(inmap.Length);
 
-       this.mapGenerated = new GeneratedTile[mapHeight, mapHeight];
+	public GeneratedTile[,] mapGenerated = new GeneratedTile[50, 50];
+	public Building[,] mapBuilt = new Building[50, 50];
 
-        for (int i = 0; i < mapHeight; i++)
-        {
-            for (int j = 0; j < mapHeight; j++)
-            {
-                mapGenerated[i, j] = inmap[i, j];
-            }
-        }
-        mapBuilt = new Building[mapHeight, mapHeight];
 
-        int xMpos;
-        xMpos = ((int)Math.Floor((double)mapHeight / 2));
+	float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 0.001f, 45, 2f } };
+	public float maximumAmountInOre = 2;
+	public float reduce = 25;
 
-        mapBuilt[xMpos, xMpos] = new MainBuilding(xMpos, xMpos);
-    }
 
-    public Map()
-    {}
+	GeneratedTile initial;
+	public Vector3 posMultiplyer;
+	public float tileSize;
+
+	public GameObject[] GeneratedPrefabs;
+	public GameObject[] BuildingPrefabs;
+
+	public void BuildMap()
+	{
+		float chance;
+
+		#region File
+		FileStream file = new FileStream("./file.txt", FileMode.Create);
+		StreamWriter wf = new StreamWriter(file);
+		#endregion
+
+		System.Random rand = new System.Random(seed);
+
+		bool t = true;
+
+		for (int xPos = 0; xPos < mapHeight; xPos++)
+		{
+			for (int yPos = 0; yPos < mapHeight; yPos++)
+			{
+				initial = new OreTile(rand, xPos, yPos, maximumAmountInOre);
+
+				chance = OreRarety[(int)initial.type, 0];
+
+				reduce = OreRarety[(int)initial.type, 1];
+
+
+
+				if (rand.Next(0, 100) <= chance)
+				{
+					//Debug.Log(xPos + "," + yPos);
+
+					mapGenerated[xPos, yPos] = initial;
+
+
+					mapGenerated = ((OreTile)mapGenerated[xPos, yPos]).Spread(mapGenerated, chance, rand, reduce);
+
+
+				}
+				if (mapGenerated[xPos, yPos] == null)
+				{
+					mapGenerated[xPos, yPos] = new GeneratedTile(xPos, yPos);
+				}
+				wf.Write((int)mapGenerated[xPos, yPos].type + ",");
+
+
+
+
+
+				initial = null;
+			}
+			wf.WriteLine();
+		}
+		wf.Close();
+
+		for (int xPos = 0; xPos < mapHeight; xPos++)
+		{
+			for (int yPos = 0; yPos < mapHeight; yPos++)
+			{
+
+				GameObject go = GameObject.Instantiate(GeneratedPrefabs[((int)mapGenerated[xPos, yPos].type)]);
+				go.name = "Tile" + "_" + xPos + "_" + yPos;
+				SpriteRenderer curr = go.GetComponent<SpriteRenderer>();
+
+				//Debug.Log(xPos + "," + yPos);
+
+				curr.transform.parent = this.transform;
+
+				Vector3 pos = new Vector3(xPos, -yPos) * tileSize;
+				pos = pos + posMultiplyer;
+
+				curr.transform.localPosition = (pos);
+
+				//Debug.Log("Tile Done");
+
+			}
+		}
+
+	}
+
+	public void AddBasicBuildings()
+	{
+		int xMpos;
+		xMpos = ((int)Mathf.Floor((float)mapHeight / 2));
+
+		Debug.Log(MainBuilding.ID);
+		mapBuilt[xMpos, xMpos] = Instantiate(BuildingPrefabs[MainBuilding.ID]).GetComponent<MainBuilding>();
+		mapBuilt[xMpos, xMpos].transform.position = new Vector3(xMpos, -xMpos, -2) + posMultiplyer;
+        mapBuilt[xMpos + 5, xMpos - 5] = Instantiate(BuildingPrefabs[Chest.ID]).GetComponent<Chest>();
+		mapBuilt[xMpos + 5, xMpos - 5].transform.position = new Vector3(xMpos + 5, -(xMpos - 5),-2) +posMultiplyer;
+	}
+
+	// Use this for initialization
+	void Start()
+	{
+
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
+
+	public void MapUpdate(int x, int y, Map map)
+	{
+		Sprite[] sprites = Resources.LoadAll<Sprite>("Texturas/Generated");
+
+		GameObject go = GameObject.Find("Tile_" + x + "_" + y);
+		SpriteRenderer curr = go.GetComponent<SpriteRenderer>();
+
+		curr.sprite = sprites[((int)map.mapGenerated[x, y].type)];
+
+	}
 }

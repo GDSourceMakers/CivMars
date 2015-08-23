@@ -13,6 +13,8 @@ public class Inventory
 
     public Inventory(int InventorySize)
     {
+		if (InventorySize < 1)
+			Debug.LogErrorFormat("Inventory size can't be less than 0", this);
         inventory = new Item[InventorySize];
         this.size = InventorySize;
     }

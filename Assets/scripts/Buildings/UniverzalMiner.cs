@@ -10,8 +10,6 @@ using System.Text;
         public int capacity;
         public int speed;
         public OreType type;
-    
-        public UniverzalMiner(int xpos, int ypos) : base(xpos,ypos)
-        {}
+   
     }
 

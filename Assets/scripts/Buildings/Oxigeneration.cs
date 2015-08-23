@@ -10,9 +10,5 @@ using System.Text;
         public int speed;
         public int capacity;
 
-
-        public Oxigenerator(int xpos, int ypos)
-            : base(xpos, ypos)
-        { }
     }
 

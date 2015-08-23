@@ -22,8 +22,5 @@ using System.Text;
             }
         }
 
-        public Generator(int xpos, int ypos)
-            : base(xpos, ypos)
-        {}
     }
 

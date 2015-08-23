@@ -17,21 +17,21 @@
   <Class Name="CameraChase" Collapsed="true">
     <Position X="41.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQAAEAAACAAAAABEAAAAAAAAAAAQAAAAAAAAAgAAAA=</HashCode>
+      <HashCode>ABQAAEAAACAAAAABEIAAAAAAAAAAQAAAAAAAAAgAEAA=</HashCode>
       <FileName>Assets\CameraChase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameController" Collapsed="true">
     <Position X="43.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAwAGAAACYgAAAgAACAAAEokAAABEAAgCCAAAAAAgEA=</HashCode>
+      <HashCode>AAwAGAAACYgAAAgAACIAAEokAAABEAAgCAAACAAAgEA=</HashCode>
       <FileName>Assets\GameController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GUIHandler" Collapsed="true">
     <Position X="38" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAQCAAACAAAAAAAGAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAQAAAAAQCAAACAAAAAAAGAAAAAAAABAAAAAAAAIAAA=</HashCode>
       <FileName>Assets\GUI\GUIHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -109,49 +109,49 @@
     <Position X="15.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\GlassPLane.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\GlassPLane.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InteriorPlate" Collapsed="true">
     <Position X="22" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\InteriorPlate.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\InteriorPlate.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IronOre" Collapsed="true">
     <Position X="8.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Items\Ore\OreIron.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\scripts\Items\Ore\IronOre.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IronIngot" Collapsed="true">
     <Position X="31" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\IronIngot.cs</FileName>
+      <FileName>Assets\scripts\Items\IronIngot.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IronPipe" Collapsed="true">
     <Position X="35.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\IronPipe.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\IronPipe.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="IronPlate" Collapsed="true">
     <Position X="13" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\IronPlate.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\IronPlate.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Item" Collapsed="true">
     <Position X="18.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Item.cs</FileName>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\scripts\Items\Item.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Miner" Collapsed="true">
@@ -165,7 +165,7 @@
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Ore.cs</FileName>
+      <FileName>Assets\scripts\Items\Ore\Ore.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Oxigenerator" Collapsed="true">
@@ -179,7 +179,7 @@
     <Position X="17.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\RefrinedUranium.cs</FileName>
+      <FileName>Assets\scripts\Items\RefrinedUranium.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Resource" Collapsed="true">
@@ -193,7 +193,7 @@
     <Position X="33.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Roof.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\Roof.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SpecMine" Collapsed="true">
@@ -207,14 +207,14 @@
     <Position X="4" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Stone.cs</FileName>
+      <FileName>Assets\scripts\Items\Ore\StoneOre.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="StoneBrick" Collapsed="true">
     <Position X="19.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\StoneBrick.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\StoneBrick.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Tool" Collapsed="true">
@@ -235,7 +235,7 @@
     <Position X="10.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Uranium.cs</FileName>
+      <FileName>Assets\scripts\Items\Ore\UraniumOre.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WareHouse" Collapsed="true">
@@ -249,7 +249,7 @@
     <Position X="26.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Wood.cs</FileName>
+      <FileName>Assets\scripts\Items\Resources\Wood.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OreTile" Collapsed="true">
@@ -297,28 +297,28 @@
   <Class Name="Inventory" Collapsed="true">
     <Position X="41.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAABAAIAABAAAAAAAAAACAAAAAAAACAA=</HashCode>
-      <FileName>Assets\GUI\Inventory\Inventory.cs</FileName>
+      <HashCode>AAIAAAAAAAAAAABEAIAABAAAAAAAAAACAAAAAAAASAA=</HashCode>
+      <FileName>Assets\Inventory\Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InventoryDesplay" Collapsed="true">
     <Position X="40.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAQAAAAAAggAAAAAAAAAAAABEAACAAAAAEA=</HashCode>
-      <FileName>Assets\GUI\Inventory\InventoryDesplay.cs</FileName>
+      <FileName>Assets\Inventory\InventoryDesplay.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="InventoryDrawedElement" Collapsed="true">
     <Position X="38.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABQAAAAAIAAABAAAAAAAAAAAAAAEgAAAAAAAAAAAgEA=</HashCode>
-      <FileName>Assets\GUI\Inventory\InventoryDrawedElement.cs</FileName>
+      <FileName>Assets\Inventory\InventoryDrawedElement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Player" Collapsed="true">
     <Position X="38" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABIIAAAAECAAQAAEAAAAAAAAIAAAAQAAACAAAgAAAAA=</HashCode>
+      <HashCode>ABYIAAAAECAAQAAEAAAAAAAAIgAAAQAAACAAAgAAAAA=</HashCode>
       <FileName>Assets\Player\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -333,7 +333,14 @@
     <Position X="42" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAQAAAAAAAAAAAAAAgiAAAAAAAAAQAABBAACAAwAAUA=</HashCode>
-      <FileName>Assets\GUI\Inventory\Dual\DualInventoryDesplay.cs</FileName>
+      <FileName>Assets\Inventory\Dual\DualInventoryDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Module">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Module.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="OreType" Collapsed="true">

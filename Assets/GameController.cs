@@ -5,185 +5,188 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
 
-    public GameState gameS;
-    public Map map;
-    public Player playerclass;
+	public GameState gameS;
+	public Map map;
+	public Player playerclass;
 
-    //map Load
-    
-    public GameObject mapPiece;
-    public float tileSize;
-    public Vector2 posMultiplyer;
+	//map Load
 
-    //settings
-    public int language;
+	public GameObject mapPiece;
+	public float tileSize;
+	public Vector2 posMultiplyer;
 
-    //Ore gen
-    public float orePercent;
-    public float oreReducer;
+	//settings
+	public int language;
 
-    //UI
-    public GUIHandler guiHandler;
-    //Base GUI
-    public GameObject load;
-    public GameObject menu;
-    public Text bar;
-    public float loadProgress;
+	//Ore gen
+	public float orePercent;
+	public float oreReducer;
 
-
-    public bool gameIsOn = false;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
-
-    void OnLevelWasLoaded(int level)
-    {
-        if (level == 1)
-        {
-           guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
-           playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
-           if (Application.loadedLevelName == "Main" && !gameIsOn)
-           {
-
-               Debug.Log("Jeej!");
-
-               Sprite[] GeneratedSprites = Resources.LoadAll<Sprite>("Texturas/Generated");
-               GameObject[] BuildingPrefabs = Resources.LoadAll<GameObject>("Prefabs/Buildings");
-
-               GeneratedTile[,] t = TerrainGen.Generate(orePercent, oreReducer, 666421, 2);
+	//UI
+	public GUIHandler guiHandler;
+	//Base GUI
+	public GameObject load;
+	public GameObject menu;
+	public Text bar;
+	public float loadProgress;
 
 
+	public bool gameIsOn = false;
 
-               map = new Map(t);
-               Debug.Log(t.Length == null);
-               Debug.Log(map.mapGenerated == null);
+	void Awake()
+	{
+		DontDestroyOnLoad(transform.gameObject);
+	}
 
-               MapLoad.MapDraw(map, mapPiece, GeneratedSprites, BuildingPrefabs, tileSize);
+	void OnLevelWasLoaded(int level)
+	{
+		if (level == 1)
+		{
+			guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
+			map = GameObject.Find("Map").GetComponent<Map>();
+			playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-               gameIsOn = true;
+			if (Application.loadedLevelName == "Main" && !gameIsOn)
+			{
 
-               Camera.main.GetComponent<CameraChase>().MapLoaded();
-           }
+				Debug.Log("Jeej!");
 
-        }
+				Sprite[] GeneratedSprites = Resources.LoadAll<Sprite>("Texturas/Generated");
+				GameObject[] BuildingPrefabs = Resources.LoadAll<GameObject>("Prefabs/Buildings");
 
-    }
+				int seed = 666421;
 
-    public void Update()
-    {
-
-    }
-
-    public void StartGame()
-    {
-
-        StartCoroutine(LoadLevel("Main"));
-
-    }
-    public IEnumerator LoadLevel(string a)
-    {
-        load.SetActive(true);
-        menu.SetActive(false);
-
-        bar.text = loadProgress + "??";
-
-
-        AsyncOperation async = Application.LoadLevelAsync(a);
+				//GeneratedTile[,] t = TerrainGen.Generate(orePercent, oreReducer, seed, 2);
 
 
 
-        //while (!async.isDone)
-        //{
-        loadProgress = async.progress * 100;
-        bar.text = loadProgress + "!!";
 
-            yield return async;
-        //}
+				map.BuildMap();
+				map.AddBasicBuildings();
 
+				//MapLoad.MapDraw(map, mapPiece, GeneratedSprites, BuildingPrefabs, tileSize);
 
+				gameIsOn = true;
 
-    }
+				Camera.main.GetComponent<CameraChase>().MapLoaded();
+			}
 
-    public void TogleSingleInventory()
-    {
-        if ((guiHandler.dualinventoryOn))
-        {
-            Debug.Log("Closing");
-            guiHandler.actionGroup.SetActive(true);
-            guiHandler.DualInventory.SetOtherInv(null);
-            guiHandler.DualInventory.gameObject.SetActive(false);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            guiHandler.dualinventoryOn = false;
-            gameS = GameState.InGame;
-            return;
-        }
-        else if (!(guiHandler.inventoryOn))
-        {
-            Debug.Log("Opening");
-            guiHandler.actionGroup.SetActive(false);
-            guiHandler.InventoryDisplay.gameObject.SetActive(true);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            guiHandler.inventoryOn = true;
-            gameS = GameState.Inventory;
-            return;
-        }
-        else
-        {
-            Debug.Log("Closing");
-            guiHandler.actionGroup.SetActive(true);
-            guiHandler.InventoryDisplay.gameObject.SetActive(false);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            guiHandler.inventoryOn = false;
-            gameS = GameState.InGame;
+		}
 
-            return;
-        }
-    }
+	}
+
+	public void Update()
+	{
+
+	}
+
+	public void StartGame()
+	{
+
+		StartCoroutine(LoadLevel("Main"));
+
+	}
+	public IEnumerator LoadLevel(string a)
+	{
+		load.SetActive(true);
+		menu.SetActive(false);
+
+		bar.text = loadProgress + "??";
 
 
-    public void TogleDualInventory(Inventory other)
-    {
-        if ((guiHandler.inventoryOn))
-        {
-            Debug.Log("Closing");
-            guiHandler.actionGroup.SetActive(true);
-            guiHandler.InventoryDisplay.gameObject.SetActive(false);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            guiHandler.inventoryOn = false;
-            gameS = GameState.InGame;
-
-            return;
-        }
-        else if (!(guiHandler.dualinventoryOn))
-        {
-            //Debug.Log("Opening");
-            guiHandler.actionGroup.SetActive(false);
-            guiHandler.DualInventory.SetOtherInv(other);
-            guiHandler.DualInventory.gameObject.SetActive(true);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            guiHandler.dualinventoryOn = true;
-            gameS = GameState.DualInventory;
-            return;
-        }
-        else
-        {
-            Debug.Log("Closing");
-            guiHandler.actionGroup.SetActive(true);
-            guiHandler.DualInventory.SetOtherInv(null);
-            guiHandler.DualInventory.gameObject.SetActive(false);
-            playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-            guiHandler.dualinventoryOn = false;
-            gameS = GameState.InGame;
-            return;
-        }
-    }
+		AsyncOperation async = Application.LoadLevelAsync(a);
 
 
-    public void ChangeLanguage(int num)
-    {
-        language = num;
-    }
+
+		while (!async.isDone)
+		{
+		loadProgress = async.progress * 100;
+		bar.text = loadProgress + "!!";
+
+		yield return async;
+		}
+
+
+
+	}
+
+	public void TogleSingleInventory()
+	{
+		if ((guiHandler.dualinventoryOn))
+		{
+			Debug.Log("Closing");
+			guiHandler.NormalUi.SetActive(true);
+			guiHandler.DualInventory.SetOtherInv(null);
+			guiHandler.DualInventory.gameObject.SetActive(false);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			guiHandler.dualinventoryOn = false;
+			gameS = GameState.InGame;
+			return;
+		}
+		else if (!(guiHandler.inventoryOn))
+		{
+			Debug.Log("Opening");
+			guiHandler.NormalUi.SetActive(false);
+			guiHandler.InventoryDisplay.gameObject.SetActive(true);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+			guiHandler.inventoryOn = true;
+			gameS = GameState.Inventory;
+			return;
+		}
+		else
+		{
+			Debug.Log("Closing");
+			guiHandler.NormalUi.SetActive(true);
+			guiHandler.InventoryDisplay.gameObject.SetActive(false);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			guiHandler.inventoryOn = false;
+			gameS = GameState.InGame;
+
+			return;
+		}
+	}
+
+
+	public void TogleDualInventory(Inventory other)
+	{
+		if ((guiHandler.inventoryOn))
+		{
+			Debug.Log("Closing");
+			guiHandler.NormalUi.SetActive(true);
+			guiHandler.InventoryDisplay.gameObject.SetActive(false);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			guiHandler.inventoryOn = false;
+			gameS = GameState.InGame;
+
+			return;
+		}
+		else if (!(guiHandler.dualinventoryOn))
+		{
+			//Debug.Log("Opening");
+			guiHandler.NormalUi.SetActive(false);
+			guiHandler.DualInventory.SetOtherInv(other);
+			guiHandler.DualInventory.gameObject.SetActive(true);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+			guiHandler.dualinventoryOn = true;
+			gameS = GameState.DualInventory;
+			return;
+		}
+		else
+		{
+			Debug.Log("Closing");
+			guiHandler.NormalUi.SetActive(true);
+			guiHandler.DualInventory.SetOtherInv(null);
+			guiHandler.DualInventory.gameObject.SetActive(false);
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			guiHandler.dualinventoryOn = false;
+			gameS = GameState.InGame;
+			return;
+		}
+	}
+
+
+	public void ChangeLanguage(int num)
+	{
+		language = num;
+	}
 }

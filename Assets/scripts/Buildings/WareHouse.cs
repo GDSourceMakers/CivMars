@@ -7,8 +7,5 @@ using System.Text;
 
     public class WareHouse:Building
     {
-        public WareHouse(int xpos, int ypos)
-            : base(xpos, ypos)
-        {}
     }
 

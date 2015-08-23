@@ -10,8 +10,6 @@ using System.Text;
         public OreType type;
         public int capacity;
 
-        public SpecMine(int xpos, int ypos)
-            : base(xpos, ypos)
-        { }
+
     }
 

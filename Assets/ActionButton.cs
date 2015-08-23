@@ -24,7 +24,7 @@ public class ActionButton : MonoBehaviour
     public string action = "Mine";
 
 
-    public bool ActionRuned;
+    public bool ActionRuned = true;
 
     // Use this for initialization
     void Start()

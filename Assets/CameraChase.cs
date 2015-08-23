@@ -7,7 +7,7 @@ using System.Collections;
 //public class CameraChase : MonoBehaviour
 //{
 
-   
+
 //    public Transform chase;
 //    public Rect area;
 //    public bool loaded = false;
@@ -42,7 +42,7 @@ using System.Collections;
 //        area.width = (GameCon.map.mapHeight);
 //        area.height = (GameCon.map.mapHeight);
 
-        
+
 //        Debug.Log(area);
 //        loaded = true;
 //    }
@@ -53,7 +53,7 @@ using System.Collections;
 //        if (chase == null)
 //        {
 
-            
+
 
 //            return;
 
@@ -110,55 +110,89 @@ public class CameraChase : MonoBehaviour
 {
 
 
-    public Transform chase;
-    public bool loaded = false;
+	public Transform chase;
+	public bool loaded = false;
+
+	public float eventHorizont = 1.5f;
+
+	public RectTransform rectTrans;
+
+	Camera CameraScript;
+	GameController GameCon;
+
+	void Start()
+	{
 
 
-    public RectTransform rectTrans;
+	}
 
-    Camera CameraScript;
-    GameController GameCon;
+	// Use this for initialization
+	public void MapLoaded()
+	{
 
-    void Start()
-    {
-        
+		CameraScript = this.GetComponent<Camera>();
+		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-    }
+		if (GameCon.map == null)
+		{
+			Debug.LogError("Can't find GameController");
+			Debug.Break();
+		}
 
-    // Use this for initialization
-    public void MapLoaded()
-    {
+		loaded = true;
+	}
 
-        CameraScript = this.GetComponent<Camera>();
-        GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+	// Update is called once per frame
+	void Update()
+	{
+		if (chase == null)
+		{
 
-        if (GameCon.map == null)
-        {
-            Debug.LogError("Can't find GameController");
-            Debug.Break();
-        }
+			return;
 
-        loaded = true;
-    }
+		}
+		if (loaded)
+		{
+			float xCamPos = transform.position.x;
+			float yCamPos = -1 * transform.position.y;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (chase == null)
-        {
+			float xPos = chase.transform.position.x;
+			float yPos = -1 * chase.transform.position.y;
 
-            return;
+			float xCameraH = CameraScript.orthographicSize * Screen.width / Screen.height;
+			float yCameraH = CameraScript.orthographicSize;
 
-        }
-        if (loaded)
-        {
-            float xPos = chase.transform.position.x;
-            float yPos = chase.transform.position.y;
-            float horzExtent = CameraScript.orthographicSize * Screen.width / Screen.height;
-           transform.position = new Vector3(Mathf.Clamp(xPos, horzExtent, GameCon.map.mapHeight - horzExtent),-1 * Mathf.Clamp(-1*yPos, CameraScript.orthographicSize, GameCon.map.mapHeight - CameraScript.orthographicSize), transform.position.z);
-           //transform.position = new Vector3(Mathf.Clamp(xPos, ratio[0], GameCon.map.mapHeight - ratio[0]), Mathf.Clamp(yPos, ratio[1], GameCon.map.mapHeight - ratio[1]), transform.position.z);
+			//transform.position = new Vector3(Mathf.Clamp(xPos, xCameraH, GameCon.map.mapHeight - xCameraH),-1 * Mathf.Clamp(-1*yPos, yCameraH, GameCon.map.mapHeight - yCameraH), transform.position.z);
+			transform.position = new Vector3(
+												Mathf.Clamp(
+												xCamPos + OutRangeClamp(xPos, xCamPos - xCameraH / eventHorizont, xCamPos + xCameraH / eventHorizont),
+												xCameraH,
+												GameCon.map.mapHeight - xCameraH
+												),
 
-        }
-    }
+											-1 * Mathf.Clamp(
+												yCamPos + OutRangeClamp(yPos, yCamPos - yCameraH / eventHorizont, yCamPos + yCameraH / eventHorizont),
+												yCameraH,
+												GameCon.map.mapHeight - yCameraH
+												),
+											transform.position.z);
+		}
+	}
+
+	float OutRangeClamp(float value, float Min, float Max)
+	{
+		if (value < Min)
+		{
+			//Debug.Log("if");
+			return value - Min;
+		}
+		else if (value > Max)
+		{
+			//Debug.Log("else");
+
+			return value - Max;
+		}
+		return 0;
+	}
 }
 
