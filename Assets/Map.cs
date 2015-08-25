@@ -5,15 +5,15 @@ using System.IO;
 public class Map : MonoBehaviour
 {
 	public int seed;
-	public int mapHeight = 50;
+	public int mapHeight = 300;
 
 
 
-	public GeneratedTile[,] mapGenerated = new GeneratedTile[50, 50];
-	public Building[,] mapBuilt = new Building[50, 50];
+	public GeneratedTile[,] mapGenerated = new GeneratedTile[300, 300];
+	public Building[,] mapBuilt = new Building[300, 300];
 
-
-	float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 0.001f, 45, 2f } };
+	float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 0.01f, 45, 2f } };
+	//float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 1f, 45, 2f } };
 	public float maximumAmountInOre = 2;
 	public float reduce = 25;
 
@@ -36,6 +36,8 @@ public class Map : MonoBehaviour
 
 		System.Random rand = new System.Random(seed);
 
+		//Debug.Log("Random random test: " +rand.NextDouble());
+
 		bool t = true;
 
 		for (int xPos = 0; xPos < mapHeight; xPos++)
@@ -50,7 +52,7 @@ public class Map : MonoBehaviour
 
 
 
-				if (rand.Next(0, 100) <= chance)
+				if (rand.NextDouble() <= chance/100)
 				{
 					//Debug.Log(xPos + "," + yPos);
 

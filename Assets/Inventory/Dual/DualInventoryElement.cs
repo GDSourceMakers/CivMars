@@ -59,11 +59,15 @@ public class DualInventoryElement : MonoBehaviour
         Set(setAmount);
     }
 
-    public void Set(Item item)
+    public void Set(Item item, bool isp, Inventory o, Inventory t, int i)
     {
-        Set(item.amount);
+		isPlayer = isp;
+		other = o;
+		thisinv = t;
+		index = i;
 
-        //Debug.Log(GameCon.language);
+
+        Set(item.amount);
         Set(Language.Get(item, GameCon.language));
     }
     #endregion

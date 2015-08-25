@@ -48,7 +48,7 @@ public class OreTile : GeneratedTile
 		{
 			if ((map[x + 1, y] == null) || ((int)map[x + 1, y].type < (int)base.type))
 			{
-				if (rnd.Next(0, 100) >= h)
+				if (rnd.NextDouble() >= h / 100)
 				{
 					map[x + 1, y] = null;
 					map[x + 1, y] = new OreTile(base.type, x + 1, y, amountnext);
@@ -61,7 +61,7 @@ public class OreTile : GeneratedTile
 		{
 			if ((map[x - 1, y] == null) || ((int)map[x - 1, y].type < (int)base.type))
 			{
-				if (rnd.Next(0, 100) >= h)
+				if (rnd.NextDouble() >= h / 100)
 				{
 					map[x - 1, y] = null;
 					map[x - 1, y] = new OreTile(base.type, x - 1, y, amountnext);
@@ -74,7 +74,7 @@ public class OreTile : GeneratedTile
 		{
 			if ((map[x, y + 1] == null) || ((int)map[x, y + 1].type < (int)base.type))
 			{
-				if (rnd.Next(0, 100) >= h)
+				if (rnd.NextDouble() >= h / 100)
 				{
 					map[x, y + 1] = null;
 					map[x, y + 1] = new OreTile(base.type, x, y + 1, amountnext);
@@ -87,7 +87,7 @@ public class OreTile : GeneratedTile
 		{
 			if ((map[x, y - 1] == null) || ((int)map[x, y - 1].type < (int)base.type))
 			{
-				if (rnd.Next(0, 100) >= h)
+				if (rnd.NextDouble() >= h / 100)
 				{
 					map[x, y - 1] = null;
 					map[x, y - 1] = new OreTile(base.type, x, y - 1, amountnext);
