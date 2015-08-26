@@ -22,7 +22,7 @@ public class MainBuilding : Building
 
     public void OpenInventory()
     {
-        GameCon.TogleDualInventory(inventory);
+        GameCon.TogleInventory(inventory);
     }
 
 }

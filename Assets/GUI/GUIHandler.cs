@@ -4,16 +4,13 @@ using UnityEngine.UI;
 
 public class GUIHandler : MonoBehaviour
 {
+	public AccesPanel AccesPanel;
 
-    public InventoryDesplay InventoryDisplay;
-    public DualInventoryDesplay DualInventory;
+	public GameObject gameGui;
 
-    public GameObject NormalUi;
-
-    public ActionButton[] actions = new ActionButton[10];
+	public ActionButton[] actions = new ActionButton[10];
 
     public bool inventoryOn;
-    public bool dualinventoryOn;
 
 	public Building OpenBuilding;
 	public bool isBuildingOpened;

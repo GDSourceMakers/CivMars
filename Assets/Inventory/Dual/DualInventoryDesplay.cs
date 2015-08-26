@@ -8,255 +8,267 @@ public class DualInventoryDesplay : MonoBehaviour
 {
 
 
-    public GameObject InventoryCanvasPlayer;
-    public GameObject InventoryCanvasOther;
+	public GameObject InventoryCanvasPlayer;
+	public GameObject InventoryCanvasOther;
 
 
-    public GameObject InventoryDubleElement;
+	public GameObject InventoryDubleElement;
 	public GameObject InventoryElementBack;
 
 	public GameObject[] drawedInvPlayer = new GameObject[10];
-    public GameObject[] drawedInvOther = new GameObject[10];
+	public GameObject[] drawedInvOther = new GameObject[10];
 
-    DualInventoryElement InventoryDravedElement;
+	DualInventoryElement InventoryDravedElement;
 
-    Inventory player;
-    Inventory other;
+	Inventory player;
+	Inventory other;
 
-    void Awake()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Inventory;
-    }
-
-    void Update()
-    {
-        UpdateInventory();
-    }
-
-    public void UpdateInventory()
-    {
-
-		UpdateInventorySection(player, drawedInvPlayer, InventoryCanvasPlayer.transform.FindChild("Items").gameObject, true);
-		UpdateInventorySection(other, drawedInvOther, InventoryCanvasOther.transform.FindChild("Items").gameObject, false);
-    }
-
-	void UpdateInventorySection(Inventory inv, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
+	void Awake()
 	{
-		for (int i = 0; i < inv.size; i++)
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Inventory;
+	}
+
+	void Update()
+	{
+		UpdateInventory();
+	}
+
+	public void UpdateInventory()
+	{
+
+		UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer.transform.FindChild("Items").gameObject, true);
+		if (other != null)
 		{
-			bool isbackground = false;
-
-			#region
-			if (drawed[i] != null)
+			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther.transform.FindChild("Items").gameObject, false);
+		}
+		else
+		{
+			foreach (GameObject item in drawedInvOther)
 			{
-				if (drawed[i].GetComponent<DualInventoryElement>() == null)
-				{
-					isbackground = true;
-				}
-				else
-				{
-					isbackground = false;
-				}
+				Destroy(item);
 			}
-			#endregion
+		}
+	}
 
-			//van itt elem
-			if (inv.inventory[i] != null)
+	void UpdateInventorySection(Inventory invThis, Inventory invOthe, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
+	{
+		for (int i = 0; i < invThis.size; i++)
+		{
+			
+
+			GameObject actual = drawed[i];
+
+			//van itt item
+			if (invThis.inventory[i] != null)
 			{
-				if (isbackground)
+				//Van kint valami
+				if (actual != null)
 				{
-					//Destroy back
-					Destroy(drawed[i]);
-					drawed[i] = null;
+					//Background element
+					if (actual.GetComponent<DualInventoryElement>() == null)
+					{
+						//Destroy back
+						Destroy(actual);
+						actual = null;
 
-					//Create item
-					InventoryDravedElement = null;
-					InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
-					InventoryDravedElement.transform.SetParent(drawingCanvas.transform);
-					drawed[i] = InventoryDravedElement.gameObject;
-
-					InventoryDravedElement.Set(inv.inventory[i], isplayer, other, player, i);
+						//Create item
+						actual = null;
+						actual = Instantiate(InventoryDubleElement);
+						actual.transform.SetParent(drawingCanvas.transform);
+						actual.transform.SetSiblingIndex(i);
 
 
-				}
-				else if (drawed[i] != null)
-				{
-					//update item
-					drawed[i].GetComponent<DualInventoryElement>().Set(inv.inventory[i].amount);
-					drawed[i].GetComponent<DualInventoryElement>().other = other;
-					drawed[i].GetComponent<DualInventoryElement>().thisinv = player;
+						actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
 
+
+					}
+					//Item element
+					else if (actual.GetComponent<DualInventoryElement>() != null)
+					{
+						//update item
+						drawed[i].GetComponent<DualInventoryElement>().Set(invThis.inventory[i].amount);
+						drawed[i].GetComponent<DualInventoryElement>().other = invOthe;
+						drawed[i].GetComponent<DualInventoryElement>().thisinv = invThis;
+
+					}
 				}
 				else
 				{
 					//create item
-					InventoryDravedElement = null;
-					InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
-					InventoryDravedElement.transform.SetParent(drawingCanvas.transform);
-					drawed[i] = InventoryDravedElement.gameObject;
+					actual = null;
+					actual = Instantiate(InventoryDubleElement);
+					actual.transform.SetParent(drawingCanvas.transform);
+					actual.transform.SetSiblingIndex(i);
 
-					InventoryDravedElement.Set(inv.inventory[i], isplayer, other, player, i);
+
+					actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
 				}
 			}
+			//nics item
 			else
 			{
-				//Background
-				if (isbackground)
+				//Van kint valami
+				if (actual != null)
 				{
-					//Oh that's good
-				}
-				// not background but somethig
-				else if (drawed[i] != null)
-				{
-					//Destroy older
-					Destroy(drawed[i]);
-					drawed[i] = null;
+					// background
+					if (actual.GetComponent<DualInventoryElement>() == null)
+					{
+						//OK
+					}
+					// Item element
+					else if (actual.GetComponent<DualInventoryElement>() != null)
+					{
+						//Destroy older
+						Destroy(actual);
+						actual = null;
 
-					//Create Back
-					drawed[i] = null;
-					drawed[i] = Instantiate(InventoryElementBack);
-					drawed[i].transform.SetParent(drawingCanvas.transform);
+						//Create Back
+						actual = null;
+						actual = Instantiate(InventoryElementBack);
+						actual.transform.SetParent(drawingCanvas.transform);
+						actual.transform.SetSiblingIndex(i);
+					}
 				}
-				// not background not anithing else
 				else
 				{
 					//Create Back
-					drawed[i] = null;
-					drawed[i] = Instantiate(InventoryElementBack);
-					drawed[i].transform.SetParent(drawingCanvas.transform);
+					actual = null;
+					actual = Instantiate(InventoryElementBack);
+					actual.transform.SetParent(drawingCanvas.transform);
+					actual.transform.SetSiblingIndex(i);
 				}
 			}
-		
+			drawed[i] = actual;
 		}
 	}
 
 
 
 	/*
-    public void UpdateInventory(Inventory inv, int num)
-    {
-        GameObject drawingCanvas = InventoryCanvasPlayer;
-        GameObject[] drawedInv = drawedInvPlayer;
-        if (inv.inventory[num] != null)
-        {
+	public void UpdateInventory(Inventory inv, int num)
+	{
+		GameObject drawingCanvas = InventoryCanvasPlayer;
+		GameObject[] drawedInv = drawedInvPlayer;
+		if (inv.inventory[num] != null)
+		{
 
-            if (drawedInv[num] == null)
-            {
+			if (drawedInv[num] == null)
+			{
 
-                //invDwrEl = drawedInv[i].GetComponent<InventoryDrawedElement>();
+				//invDwrEl = drawedInv[i].GetComponent<InventoryDrawedElement>();
 
-                Debug.Log("Drawed " + num);
+				Debug.Log("Drawed " + num);
 
-                InventoryDravedElement = null;
-                InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
-                InventoryDravedElement.transform.SetParent(drawingCanvas.transform);
-                Debug.Log(inv.inventory[num].GetType());
+				InventoryDravedElement = null;
+				InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
+				InventoryDravedElement.transform.SetParent(drawingCanvas.transform);
+				Debug.Log(inv.inventory[num].GetType());
 
-                InventoryDravedElement.Set(inv.inventory[num]);
+				InventoryDravedElement.Set(inv.inventory[num]);
 
-                drawedInv[num] = InventoryDravedElement.gameObject;
-            }
-            else
-            {
-                InventoryDravedElement.Set(inv.inventory[num]);
-            }
-        }
-    }
+				drawedInv[num] = InventoryDravedElement.gameObject;
+			}
+			else
+			{
+				InventoryDravedElement.Set(inv.inventory[num]);
+			}
+		}
+	}
 	*/
 
 	/*
-    public void DesplayInventory(Inventory player, Inventory other)
-    {
+	public void DesplayInventory(Inventory player, Inventory other)
+	{
 
-        Inventory inv = player;
-        GameObject drawingCanvas = InventoryCanvasPlayer;
-        GameObject[] drawedInv = drawedInvPlayer;
+		Inventory inv = player;
+		GameObject drawingCanvas = InventoryCanvasPlayer;
+		GameObject[] drawedInv = drawedInvPlayer;
 
-        #region player inventory drawing
-        for (int i = 0; i < inv.size; i++)
-        {
-            if (inv.inventory[i] != null)
-            {
+		#region player inventory drawing
+		for (int i = 0; i < inv.size; i++)
+		{
+			if (inv.inventory[i] != null)
+			{
 
-                if (drawedInv[i] == null)
-                {
+				if (drawedInv[i] == null)
+				{
 
-                    InventoryDravedElement = null;
-                    InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
-                    InventoryDravedElement.transform.SetParent(InventoryCanvasPlayer.transform);
-
-
-                    InventoryDravedElement.Set(inv.inventory[i]);
-
-                    drawedInv[i] = InventoryDravedElement.gameObject;
-                    Debug.Log(inv.inventory[i].GetType());
-                    Debug.Log("Drawed " + i);
-                }
-                else
-                {
-                    InventoryDravedElement = drawedInv[i].GetComponent<DualInventoryElement>();
-                    InventoryDravedElement.Set(inv.inventory[i].amount);
-                    Debug.Log(inv.inventory[i].GetType() + "  " + InventoryDravedElement.name);
-                    Debug.Log("Drawed " + i);
-                }
-            }
-        }
-        #endregion
-
-        inv = other;
-        drawingCanvas = InventoryCanvasOther;
-        drawedInv = drawedInvOther;
+					InventoryDravedElement = null;
+					InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
+					InventoryDravedElement.transform.SetParent(InventoryCanvasPlayer.transform);
 
 
-        #region Other inventory drawing
-        for (int i = 0; i < inv.size; i++)
-        {
-            if (inv.inventory[i] != null)
-            {
+					InventoryDravedElement.Set(inv.inventory[i]);
 
-                if (drawedInv[i] == null)
-                {
+					drawedInv[i] = InventoryDravedElement.gameObject;
+					Debug.Log(inv.inventory[i].GetType());
+					Debug.Log("Drawed " + i);
+				}
+				else
+				{
+					InventoryDravedElement = drawedInv[i].GetComponent<DualInventoryElement>();
+					InventoryDravedElement.Set(inv.inventory[i].amount);
+					Debug.Log(inv.inventory[i].GetType() + "  " + InventoryDravedElement.name);
+					Debug.Log("Drawed " + i);
+				}
+			}
+		}
+		#endregion
 
-                    InventoryDravedElement = null;
-                    InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
-                    InventoryDravedElement.transform.SetParent(InventoryCanvasPlayer.transform);
+		inv = other;
+		drawingCanvas = InventoryCanvasOther;
+		drawedInv = drawedInvOther;
 
 
-                    InventoryDravedElement.Set(inv.inventory[i]);
+		#region Other inventory drawing
+		for (int i = 0; i < inv.size; i++)
+		{
+			if (inv.inventory[i] != null)
+			{
 
-                    drawedInv[i] = InventoryDravedElement.gameObject;
-                    Debug.Log(inv.inventory[i].GetType());
-                    Debug.Log("Drawed " + i);
-                }
-                else
-                {
-                    InventoryDravedElement = drawedInv[i].GetComponent<DualInventoryElement>();
-                    InventoryDravedElement.Set(inv.inventory[i].amount);
-                    Debug.Log(inv.inventory[i].GetType() + "  " + InventoryDravedElement.name);
-                    Debug.Log("Drawed " + i);
-                }
-            }
-        }
-        #endregion
+				if (drawedInv[i] == null)
+				{
 
-    }
+					InventoryDravedElement = null;
+					InventoryDravedElement = Instantiate(InventoryDubleElement).GetComponent<DualInventoryElement>();
+					InventoryDravedElement.transform.SetParent(InventoryCanvasPlayer.transform);
+
+
+					InventoryDravedElement.Set(inv.inventory[i]);
+
+					drawedInv[i] = InventoryDravedElement.gameObject;
+					Debug.Log(inv.inventory[i].GetType());
+					Debug.Log("Drawed " + i);
+				}
+				else
+				{
+					InventoryDravedElement = drawedInv[i].GetComponent<DualInventoryElement>();
+					InventoryDravedElement.Set(inv.inventory[i].amount);
+					Debug.Log(inv.inventory[i].GetType() + "  " + InventoryDravedElement.name);
+					Debug.Log("Drawed " + i);
+				}
+			}
+		}
+		#endregion
+
+	}
 	*/
 
-    public void SetOtherInv(Inventory OtherInventory)
-    {
-        other = OtherInventory;
-        if (OtherInventory != null)
-        {
-            drawedInvOther = new GameObject[other.size];
-        }
-        else
-        {
-            foreach (GameObject des in drawedInvOther)
-            {
-                Destroy(des);
-            }
-        }
-    }
+	public void SetOtherInv(Inventory OtherInventory)
+	{
+		other = OtherInventory;
+		if (OtherInventory != null)
+		{
+			drawedInvOther = new GameObject[other.size];
+		}
+		else
+		{
+			foreach (GameObject des in drawedInvOther)
+			{
+				Destroy(des);
+			}
+		}
+	}
 
 
 

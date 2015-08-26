@@ -19,7 +19,7 @@ public class Chest : Building
 
 	public void OpenInventory()
 	{
-		GameCon.TogleDualInventory(inventory);
+		GameCon.TogleInventory(inventory);
 	}
 
 }

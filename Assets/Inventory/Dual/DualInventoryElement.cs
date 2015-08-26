@@ -5,7 +5,9 @@ using UnityEngine.UI;
 [AddComponentMenu("Dual Inventory/Dual Inventory Element")]
 public class DualInventoryElement : MonoBehaviour
 {
-    public bool isPlayer;
+	GameController GameCon;
+
+	public bool isPlayer;
     public string name;
     public int amount;
     public int index;
@@ -13,13 +15,14 @@ public class DualInventoryElement : MonoBehaviour
     public Inventory other;
     public Inventory thisinv;
 
-    public GameController GameCon;
+    
     public GameObject nameDisplay;
     public GameObject amountDisplay;
+	public Button button;
 
 
-    // Use this for initialization
-    void Awake()
+	// Use this for initialization
+	void Awake()
     {
         nameDisplay = transform.FindChild("Name").gameObject;
         amountDisplay = transform.FindChild("Icon").gameObject;
@@ -31,7 +34,14 @@ public class DualInventoryElement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		if (other == null)
+		{
+			button.interactable = false;
+		}
+		else
+		{
+			button.interactable = true;
+		}
     }
 
 

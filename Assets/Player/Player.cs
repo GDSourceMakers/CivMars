@@ -96,8 +96,6 @@ public class Player : MonoBehaviour
 
 			Inventory.Add(mined);
 
-			GameCon.guiHandler.InventoryDisplay.UpdateInventory();
-
 			Debug.Log("Ore: "+ ((OreTile)ore).amount+ " Item: "+((OreTile)ore).amount);
 
 			if (((OreTile)ore).Mine(1))

@@ -5,12 +5,12 @@ using System.IO;
 public class Map : MonoBehaviour
 {
 	public int seed;
-	public int mapHeight = 300;
+	public int mapHeight = 100;
 
 
 
-	public GeneratedTile[,] mapGenerated = new GeneratedTile[300, 300];
-	public Building[,] mapBuilt = new Building[300, 300];
+	public GeneratedTile[,] mapGenerated = new GeneratedTile[100, 100];
+	public Building[,] mapBuilt = new Building[100, 100];
 
 	float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 0.01f, 45, 2f } };
 	//float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 1f, 45, 2f } };

@@ -27,7 +27,15 @@ public class InputHandler : MonoBehaviour
             if (Input.GetButtonUp("Inventory"))
             {
                 Debug.Log("Inventory opening");
-                GameCon.TogleSingleInventory();
+				if (GameCon.guiHandler.OpenBuilding != null && GameCon.guiHandler.isBuildingOpened)
+				{
+					//GameCon.TogleInventory(GameCon.guiHandler.OpenBuilding)
+					GameCon.TogleInventory();
+				}
+				else
+				{
+					GameCon.TogleInventory();
+				}
             }
 
             if (Input.GetButtonUp("Mine") && (GameCon.gameS == GameState.InGame))

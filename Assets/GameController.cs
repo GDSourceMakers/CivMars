@@ -86,6 +86,7 @@ public class GameController : MonoBehaviour
 		StartCoroutine(LoadLevel("Main"));
 
 	}
+
 	public IEnumerator LoadLevel(string a)
 	{
 		load.SetActive(true);
@@ -110,80 +111,40 @@ public class GameController : MonoBehaviour
 
 	}
 
-	public void TogleSingleInventory()
+	public void TogleInventory()
 	{
-		if ((guiHandler.dualinventoryOn))
-		{
-			Debug.Log("Closing");
-			guiHandler.NormalUi.SetActive(true);
-			guiHandler.DualInventory.SetOtherInv(null);
-			guiHandler.DualInventory.gameObject.SetActive(false);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.dualinventoryOn = false;
-			gameS = GameState.InGame;
-			return;
-		}
-		else if (!(guiHandler.inventoryOn))
+		TogleInventory(null);
+		return;
+	}
+
+	public void TogleInventory(Inventory other)
+	{
+		if (guiHandler.inventoryOn)
 		{
 			Debug.Log("Opening");
-			guiHandler.NormalUi.SetActive(false);
-			guiHandler.InventoryDisplay.gameObject.SetActive(true);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+			guiHandler.AccesPanel.ChangeTab<Inventory>(AccesPanelState.Inventory, other);
+			guiHandler.AccesPanel.gameObject.SetActive(true);
+			
+
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+			guiHandler.inventoryOn = false;
+			gameS = GameState.InGame;
+
+			return;
+		}
+		else
+		{
+			Debug.Log("Closing");
+			guiHandler.AccesPanel.ChangeTab<Inventory>(AccesPanelState.Inventory, null);
+			guiHandler.AccesPanel.gameObject.SetActive(false);
+
+			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
 			guiHandler.inventoryOn = true;
 			gameS = GameState.Inventory;
-			return;
-		}
-		else
-		{
-			Debug.Log("Closing");
-			guiHandler.NormalUi.SetActive(true);
-			guiHandler.InventoryDisplay.gameObject.SetActive(false);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.inventoryOn = false;
-			gameS = GameState.InGame;
 
 			return;
 		}
 	}
-
-
-	public void TogleDualInventory(Inventory other)
-	{
-		if ((guiHandler.inventoryOn))
-		{
-			Debug.Log("Closing");
-			guiHandler.NormalUi.SetActive(true);
-			guiHandler.InventoryDisplay.gameObject.SetActive(false);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.inventoryOn = false;
-			gameS = GameState.InGame;
-
-			return;
-		}
-		else if (!(guiHandler.dualinventoryOn))
-		{
-			//Debug.Log("Opening");
-			guiHandler.NormalUi.SetActive(false);
-			guiHandler.DualInventory.SetOtherInv(other);
-			guiHandler.DualInventory.gameObject.SetActive(true);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-			guiHandler.dualinventoryOn = true;
-			gameS = GameState.DualInventory;
-			return;
-		}
-		else
-		{
-			Debug.Log("Closing");
-			guiHandler.NormalUi.SetActive(true);
-			guiHandler.DualInventory.SetOtherInv(null);
-			guiHandler.DualInventory.gameObject.SetActive(false);
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.dualinventoryOn = false;
-			gameS = GameState.InGame;
-			return;
-		}
-	}
-
 
 	public void ChangeLanguage(int num)
 	{
