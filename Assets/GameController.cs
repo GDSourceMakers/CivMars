@@ -117,12 +117,12 @@ public class GameController : MonoBehaviour
 		return;
 	}
 
-	public void TogleInventory(Inventory other)
+	public void TogleInventory(Building other)
 	{
 		if (guiHandler.inventoryOn)
 		{
 			Debug.Log("Opening");
-			guiHandler.AccesPanel.ChangeTab<Inventory>(AccesPanelState.Inventory, other);
+			guiHandler.AccesPanel.ChangeTab(AccesPanelState.Inventory, other);
 			guiHandler.AccesPanel.gameObject.SetActive(true);
 			
 
@@ -135,7 +135,7 @@ public class GameController : MonoBehaviour
 		else
 		{
 			Debug.Log("Closing");
-			guiHandler.AccesPanel.ChangeTab<Inventory>(AccesPanelState.Inventory, null);
+			guiHandler.AccesPanel.ChangeTab(AccesPanelState.Inventory, null);
 			guiHandler.AccesPanel.gameObject.SetActive(false);
 
 			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;

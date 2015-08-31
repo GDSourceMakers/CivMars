@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
+public class InventoryDesplay : MonoBehaviour, IAccesTab
 {
 	public GameObject InventoryCanvasPlayer;
 	public GameObject InventoryCanvasOther;
@@ -13,7 +13,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 	public GameObject[] drawedInvPlayer = new GameObject[10];
 	public GameObject[] drawedInvOther = new GameObject[10];
 
-	DualInventoryElement InventoryDravedElement;
+	InventoryDrawedElement InventoryDravedElement;
 
 	Inventory player;
 	Inventory other;
@@ -66,7 +66,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 				if (actual != null)
 				{
 					//Background element
-					if (actual.GetComponent<DualInventoryElement>() == null)
+					if (actual.GetComponent<InventoryDrawedElement>() == null)
 					{
 						//Destroy back
 						Destroy(actual);
@@ -79,17 +79,17 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 						actual.transform.SetSiblingIndex(i);
 
 
-						actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
+						actual.GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
 
 
 					}
 					//Item element
-					else if (actual.GetComponent<DualInventoryElement>() != null)
+					else if (actual.GetComponent<InventoryDrawedElement>() != null)
 					{
 						//update item
-						drawed[i].GetComponent<DualInventoryElement>().Set(invThis.inventory[i].amount);
-						drawed[i].GetComponent<DualInventoryElement>().other = invOthe;
-						drawed[i].GetComponent<DualInventoryElement>().thisinv = invThis;
+						drawed[i].GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i].amount);
+						drawed[i].GetComponent<InventoryDrawedElement>().other = invOthe;
+						drawed[i].GetComponent<InventoryDrawedElement>().thisinv = invThis;
 
 					}
 				}
@@ -102,7 +102,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 					actual.transform.SetSiblingIndex(i);
 
 
-					actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
+					actual.GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i], isplayer, invOthe, invThis, i);
 				}
 			}
 			//nics item
@@ -112,12 +112,12 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 				if (actual != null)
 				{
 					// background
-					if (actual.GetComponent<DualInventoryElement>() == null)
+					if (actual.GetComponent<InventoryDrawedElement>() == null)
 					{
 						//OK
 					}
 					// Item element
-					else if (actual.GetComponent<DualInventoryElement>() != null)
+					else if (actual.GetComponent<InventoryDrawedElement>() != null)
 					{
 						//Destroy older
 						Destroy(actual);
@@ -159,7 +159,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 				if (actual != null)
 				{
 					//Background element
-					if (actual.GetComponent<DualInventoryElement>() == null)
+					if (actual.GetComponent<InventoryDrawedElement>() == null)
 					{
 						//Destroy back
 						Destroy(actual);
@@ -172,17 +172,17 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 						actual.transform.SetSiblingIndex(i);
 
 
-						actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, null, invThis, i);
+						actual.GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i], isplayer, null, invThis, i);
 
 
 					}
 					//Item element
-					else if (actual.GetComponent<DualInventoryElement>() != null)
+					else if (actual.GetComponent<InventoryDrawedElement>() != null)
 					{
 						//update item
-						drawed[i].GetComponent<DualInventoryElement>().Set(invThis.inventory[i].amount);
-						drawed[i].GetComponent<DualInventoryElement>().other = null;
-						drawed[i].GetComponent<DualInventoryElement>().thisinv = invThis;
+						drawed[i].GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i].amount);
+						drawed[i].GetComponent<InventoryDrawedElement>().other = null;
+						drawed[i].GetComponent<InventoryDrawedElement>().thisinv = invThis;
 
 					}
 				}
@@ -195,7 +195,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 					actual.transform.SetSiblingIndex(i);
 
 
-					actual.GetComponent<DualInventoryElement>().Set(invThis.inventory[i], isplayer, null, invThis, i);
+					actual.GetComponent<InventoryDrawedElement>().Set(invThis.inventory[i], isplayer, null, invThis, i);
 				}
 			}
 			//nics item
@@ -205,12 +205,12 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 				if (actual != null)
 				{
 					// background
-					if (actual.GetComponent<DualInventoryElement>() == null)
+					if (actual.GetComponent<InventoryDrawedElement>() == null)
 					{
 						//OK
 					}
 					// Item element
-					else if (actual.GetComponent<DualInventoryElement>() != null)
+					else if (actual.GetComponent<InventoryDrawedElement>() != null)
 					{
 						//Destroy older
 						Destroy(actual);
@@ -242,6 +242,11 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 		other = OtherInventory;
 		if (OtherInventory != null)
 		{
+			foreach (GameObject des in drawedInvOther)
+			{
+				Destroy(des);
+			}
+
 			drawedInvOther = new GameObject[other.size];
 		}
 		else
@@ -261,5 +266,17 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab<Inventory>
 	public void UpdateData(Inventory datas)
 	{
 		SetOtherInv(datas);
+	}
+
+	public void UpdateData(Building datas)
+	{
+		if (datas != null)
+		{
+			if (datas is IInventory)
+			{
+				SetOtherInv(((IInventory)datas).GetInventory());
+			}
+		}
+
 	}
 }

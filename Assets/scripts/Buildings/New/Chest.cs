@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 [AddComponentMenu("Buildings/Chest")]
-public class Chest : Building
+public class Chest : Building, IInventory
 {
 	new static public int ID = 2;
 
@@ -19,7 +20,11 @@ public class Chest : Building
 
 	public void OpenInventory()
 	{
-		GameCon.TogleInventory(inventory);
+		GameCon.TogleInventory(this);
 	}
 
+	public Inventory GetInventory()
+	{
+		return inventory;
+	}
 }

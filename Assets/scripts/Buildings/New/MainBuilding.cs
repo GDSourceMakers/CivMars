@@ -7,22 +7,32 @@ using UnityEngine;
 
 [AddComponentMenu("Buildings/Main Building")]
 [System.Serializable]
-public class MainBuilding : Building
+public class MainBuilding : Building , IInventory, IGasTank
 {
 	new static public int ID = 1;
 
 	public Text Name;
     public Text InventoryButtonText;
-    public Text asd;
     
 
 	public Inventory inventory = new Inventory(20);
 
+	public static float[] max = { 1000f, 1000f, 1000f, 1000f };
+	public GasTankCluster tanks = new GasTankCluster(4, max);
 
 
     public void OpenInventory()
     {
-        GameCon.TogleInventory(inventory);
+        GameCon.TogleInventory(this);
     }
 
+	public Inventory GetInventory()
+	{
+		return inventory;
+	}
+
+	public GasTankCluster GetTankCluster()
+	{
+		return tanks;
+	}
 }

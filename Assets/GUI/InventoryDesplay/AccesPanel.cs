@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[System.Serializable]
 public enum AccesPanelState
 {
 	Inventory,
@@ -8,13 +10,17 @@ public enum AccesPanelState
 	Stats
 }
 
-interface IAccesTab <T>
+interface IAccesTab
 {
-	void UpdateData(T datas);
+	void UpdateData(Building datas);
 }
 
 public class AccesPanel : MonoBehaviour
 {
+
+
+	public Building OpenBuilding;
+
 	public AccesPanelState state;
 
 
@@ -22,10 +28,10 @@ public class AccesPanel : MonoBehaviour
 
 
 
-	public void ChangeTab<T>(AccesPanelState a, T data)
+	public void ChangeTab(AccesPanelState a, Building data)
 	{
 		state = a;
-		AccesTabs[(int)state].GetComponent<IAccesTab<T>>().UpdateData(data);
+		OpenBuilding = data;
         UpdateTab();
 	}
 
@@ -35,6 +41,15 @@ public class AccesPanel : MonoBehaviour
 		UpdateTab();
 	}
 
+	public void ChangeTab(string a)
+	{
+		state = (AccesPanelState)Enum.Parse(typeof(AccesPanelState), a);
+
+		UpdateTab();
+	}
+
+
+
 	void UpdateTab()
 	{
 		for (int i = 0; i < AccesTabs.Length; i++)
@@ -42,6 +57,10 @@ public class AccesPanel : MonoBehaviour
 			if ((int)state == i)
 			{
 				AccesTabs[i].SetActive(true);
+				if (AccesTabs[i].GetComponent<IAccesTab>() != null)
+				{
+					AccesTabs[i].GetComponent<IAccesTab>().UpdateData(OpenBuilding);
+				}
 				
 			}
 			else

@@ -21,9 +21,10 @@ public class PlayerStatsDesplay : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		
-		OxigenSlider.value = GameCon.playerclass.OxigenTank / Player.OxigenTankFull;
-		CarbonDioxideSlider.value = GameCon.playerclass.CarbonDioxideTank / Player.CarbonDioxideTankFull;
+		GasTankCluster t = GameCon.playerclass.GetTankCluster();
+
+		OxigenSlider.value = t.GetTank(GasType.Oxigen).amount / t.GetTank(GasType.Oxigen).maxAmount;
+		CarbonDioxideSlider.value = t.GetTank(GasType.CarbonDeOxide).amount / t.GetTank(GasType.CarbonDeOxide).maxAmount;
 		
 		Health.color = new Color(0, 0, 0,1- GameCon.playerclass.health);
 
