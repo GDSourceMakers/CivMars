@@ -65,7 +65,7 @@ public class ActionButton : MonoBehaviour
             buttonscript.interactable = true;
             maskRect.position = new Vector2(maskRect.position.x, defaultYPos + maskRect.rect.height);
 
-            if (!ActionRuned)
+            if (ActionRuned == false)
             {
 
                 MethodInfo m = GameCon.playerclass.GetComponent<Player>().GetType().GetMethod(action);

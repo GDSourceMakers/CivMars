@@ -24,14 +24,14 @@
   <Class Name="GameController" Collapsed="true">
     <Position X="43.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAwAGAAACYgAAAgAACIAAEokAAABEAAgCAAACAAAgEA=</HashCode>
+      <HashCode>AAwAGAAACYgAAAgAACAAAEokAAABEAAgCCAAAAAAgEA=</HashCode>
       <FileName>Assets\GameController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GUIHandler" Collapsed="true">
     <Position X="38" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAQCAAACAAAAAAAGAAAAAAAABAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAQAAAAADCAAACAAAAAIAEAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\GUI\GUIHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,7 +52,7 @@
   <Class Name="Map" Collapsed="true">
     <Position X="41.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAIAAQAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAQQAAAAAaCAQAAAAABABAAAAAAEABAADAAAAACCAAA=</HashCode>
       <FileName>Assets\Map.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -80,8 +80,8 @@
   <Class Name="Building" Collapsed="true">
     <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAA=</HashCode>
-      <FileName>Assets\scripts\Buildings\Building.cs</FileName>
+      <HashCode>ABAAAAAIACAAgBAACAIAAAAAAAAAAAAAIABgAAAAAAA=</HashCode>
+      <FileName>Assets\scripts\Buildings\New\Building.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CoalOre" Collapsed="true">
@@ -157,7 +157,7 @@
   <Class Name="Miner" Collapsed="true">
     <Position X="1.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\scripts\Buildings\Miner\Miner.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -276,9 +276,10 @@
   <Class Name="MainBuilding" Collapsed="true">
     <Position X="9.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
-      <FileName>Assets\scripts\Buildings\MainBuilding.cs</FileName>
+      <HashCode>IAAAAAAAAAAAgAAAACAAAAQAAAAAAQACAAAgAAAAAAA=</HashCode>
+      <FileName>Assets\scripts\Buildings\New\MainBuilding.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BuildingBehaviour">
     <Position X="9.25" Y="7.5" Width="2" />
@@ -304,23 +305,18 @@
   <Class Name="InventoryDesplay" Collapsed="true">
     <Position X="40.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAQAAAAAAggAAAAAAAAAAAABEAACAAAAAEA=</HashCode>
+      <HashCode>AAQAAAAAECAAEAAAAgiAAAAAAAAAQEABBAACAAwAAQA=</HashCode>
       <FileName>Assets\Inventory\InventoryDesplay.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="InventoryDrawedElement" Collapsed="true">
-    <Position X="38.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABQAAAAAIAAABAAAAAAAAAAAAAAEgAAAAAAAAAAAgEA=</HashCode>
-      <FileName>Assets\Inventory\InventoryDrawedElement.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Player" Collapsed="true">
     <Position X="38" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABYIAAAAECAAQAAEAAAAAAAAIgAAAQAAACAAAgAAAAA=</HashCode>
+      <HashCode>AFYIQAAAECAAQAAEAAAAAAAAIAAAAQAAACAAAgAAAAg=</HashCode>
       <FileName>Assets\Player\Player.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="PlayerMovment" Collapsed="true">
     <Position X="39.75" Y="3.5" Width="1.5" />

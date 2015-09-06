@@ -4,18 +4,11 @@ using UnityEngine;
 
 
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IGasTank
 {
 	public GameController GameCon;
 
-
-
-	public float OxigenTank;
-	static public float OxigenTankFull = 200;
-
-
-	public float CarbonDioxideTank;
-	static public float CarbonDioxideTankFull = 200;
+	SpaceSuit suit = new SpaceSuit();
 
 	public float health = 1;
 
@@ -24,23 +17,32 @@ public class Player : MonoBehaviour
 	public Inventory Inventory = new Inventory(10);
 
 	public int eatSpeed;
-	public int breathAmount = 1;
+	public float breathAmount = 1;
 	public int speed;
 
 	public void Start()
 	{
-		OxigenTank = OxigenTankFull;
-		CarbonDioxideTank = 0;
+		GetTankCluster().GetTank(0).gasType = GasType.Oxigen;
+		GetTankCluster().GetTank(0).SetLocked(true);
+		GetTankCluster().GetTank(1).gasType = GasType.CarbonDeOxide;
+		GetTankCluster().GetTank(1).SetLocked(true);
+
+		GetTankCluster().GetTank(0).AddAmount(GetTankCluster().GetTank(0).maxAmount);
 		GameCon = GameObject.Find("_GameController").GetComponent<GameController>();
 
 	}
 
 	void Update()
 	{
-		Breath();
-		
+		//Breath();
+		GasTank oxigen = GetTankCluster().GetTank(0);
+		GasTank carbonDioxide = GetTankCluster().GetTank(1);
 
-		
+		float OxigenTank = oxigen.amount;
+		float OxigenTankFull = oxigen.maxAmount;
+
+		float CarbonDioxideTank = carbonDioxide.amount;
+		float CarbonDioxideTankFull = carbonDioxide.maxAmount;
 
 		float OxigenHp =			Mathf.Clamp((OxigenTank * 5)		/ OxigenTankFull		,0, 1);
 		float CarbonDioxideHp =		Mathf.Clamp(((CarbonDioxideTankFull - CarbonDioxideTank) * 5) / CarbonDioxideTankFull	,0, 1); ;
@@ -60,16 +62,11 @@ public class Player : MonoBehaviour
 
 	public void Breath()
 	{
-		if (OxigenTank - (breathAmount * Time.deltaTime) > 0)
-		{
-			OxigenTank -= breathAmount * Time.deltaTime;
-			CarbonDioxideTank += (breathAmount * Time.deltaTime) / 2;
 
-		}
-		else
-		{
-			OxigenTank = 0;
-		}
+			GetTankCluster().GetTank(0).RemoveAmount(breathAmount * Time.deltaTime, GasType.Oxigen);
+			GetTankCluster().GetTank(1).AddAmount(breathAmount * Time.deltaTime, GasType.CarbonDeOxide);
+
+
 	}
 
 	public void walk()
@@ -96,8 +93,6 @@ public class Player : MonoBehaviour
 
 			Inventory.Add(mined);
 
-			GameCon.guiHandler.InventoryDisplay.UpdateInventory();
-
 			Debug.Log("Ore: "+ ((OreTile)ore).amount+ " Item: "+((OreTile)ore).amount);
 
 			if (((OreTile)ore).Mine(1))
@@ -123,5 +118,9 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public GasTankCluster GetTankCluster()
+	{
+		return suit.GetTankCluster();
+	}
 }
 
