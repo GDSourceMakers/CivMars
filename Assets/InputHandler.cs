@@ -30,11 +30,11 @@ public class InputHandler : MonoBehaviour
 				if (GameCon.guiHandler.OpenBuilding != null && GameCon.guiHandler.isBuildingOpened)
 				{
 					//GameCon.TogleInventory(GameCon.guiHandler.OpenBuilding)
-					GameCon.TogleInventory();
+					GameCon.TogleDesplay();
 				}
 				else
 				{
-					GameCon.TogleInventory();
+					GameCon.TogleDesplay();
 				}
             }
 

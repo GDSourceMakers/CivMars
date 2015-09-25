@@ -23,7 +23,7 @@ public class MainBuilding : Building , IInventory, IGasTank
 
     public void OpenInventory()
     {
-        GameCon.TogleInventory(this);
+        GameCon.TogleDesplay(this);
     }
 
 	public Inventory GetInventory()

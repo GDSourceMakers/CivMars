@@ -6,7 +6,8 @@ using System.Text;
 public enum GameState
 {
     InGame,
-    Inventory,
+    Desplay,
+	BuildingDesplay,
     DualInventory
     
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+/*using UnityEngine;
 using System.Collections;
 
 public class MapLoad
@@ -95,7 +96,7 @@ public class MapLoad
                 }
             }
         }
-		*/
+		
         #endregion
 
 
@@ -114,3 +115,4 @@ public class MapLoad
 
     }
 }
+*/

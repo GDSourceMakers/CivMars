@@ -10,7 +10,7 @@ public class GUIHandler : MonoBehaviour
 
 	public ActionButton[] actions = new ActionButton[10];
 
-    public bool inventoryOn;
+    public bool desplayOn;
 
 	public Building OpenBuilding;
 	public bool isBuildingOpened;

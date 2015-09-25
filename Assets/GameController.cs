@@ -30,12 +30,22 @@ public class GameController : MonoBehaviour
 	public Text bar;
 	public float loadProgress;
 
+	AsyncOperation loadingmap;
+
+	public BuildingRegistry buildingRegistry;
 
 	public bool gameIsOn = false;
 
 	void Awake()
 	{
+		buildingRegistry = this.GetComponent<BuildingRegistry>();
+	}
+
+	void Start()
+	{
 		DontDestroyOnLoad(transform.gameObject);
+		buildingRegistry.CallRegister();
+		
 	}
 
 	void OnLevelWasLoaded(int level)
@@ -77,7 +87,14 @@ public class GameController : MonoBehaviour
 
 	public void Update()
 	{
-
+		if (Application.loadedLevelName == "Start")
+		{
+			if(load.active == true)
+			{
+				loadProgress = loadingmap.progress * 100;
+				bar.text = loadProgress + "!!";
+			}
+		}
 	}
 
 	public void StartGame()
@@ -92,34 +109,31 @@ public class GameController : MonoBehaviour
 		load.SetActive(true);
 		menu.SetActive(false);
 
-		bar.text = loadProgress + "??";
+		//bar.text = loadProgress + "??";
 
 
-		AsyncOperation async = Application.LoadLevelAsync(a);
+		loadingmap = Application.LoadLevelAsync(a);
 
 
 
-		while (!async.isDone)
+		while (!loadingmap.isDone)
 		{
-		loadProgress = async.progress * 100;
-		bar.text = loadProgress + "!!";
-
-		yield return async;
+			yield return loadingmap;
 		}
 
 
 
 	}
 
-	public void TogleInventory()
+	public void TogleDesplay()
 	{
-		TogleInventory(null);
+		TogleDesplay(null);
 		return;
 	}
 
-	public void TogleInventory(Building other)
+	public void TogleDesplay(Building other)
 	{
-		if (guiHandler.inventoryOn)
+		if (!guiHandler.desplayOn)
 		{
 			Debug.Log("Opening");
 			guiHandler.AccesPanel.ChangeTab(AccesPanelState.Inventory, other);
@@ -127,8 +141,8 @@ public class GameController : MonoBehaviour
 			
 
 			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.inventoryOn = false;
-			gameS = GameState.InGame;
+			guiHandler.desplayOn = true;
+			gameS = GameState.Desplay;
 
 			return;
 		}
@@ -139,8 +153,8 @@ public class GameController : MonoBehaviour
 			guiHandler.AccesPanel.gameObject.SetActive(false);
 
 			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.inventoryOn = true;
-			gameS = GameState.Inventory;
+			guiHandler.desplayOn = false;
+			gameS = GameState.InGame;
 
 			return;
 		}
@@ -150,4 +164,5 @@ public class GameController : MonoBehaviour
 	{
 		language = num;
 	}
+
 }

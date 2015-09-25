@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [AddComponentMenu("Buildings/Building")]
-public class Building : MonoBehaviour
+public class Building : Tiled
 {
 	static public int ID;
 

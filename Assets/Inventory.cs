@@ -64,9 +64,8 @@ public class Inventory
         inventory[i] = null;
     }
 
-    
 
-    public Item Get(int i)
+	public Item Get(int i)
     {
         return inventory[i];
     }

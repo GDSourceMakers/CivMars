@@ -29,6 +29,8 @@ public class ActionButton : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		ActionRuned = true;
+
         GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
         countdown = 0;
@@ -49,7 +51,7 @@ public class ActionButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (countdown > 0)
+        if (countdown > 0 && countdown !=0)
         {
             buttonscript.interactable = false;
             

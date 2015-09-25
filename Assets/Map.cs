@@ -10,7 +10,7 @@ public class Map : MonoBehaviour
 
 
 	public GeneratedTile[,] mapGenerated = new GeneratedTile[100, 100];
-	public Building[,] mapBuilt = new Building[100, 100];
+	public Tiled[,] mapBuilt = new Tiled[100, 100];
 
 	float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 0.01f, 45, 2f } };
 	//float[,] OreRarety = new float[,] { { 3f, 15f, 2f }, { 2f, 20f, 2f }, { 1f, 22f, 2f }, { 0.2f, 30f, 2f }, { 0.1f, 40f, 2f }, { 1f, 45, 2f } };
@@ -24,6 +24,16 @@ public class Map : MonoBehaviour
 
 	public GameObject[] GeneratedPrefabs;
 	public GameObject[] BuildingPrefabs;
+
+	// Use this for initialization
+	void Start()
+	{
+		//mapGenerated = new GeneratedTile[mapHeight, mapHeight];
+
+		//mapBuilt = new Building[mapHeight, mapHeight];
+	}
+
+
 
 	public void BuildMap()
 	{
@@ -102,6 +112,7 @@ public class Map : MonoBehaviour
 			}
 		}
 
+		Debug.Log("asd");
 	}
 
 	public void AddBasicBuildings()
@@ -116,11 +127,7 @@ public class Map : MonoBehaviour
 		mapBuilt[xMpos + 5, xMpos - 5].transform.position = new Vector3(xMpos + 5, -(xMpos - 5),-2) +posMultiplyer;
 	}
 
-	// Use this for initialization
-	void Start()
-	{
-
-	}
+	
 
 	// Update is called once per frame
 	void Update()
