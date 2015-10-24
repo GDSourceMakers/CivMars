@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="BottomToTop" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 @2 Member=(Name=ChangeLanguage OverloadingParameters=[(@5 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" Bounds="-1021.1679394507,-378.613553324627,186.24,26" CodeSchemaProperty_IsPublic="True" CommonLabel="ChangeLanguage" Icon="Microsoft.VisualStudio.Method.Public" Label="ChangeLanguage(int) : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=162 StartCharacterOffset=13 EndLineNumber=162 EndCharacterOffset=27)" />
+    <Node Id="(@1 @2 Member=(Name=LoadLevel OverloadingParameters=[(@5 Namespace=System Type=String)]))" Category="CodeSchema_Method" Bounds="-765.261324663921,-322.613461771892,205.226666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="LoadLevel" Icon="Microsoft.VisualStudio.Method.Public" Label="LoadLevel(string) : IEnumerator" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=106 StartCharacterOffset=20 EndLineNumber=106 EndCharacterOffset=29)" />
+    <Node Id="(@1 @2 Member=(Name=OnLevelWasLoaded OverloadingParameters=[(@5 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" Bounds="-993.487932940288,-322.613461771892,198.226666666667,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="OnLevelWasLoaded" Icon="Microsoft.VisualStudio.Method.Private" Label="OnLevelWasLoaded(int) : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=50 StartCharacterOffset=6 EndLineNumber=50 EndCharacterOffset=22)" />
+    <Node Id="(@1 @2 Member=(Name=TogleDesplay OverloadingParameters=[(@1 @4)]))" Category="CodeSchema_Method" Bounds="-804.927953488791,-378.613553324627,194.7,26" CodeSchemaProperty_IsPublic="True" CommonLabel="TogleDesplay" Icon="Microsoft.VisualStudio.Method.Public" Label="TogleDesplay(Building) : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=133 StartCharacterOffset=13 EndLineNumber=133 EndCharacterOffset=25)" />
+    <Node Id="(@1 @2 Member=Awake)" Category="CodeSchema_Method" Bounds="-1221.45470499432,-602.613934794353,114.923333333333,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="Awake" Icon="Microsoft.VisualStudio.Method.Private" Label="Awake() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=38 StartCharacterOffset=6 EndLineNumber=38 EndCharacterOffset=11)" />
+    <Node Id="(@1 @2 Member=Start)" Category="CodeSchema_Method" Bounds="-974.204610593283,-658.614056864666,104.95,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="Start" Icon="Microsoft.VisualStudio.Method.Private" Label="Start() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=43 StartCharacterOffset=6 EndLineNumber=43 EndCharacterOffset=11)" />
+    <Node Id="(@1 @2 Member=StartGame)" Category="CodeSchema_Method" Bounds="-1056.6312589494,-546.613812724041,135.903333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="StartGame" Icon="Microsoft.VisualStudio.Method.Public" Label="StartGame() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=99 StartCharacterOffset=13 EndLineNumber=99 EndCharacterOffset=22)" />
+    <Node Id="(@1 @2 Member=TogleDesplay)" Category="CodeSchema_Method" Bounds="-1221.45471272544,-434.613629618572,151.386666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="TogleDesplay" Icon="Microsoft.VisualStudio.Method.Public" Label="TogleDesplay() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=127 StartCharacterOffset=13 EndLineNumber=127 EndCharacterOffset=25)" />
+    <Node Id="(@1 @2 Member=Update)" Category="CodeSchema_Method" Bounds="-1076.53123738365,-602.613934794353,118.976666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="Update" Icon="Microsoft.VisualStudio.Method.Public" Label="Update() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=87 StartCharacterOffset=13 EndLineNumber=87 EndCharacterOffset=19)" />
+    <Node Id="(@1 @2 Member=bar)" Category="CodeSchema_Field" Bounds="-1221.45471964276,-658.614056864666,89.6433333333334,26" CodeSchemaProperty_IsPublic="True" CommonLabel="bar" Icon="Microsoft.VisualStudio.Field.Public" Label="bar : Text" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=29 StartCharacterOffset=13 EndLineNumber=29 EndCharacterOffset=16)" />
+    <Node Id="(@1 @2 Member=buildingRegistry)" Category="CodeSchema_Field" Bounds="-1221.45471964276,-266.613301554607,205.893333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="buildingRegistry" Icon="Microsoft.VisualStudio.Field.Public" Label="buildingRegistry : AssetsLoader" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=34 StartCharacterOffset=21 EndLineNumber=34 EndCharacterOffset=37)" />
+    <Node Id="(@1 @2 Member=gameIsOn)" Category="CodeSchema_Field" Bounds="-927.554562172059,-602.613934794353,128.103333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="gameIsOn" Icon="Microsoft.VisualStudio.Field.Public" Label="gameIsOn : bool" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=36 StartCharacterOffset=13 EndLineNumber=36 EndCharacterOffset=21)" />
+    <Node Id="(@1 @2 Member=gameS)" Category="CodeSchema_Field" Bounds="-1048.6778987606,-490.613751688885,144.176666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="gameS" Icon="Microsoft.VisualStudio.Field.Public" Label="gameS : GameState" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=7 StartCharacterOffset=18 EndLineNumber=7 EndCharacterOffset=23)" />
+    <Node Id="(@1 @2 Member=guiHandler)" Category="CodeSchema_Field" Bounds="-1221.45470051841,-378.613553324627,170.286666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="guiHandler" Icon="Microsoft.VisualStudio.Field.Public" Label="guiHandler : GUIHandler" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=25 StartCharacterOffset=19 EndLineNumber=25 EndCharacterOffset=29)" />
+    <Node Id="(@1 @2 Member=language)" Category="CodeSchema_Field" Bounds="-698.074599200054,-658.614056864666,113.046666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="language" Icon="Microsoft.VisualStudio.Field.Public" Label="language : int" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=18 StartCharacterOffset=12 EndLineNumber=18 EndCharacterOffset=20)" />
+    <Node Id="(@1 @2 Member=load)" Category="CodeSchema_Field" Bounds="-890.72792968508,-546.613812724041,139.13,26" CodeSchemaProperty_IsPublic="True" CommonLabel="load" Icon="Microsoft.VisualStudio.Field.Public" Label="load : GameObject" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=27 StartCharacterOffset=19 EndLineNumber=27 EndCharacterOffset=23)" />
+    <Node Id="(@1 @2 Member=loadProgress)" Category="CodeSchema_Field" Bounds="-1221.45470540123,-490.613751688885,142.776666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="loadProgress" Icon="Microsoft.VisualStudio.Field.Public" Label="loadProgress : float" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=30 StartCharacterOffset=14 EndLineNumber=30 EndCharacterOffset=26)" />
+    <Node Id="(@1 @2 Member=loadingmap)" Category="CodeSchema_Field" Bounds="-1221.4547346981,-322.613461771892,197.966666666667,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="loadingmap" Icon="Microsoft.VisualStudio.Field.Private" Label="loadingmap : AsyncOperation" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=32 StartCharacterOffset=16 EndLineNumber=32 EndCharacterOffset=26)" />
+    <Node Id="(@1 @2 Member=map)" Category="CodeSchema_Field" Bounds="-1101.81129475669,-658.614056864666,97.6066666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="map" Icon="Microsoft.VisualStudio.Field.Public" Label="map : Map" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=8 StartCharacterOffset=12 EndLineNumber=8 EndCharacterOffset=15)" />
+    <Node Id="(@1 @2 Member=mapPiece)" Category="CodeSchema_Field" Bounds="-846.041291501486,-434.613629618572,167.24,26" CodeSchemaProperty_IsPublic="True" CommonLabel="mapPiece" Icon="Microsoft.VisualStudio.Field.Public" Label="mapPiece : GameObject" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=13 StartCharacterOffset=19 EndLineNumber=13 EndCharacterOffset=27)" />
+    <Node Id="(@1 @2 Member=menu)" Category="CodeSchema_Field" Bounds="-874.50131632245,-490.613751688885,146.213333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="menu" Icon="Microsoft.VisualStudio.Field.Public" Label="menu : GameObject" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=28 StartCharacterOffset=19 EndLineNumber=28 EndCharacterOffset=23)" />
+    <Node Id="(@1 @2 Member=orePercent)" Category="CodeSchema_Field" Bounds="-769.45130452232,-602.613934794353,131.366666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="orePercent" Icon="Microsoft.VisualStudio.Field.Public" Label="orePercent : float" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=21 StartCharacterOffset=14 EndLineNumber=21 EndCharacterOffset=24)" />
+    <Node Id="(@1 @2 Member=oreReducer)" Category="CodeSchema_Field" Bounds="-1221.45460123456,-546.613812724041,134.823333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="oreReducer" Icon="Microsoft.VisualStudio.Field.Public" Label="oreReducer : float" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=22 StartCharacterOffset=14 EndLineNumber=22 EndCharacterOffset=24)" />
+    <Node Id="(@1 @2 Member=playerclass)" Category="CodeSchema_Field" Bounds="-721.597937009299,-546.613812724041,139.23,26" CodeSchemaProperty_IsPublic="True" CommonLabel="playerclass" Icon="Microsoft.VisualStudio.Field.Public" Label="playerclass : Player" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=9 StartCharacterOffset=15 EndLineNumber=9 EndCharacterOffset=26)" />
+    <Node Id="(@1 @2 Member=posMultiplyer)" Category="CodeSchema_Field" Bounds="-1040.06795613365,-434.613629618572,164.026666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="posMultiplyer" Icon="Microsoft.VisualStudio.Field.Public" Label="posMultiplyer : Vector2" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=15 StartCharacterOffset=16 EndLineNumber=15 EndCharacterOffset=29)" />
+    <Node Id="(@1 @2 Member=tileSize)" Category="CodeSchema_Field" Bounds="-839.254669187033,-658.614056864666,111.18,26" CodeSchemaProperty_IsPublic="True" CommonLabel="tileSize" Icon="Microsoft.VisualStudio.Field.Public" Label="tileSize : float" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=14 StartCharacterOffset=14 EndLineNumber=14 EndCharacterOffset=22)" />
+    <Node Id="(@1 @4 Member=Awake)" Category="CodeSchema_Method" Bounds="-121.283034544335,-276.858344213867,114.922421946667,25.9998" CodeSchemaProperty_IsPrivate="True" CommonLabel="Awake" Icon="Microsoft.VisualStudio.Method.Private" Label="Awake() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=18 StartCharacterOffset=6 EndLineNumber=18 EndCharacterOffset=11)" UseManualLocation="True" />
+    <Node Id="(@1 @4 Member=Canvas)" Category="CodeSchema_Field" Bounds="-173.458834287756,-462.591635839844,153.292114986667,25.9998000000001" CodeSchemaProperty_IsPublic="True" CommonLabel="Canvas" Icon="Microsoft.VisualStudio.Field.Public" Label="Canvas : GameObject" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=12 StartCharacterOffset=19 EndLineNumber=12 EndCharacterOffset=25)" />
+    <Node Id="(@1 @4 Member=GameCon)" Category="CodeSchema_Field" Bounds="9.83328069891094,-462.591666357422,186.111852426667,25.9998000000001" CodeSchemaProperty_IsPublic="True" CommonLabel="GameCon" Icon="Microsoft.VisualStudio.Field.Public" Label="GameCon : GameController" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=15 StartCharacterOffset=23 EndLineNumber=15 EndCharacterOffset=30)" />
+    <Node Id="(@1 @4 Member=ID)" Category="CodeSchema_Field" Bounds="-175.644895040562,-332.858267919922,75.5427369866667,25.9998" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="ID" Icon="Microsoft.VisualStudio.Field.Public" Label="ID : int" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=6 StartCharacterOffset=19 EndLineNumber=6 EndCharacterOffset=21)" />
+    <Node Id="(@1 @4 Member=OnMouseDown)" Category="CodeSchema_Method" Bounds="-6.35388776157734,-332.858267919922,162.872038346667,25.9998" CodeSchemaProperty_IsPrivate="True" CommonLabel="OnMouseDown" Icon="Microsoft.VisualStudio.Method.Private" Label="OnMouseDown() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=30 StartCharacterOffset=6 EndLineNumber=30 EndCharacterOffset=17)" UseManualLocation="True" />
+    <Node Id="(@1 @4 Member=buildingMaterials)" Category="CodeSchema_Field" Bounds="-173.458855269844,-406.591727392578,200.081740666667,25.9998000000001" CodeSchemaProperty_IsPublic="True" CommonLabel="buildingMaterials" Icon="Microsoft.VisualStudio.Field.Public" Label="buildingMaterials : List&lt;Item&gt;" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=10 StartCharacterOffset=19 EndLineNumber=10 EndCharacterOffset=36)" />
+    <Node Id="(@1 @4 Member=guion)" Category="CodeSchema_Field" Bounds="156.065688404816,-402.367316381836,104.775836453333,25.9998000000001" CodeSchemaProperty_IsPublic="True" CommonLabel="guion" Icon="Microsoft.VisualStudio.Field.Public" Label="guion : bool" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=13 StartCharacterOffset=13 EndLineNumber=13 EndCharacterOffset=18)" />
+    <Node Id="(@1 @4 Member=x)" Category="CodeSchema_Field" Bounds="56.6228959586082,-402.367301123047,69.4427857866667,25.9998000000001" CodeSchemaProperty_IsPrivate="True" CommonLabel="x" Icon="Microsoft.VisualStudio.Field.Private" Label="x : int" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=8 StartCharacterOffset=13 EndLineNumber=8 EndCharacterOffset=14)" />
+    <Node Id="(@1 @4 Member=y)" Category="CodeSchema_Field" Bounds="186.518173800454,-346.367377416992,69.7427833866667,25.9998" CodeSchemaProperty_IsPrivate="True" CommonLabel="y" Icon="Microsoft.VisualStudio.Field.Private" Label="y : int" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=9 StartCharacterOffset=13 EndLineNumber=9 EndCharacterOffset=14)" />
+    <Node Id="(@1 @6 Member=GetBuildedState)" Category="CodeSchema_Method" Bounds="559.720862687163,-500.652548176387,175.753333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="GetBuildedState" Icon="Microsoft.VisualStudio.Method.Public" Label="GetBuildedState() : Image" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=42 StartCharacterOffset=14 EndLineNumber=42 EndCharacterOffset=29)" />
+    <Node Id="(@1 @6 Member=GetBuildtime)" Category="CodeSchema_Method" Bounds="356.534196020496,-276.669644176387,149.895489653333,25.9825039999999" CodeSchemaProperty_IsPublic="True" CommonLabel="GetBuildtime" Icon="Microsoft.VisualStudio.Method.Public" Label="GetBuildtime() : float" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=52 StartCharacterOffset=14 EndLineNumber=52 EndCharacterOffset=26)" />
+    <Node Id="(@1 @6 Member=GetImage)" Category="CodeSchema_Method" Bounds="522.71857623383,-332.652248176387,139.72874864,25.982504" CodeSchemaProperty_IsPublic="True" CommonLabel="GetImage" Icon="Microsoft.VisualStudio.Method.Public" Label="GetImage() : Sprite" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=32 StartCharacterOffset=15 EndLineNumber=32 EndCharacterOffset=23)" />
+    <Node Id="(@1 @6 Member=GetInventory)" Category="CodeSchema_Method" Bounds="805.474196020496,-444.652048176387,175.736666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="GetInventory" Icon="Microsoft.VisualStudio.Method.Public" Label="GetInventory() : Inventory" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=27 StartCharacterOffset=18 EndLineNumber=27 EndCharacterOffset=30)" />
+    <Node Id="(@1 @6 Member=GetNeededMaterials)" Category="CodeSchema_Method" Bounds="356.534196020496,-388.652348176387,197.456666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="GetNeededMaterials" Icon="Microsoft.VisualStudio.Method.Public" Label="GetNeededMaterials() : Item[]" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=47 StartCharacterOffset=15 EndLineNumber=47 EndCharacterOffset=33)" />
+    <Node Id="(@1 @6 Member=GetPrefab)" Category="CodeSchema_Method" Bounds="356.534196020496,-444.652448176387,175.923333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="GetPrefab" Icon="Microsoft.VisualStudio.Method.Public" Label="GetPrefab() : GameObject" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=37 StartCharacterOffset=19 EndLineNumber=37 EndCharacterOffset=28)" />
+    <Node Id="(@1 @6 Member=ID)" Category="CodeSchema_Field" Bounds="356.534196020496,-160.686940176387,75.4937332533333,25.982504" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" CommonLabel="ID" Icon="Microsoft.VisualStudio.Field.Public" Label="ID : int" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=9 StartCharacterOffset=23 EndLineNumber=9 EndCharacterOffset=25)" />
+    <Node Id="(@1 @6 Member=Icon)" Category="CodeSchema_Field" Bounds="583.990862687163,-388.652248176387,103.51223216,25.9825040000001" CodeSchemaProperty_IsPublic="True" CommonLabel="Icon" Icon="Microsoft.VisualStudio.Field.Public" Label="Icon : Sprite" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=18 StartCharacterOffset=15 EndLineNumber=18 EndCharacterOffset=19)" />
+    <Node Id="(@1 @6 Member=InventoryButtonText)" Category="CodeSchema_Field" Bounds="805.474196020496,-388.651948176387,179.943333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="InventoryButtonText" Icon="Microsoft.VisualStudio.Field.Public" Label="InventoryButtonText : Text" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=12 StartCharacterOffset=13 EndLineNumber=12 EndCharacterOffset=32)" />
+    <Node Id="(@1 @6 Member=Name)" Category="CodeSchema_Field" Bounds="356.534196020496,-104.704336176387,103.938622346667,25.982504" CodeSchemaProperty_IsPublic="True" CommonLabel="Name" Icon="Microsoft.VisualStudio.Field.Public" Label="Name : Text" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=11 StartCharacterOffset=13 EndLineNumber=11 EndCharacterOffset=17)" />
+    <Node Id="(@1 @6 Member=OpenInventory)" Category="CodeSchema_Method" Bounds="805.474196020496,-500.652148176387,159.203333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="OpenInventory" Icon="Microsoft.VisualStudio.Method.Public" Label="OpenInventory() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=22 StartCharacterOffset=13 EndLineNumber=22 EndCharacterOffset=26)" />
+    <Node Id="(@1 @6 Member=Regystrate)" Category="CodeSchema_Method" Bounds="356.534196020496,-332.652248176387,136.184380213333,25.982504" CodeSchemaProperty_IsPublic="True" CommonLabel="Regystrate" Icon="Microsoft.VisualStudio.Method.Public" Label="Regystrate() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=57 StartCharacterOffset=13 EndLineNumber=57 EndCharacterOffset=23)" />
+    <Node Id="(@1 @6 Member=asd)" Category="CodeSchema_Field" Bounds="510.472818367163,-200.686840176387,90.5173249866667,25.982504" CodeSchemaProperty_IsPublic="True" CommonLabel="asd" Icon="Microsoft.VisualStudio.Field.Public" Label="asd : Text" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=13 StartCharacterOffset=13 EndLineNumber=13 EndCharacterOffset=16)" UseManualLocation="True" />
+    <Node Id="(@1 @6 Member=buildingMaterials)" Category="CodeSchema_Field" Bounds="356.534196020496,-500.652548176387,173.186666666667,26" CodeSchemaProperty_IsPrivate="True" CommonLabel="buildingMaterials" Icon="Microsoft.VisualStudio.Field.Private" Label="buildingMaterials : Item[]" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=20 StartCharacterOffset=8 EndLineNumber=20 EndCharacterOffset=25)" />
+    <Node Id="(@1 @6 Member=inventory)" Category="CodeSchema_Field" Bounds="805.474196020496,-332.651848176387,149.535722933333,25.982504" CodeSchemaProperty_IsPublic="True" CommonLabel="inventory" Icon="Microsoft.VisualStudio.Field.Public" Label="inventory : Inventory" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Chest.cs StartLineNumber=16 StartCharacterOffset=18 EndLineNumber=16 EndCharacterOffset=27)" />
+    <Node Id="(@1 Type=GameState)" Category="CodeSchema_Enum" Bounds="537.475916341146,-8.72153217638675,98.8433333333332,26" CodeSchemaProperty_IsFinal="True" CodeSchemaProperty_IsPublic="True" CommonLabel="GameState" Icon="Microsoft.VisualStudio.Enum.Public" Label="GameState" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameState.cs StartLineNumber=5 StartCharacterOffset=12 EndLineNumber=5 EndCharacterOffset=21)" UseManualLocation="True" />
+    <Node Id="(@1 Type=IHasGui)" Category="CodeSchema_Interface" Bounds="537.475905351394,232.3115234375,81.8433333333342,26" CodeSchemaProperty_IsAbstract="True" CodeSchemaProperty_IsPublic="True" CommonLabel="IHasGui" Icon="Microsoft.VisualStudio.Interface.Public" Label="IHasGui" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/IHasGui.cs StartLineNumber=6 StartCharacterOffset=17 EndLineNumber=6 EndCharacterOffset=24)" UseManualLocation="True" />
+    <Node Id="(@1 Type=MainBuilding)" Category="CodeSchema_Class" Bounds="-51.7238922761804,239.996508661909,110.893333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="MainBuilding" Icon="Microsoft.VisualStudio.Class.Public" Label="MainBuilding" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/MainBuilding.cs StartLineNumber=9 StartCharacterOffset=13 EndLineNumber=9 EndCharacterOffset=25)" UseManualLocation="True" />
+    <Node Id="@3" Category="CodeSchema_Class" Bounds="-1241.4547346981,-698.614193883363,701.420046183268,478.000929425049" CodeSchemaProperty_IsPublic="True" CommonLabel="GameController" Group="Expanded" Icon="Microsoft.VisualStudio.Class.Public" Label="GameController" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/GameController.cs StartLineNumber=4 StartCharacterOffset=13 EndLineNumber=4 EndCharacterOffset=27)" UseManualLocation="True" />
+    <Node Id="@7" Category="CodeSchema_Method" Bounds="23.6393911340314,-249.51471628418,127.65898672,25.9998000000001" CodeSchemaProperty_IsPublic="True" CommonLabel="TogelGui" Icon="Microsoft.VisualStudio.Method.Public" Label="TogelGui() : void" SourceLocation="(Assembly=file:///C:/Users/Peter/Documents/Programozas/CivMars/Assets/scripts/Buildings/New/Building.cs StartLineNumber=35 StartCharacterOffset=13 EndLineNumber=35 EndCharacterOffset=21)" UseManualLocation="True" />
+    <Node Id="AllowOpening(IhasGUI)" Bounds="-669.701043517658,196.198509069933,143.28,25.96" Label="AllowOpening(IhasGUI)" />
+    <Node Id="Buildable" Bounds="336.534196020496,-540.652648176387,418.94,309.965608" Group="Expanded" Label="Buildable" UseManualLocation="True" />
+    <Node Id="Building" Bounds="-195.644895040562,-502.591766357422,476.486419898711,299.076950073242" Group="Expanded" LayoutSettings="RightToLeft" UseManualLocation="True" />
+    <Node Id="Building1" Bounds="336.534196020496,-200.687040176387,143.938622346667,141.965308" Group="Expanded" Label="Building" UseManualLocation="True" />
+    <Node Id="Chest" Bounds="126.716324424776,240.224880032159,69.6566666666668,25" Group="Collapsed" UseManualLocation="True" />
+    <Node Id="GUIHandler" Bounds="-689.701043517658,156.198409069933,183.28,85.96" Group="Expanded" UseManualLocation="True" />
+    <Node Id="INhearitance" Category="Comment" Bounds="132.609488296121,79.2817643220573,87.2066666666667,25.96" UseManualLocation="True" />
+    <Node Id="Inventory" Bounds="785.474196020496,-540.652248176387,219.943333333334,253.983004" Group="Expanded" Label="Inventory" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="@3" Target="(@1 @2 Member=(Name=ChangeLanguage OverloadingParameters=[(@5 Namespace=System Type=Int32)]))" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=(Name=LoadLevel OverloadingParameters=[(@5 Namespace=System Type=String)]))" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=(Name=OnLevelWasLoaded OverloadingParameters=[(@5 Namespace=System Type=Int32)]))" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=(Name=TogleDesplay OverloadingParameters=[(@1 @4)]))" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=Awake)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=Start)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=StartGame)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=TogleDesplay)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=Update)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=bar)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=buildingRegistry)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=gameIsOn)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=gameS)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=guiHandler)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=language)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=load)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=loadProgress)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=loadingmap)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=map)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=mapPiece)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=menu)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=orePercent)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=oreReducer)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=playerclass)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=posMultiplyer)" Category="Contains" />
+    <Link Source="@3" Target="(@1 @2 Member=tileSize)" Category="Contains" />
+    <Link Source="@7" Target="AllowOpening(IhasGUI)" Bounds="-570.550739460882,-223.51491628418,638.024217699694,414.807768634352" />
+    <Link Source="Buildable" Target="(@1 @6 Member=GetBuildedState)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=GetBuildtime)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=GetImage)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=GetNeededMaterials)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=GetPrefab)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=Icon)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=Regystrate)" Category="Contains" />
+    <Link Source="Buildable" Target="(@1 @6 Member=buildingMaterials)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=Awake)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=Canvas)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=GameCon)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=ID)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=OnMouseDown)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=buildingMaterials)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=guion)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=x)" Category="Contains" />
+    <Link Source="Building" Target="(@1 @4 Member=y)" Category="Contains" />
+    <Link Source="Building" Target="(@1 Type=MainBuilding)" Bounds="5.13278665085345,-203.51481628418,27.8732627026988,434.529796412813" />
+    <Link Source="Building" Target="@7" Category="Contains" />
+    <Link Source="Building" Target="Chest" Bounds="71.960638548062,-203.51481628418,85.3955422219196,434.908330678337" />
+    <Link Source="Building1" Target="(@1 @6 Member=ID)" Category="Contains" />
+    <Link Source="Building1" Target="(@1 @6 Member=Name)" Category="Contains" />
+    <Link Source="Chest" Target="(@1 @6 Member=asd)" Category="Contains" />
+    <Link Source="Chest" Target="Buildable" Category="Contains" />
+    <Link Source="Chest" Target="Building1" Category="Contains" />
+    <Link Source="Chest" Target="Inventory" Category="Contains" />
+    <Link Source="GUIHandler" Target="AllowOpening(IhasGUI)" Category="Contains" />
+    <Link Source="Inventory" Target="(@1 @6 Member=GetInventory)" Category="Contains" />
+    <Link Source="Inventory" Target="(@1 @6 Member=InventoryButtonText)" Category="Contains" />
+    <Link Source="Inventory" Target="(@1 @6 Member=OpenInventory)" Category="Contains" />
+    <Link Source="Inventory" Target="(@1 @6 Member=inventory)" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="CodeSchema_Class" Label="Class" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Classes" />
+    <Category Id="CodeSchema_Enum" Label="Enum" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Enum" NavigationActionLabel="Enums" />
+    <Category Id="CodeSchema_Field" Label="Field" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Fields" />
+    <Category Id="CodeSchema_Interface" Label="Interface" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Interface" NavigationActionLabel="Interfaces" />
+    <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
+    <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
+    <Category Id="CodeSchema_Type" Label="Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Types" />
+    <Category Id="Comment" Label="Comment" Description="Represents a user defined comment on the diagram" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Comments" />
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsAbstract" Label="Is Abstract" Description="Flag to indicate member is 'Abstract' does not provide a full implementation" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsFinal" Label="Is Final" Description="Flag to indicate the member is 'Final' and cannot be derived from" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsStatic" Label="Is Static" Description="Flag to indicate the member is a static member" DataType="System.Boolean" />
+    <Property Id="CommonLabel" DataType="System.String" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="LayoutSettings" DataType="Microsoft.VisualStudio.Diagrams.View.GroupLayoutStyle" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="Member" Label="Member" ValueType="System.Object" />
+    <Name Id="Name" Label="Name" ValueType="System.String" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="OverloadingParameters" Label="Parameter" ValueType="Microsoft.VisualStudio.GraphModel.GraphNodeIdCollection" Formatter="NameValueNoEscape" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(648b0a90-6fa1-9fa3-8919-3e35e7f20eae.OutputPathUri)" />
+    <Alias n="2" Id="Type=GameController" />
+    <Alias n="3" Id="(@1 @2)" />
+    <Alias n="4" Id="Type=Building" />
+    <Alias n="5" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v3.5/Profile/Unity Subset v3.5/mscorlib.dll" />
+    <Alias n="6" Id="Type=Chest" />
+    <Alias n="7" Id="(@1 @4 Member=TogelGui)" />
+  </IdentifierAliases>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Category 1" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category1')" />
+      <Setter Property="Background" Value="#FFE51400" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Category 9" ValueLabel="Has category">
+      <Condition Expression="HasCategory('Category9')" />
+      <Setter Property="Background" Value="#FF00539C" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+  <Paths>
+    <Path Id="648b0a90-6fa1-9fa3-8919-3e35e7f20eae.OutputPathUri" Value="file:///C:/Users/Peter/Documents/Programozas/CivMars/Temp/UnityVS_bin/Debug/Assembly-CSharp.dll" />
+    <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files (x86)/Reference Assemblies/Microsoft/Framework" />
+  </Paths>
+</DirectedGraph>

@@ -62,11 +62,8 @@ public class Player : MonoBehaviour, IGasTank
 
 	public void Breath()
 	{
-
 			GetTankCluster().GetTank(0).RemoveAmount(breathAmount * Time.deltaTime, GasType.Oxigen);
 			GetTankCluster().GetTank(1).AddAmount(breathAmount * Time.deltaTime, GasType.CarbonDeOxide);
-
-
 	}
 
 	public void walk()
@@ -108,7 +105,6 @@ public class Player : MonoBehaviour, IGasTank
 	public void MineStar()
 	{
 		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1*(int)Mathf.Round(transform.position.y));
-
 
 		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
 

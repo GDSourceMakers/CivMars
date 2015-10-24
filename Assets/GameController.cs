@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class GameController : MonoBehaviour
 {
 
 	public GameState gameS;
+	public bool CanTurnOf;
 	public Map map;
 	public Player playerclass;
 
@@ -24,28 +26,59 @@ public class GameController : MonoBehaviour
 
 	//UI
 	public GUIHandler guiHandler;
-	//Base GUI
-	public GameObject load;
-	public GameObject menu;
-	public Text bar;
-	public float loadProgress;
 
-	AsyncOperation loadingmap;
-
-	public BuildingRegistry buildingRegistry;
+	public AssetsLoader buildingRegistry;
 
 	public bool gameIsOn = false;
 
+	IHasGui OpendGui;
+
+
+
 	void Awake()
 	{
-		buildingRegistry = this.GetComponent<BuildingRegistry>();
+		buildingRegistry = this.GetComponent<AssetsLoader>();
 	}
+
 
 	void Start()
 	{
 		DontDestroyOnLoad(transform.gameObject);
 		buildingRegistry.CallRegister();
-		
+	}
+
+	public void Update()
+	{
+		if (gameS == GameState.Gui)
+		{
+			playerclass.GetComponent<Rigidbody2D>().isKinematic = true;
+		}
+	}
+
+	public bool AlloweGUI(IHasGui hasGui)
+	{
+		if (CanTurnOf)
+		{
+			if (OpendGui != null)
+			{
+				OpendGui.Close();
+			}
+			OpendGui = hasGui;
+
+			CanTurnOf = hasGui.CanBeTurnedOf();
+
+			gameS = GameState.Gui;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public void CloseGUI(IHasGui hasGui)
+	{
+		OpendGui = null;
 	}
 
 	void OnLevelWasLoaded(int level)
@@ -68,9 +101,6 @@ public class GameController : MonoBehaviour
 
 				//GeneratedTile[,] t = TerrainGen.Generate(orePercent, oreReducer, seed, 2);
 
-
-
-
 				map.BuildMap();
 				map.AddBasicBuildings();
 
@@ -85,79 +115,15 @@ public class GameController : MonoBehaviour
 
 	}
 
-	public void Update()
+	public void TogleAccesPanel()
 	{
-		if (Application.loadedLevelName == "Start")
-		{
-			if(load.active == true)
-			{
-				loadProgress = loadingmap.progress * 100;
-				bar.text = loadProgress + "!!";
-			}
-		}
-	}
-
-	public void StartGame()
-	{
-
-		StartCoroutine(LoadLevel("Main"));
-
-	}
-
-	public IEnumerator LoadLevel(string a)
-	{
-		load.SetActive(true);
-		menu.SetActive(false);
-
-		//bar.text = loadProgress + "??";
-
-
-		loadingmap = Application.LoadLevelAsync(a);
-
-
-
-		while (!loadingmap.isDone)
-		{
-			yield return loadingmap;
-		}
-
-
-
-	}
-
-	public void TogleDesplay()
-	{
-		TogleDesplay(null);
+		TogleAccesPanel(null);
 		return;
 	}
 
-	public void TogleDesplay(Building other)
+	public void TogleAccesPanel(Building other)
 	{
-		if (!guiHandler.desplayOn)
-		{
-			Debug.Log("Opening");
-			guiHandler.AccesPanel.ChangeTab(AccesPanelState.Inventory, other);
-			guiHandler.AccesPanel.gameObject.SetActive(true);
-			
-
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.desplayOn = true;
-			gameS = GameState.Desplay;
-
-			return;
-		}
-		else
-		{
-			Debug.Log("Closing");
-			guiHandler.AccesPanel.ChangeTab(AccesPanelState.Inventory, null);
-			guiHandler.AccesPanel.gameObject.SetActive(false);
-
-			playerclass.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
-			guiHandler.desplayOn = false;
-			gameS = GameState.InGame;
-
-			return;
-		}
+		guiHandler.AccesPanel.TogelGui();
 	}
 
 	public void ChangeLanguage(int num)

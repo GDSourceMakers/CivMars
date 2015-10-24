@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public enum GameState
+public enum GUIState
 {
-    InGame,
-    Gui
-    
+	BuildingGui,
+	AccesPanel,
+	Building,
+	None
 }
+

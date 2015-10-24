@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class GUIHandler : MonoBehaviour
 {
@@ -10,10 +11,10 @@ public class GUIHandler : MonoBehaviour
 
 	public ActionButton[] actions = new ActionButton[10];
 
-    public bool desplayOn;
+    //public bool isGUIOpen;
 
-	public Building OpenBuilding;
-	public bool isBuildingOpened;
+	public IHasGui OpenGUI;
+	public bool isGUIOpen;
 
     // Use this for initialization
     void Start()

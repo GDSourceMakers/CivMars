@@ -15,24 +15,24 @@ interface IAccesTab
 	void UpdateData(Building datas);
 }
 
-public class AccesPanel : MonoBehaviour
+public class AccesPanel : MonoBehaviour, IHasGui
 {
-
+	public GameController GameCon;
 
 	public Building OpenBuilding;
 
 	public AccesPanelState state;
-
+	public bool open;
 
 	public GameObject[] AccesTabs;
 
-
+	public GameObject Graphicks;
 
 	public void ChangeTab(AccesPanelState a, Building data)
 	{
 		state = a;
 		OpenBuilding = data;
-        UpdateTab();
+		UpdateTab();
 	}
 
 	public void ChangeTab(AccesPanelState a)
@@ -48,7 +48,10 @@ public class AccesPanel : MonoBehaviour
 		UpdateTab();
 	}
 
-
+	public void Start()
+	{
+		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+	}
 
 	void UpdateTab()
 	{
@@ -61,7 +64,6 @@ public class AccesPanel : MonoBehaviour
 				{
 					AccesTabs[i].GetComponent<IAccesTab>().UpdateData(OpenBuilding);
 				}
-				
 			}
 			else
 			{
@@ -70,4 +72,46 @@ public class AccesPanel : MonoBehaviour
 		}
 	}
 
+	public void Update()
+	{
+		if (Input.GetButtonUp("Inventory"))
+		{
+			Debug.Log("Inventory opening");
+
+			TogelGui();
+		}
+	}
+
+	public void TogelGui()
+	{
+		if (!open)
+		{
+			if (GameCon.AlloweGUI(this as IHasGui))
+			{
+				Open();
+			}
+		}
+		else
+		{
+			GameCon.CloseGUI(this as IHasGui);
+			Close();
+		}
+	}
+
+	public void Open()
+	{
+		open = true;
+		Graphicks.SetActive(true);
+	}
+
+	public void Close()
+	{
+		open = false;
+		Graphicks.SetActive(false);
+	}
+
+	public bool CanBeTurnedOf()
+	{
+		return false;
+	}
 }

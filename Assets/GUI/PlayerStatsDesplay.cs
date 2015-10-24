@@ -1,37 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerStatsDesplay : MonoBehaviour
+class PlayerStatsTabDesplay : MonoBehaviour, IAccesTab
 {
-	public Slider OxigenSlider;
-	public Slider CarbonDioxideSlider;
-	public Image Health;
-
 	GameController GameCon;
+	Player player;
 
-	GameObject[] hRPeaces = new GameObject[10];
+	public Text health;
+	public Text hearthRate;
 
-	// Use this for initialization
 	void Start()
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		player = GameCon.playerclass;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
-		GasTankCluster t = GameCon.playerclass.GetTankCluster();
+		health.text = player.health.ToString();
+		hearthRate.text = "60 rp";
+	}
 
-		OxigenSlider.value = t.GetTank(GasType.Oxigen).amount / t.GetTank(GasType.Oxigen).maxAmount;
-		CarbonDioxideSlider.value = t.GetTank(GasType.CarbonDeOxide).amount / t.GetTank(GasType.CarbonDeOxide).maxAmount;
-		
-		Health.color = new Color(0, 0, 0,1- GameCon.playerclass.health);
-
-		foreach (GameObject item in hRPeaces)
-		{
-			//item.transform.position = new Vector3(item.transform.position.x);
-		}
-
+	public void UpdateData(Building datas)
+	{
+		//throw new NotImplementedException();
 	}
 }
+
