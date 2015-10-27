@@ -5,21 +5,23 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingLister : MonoBehaviour
+public class BuildingLister : MonoBehaviour, IHasGui
 {
 	public GameObject buildableDrawElement;
 	public GameObject buildingDesplayCanvas;
 
 	public GameObject planedBuildingPrefab;
 
+	public bool guion;
+
 	GameController GameCon;
 
 	ToggleGroup toglegroup;
 
-	BuildingListerStates state;
+	public BuildingListerStates state;
 
 	public GameObject inBuilding;
-	public GameObject InSelecting;
+	public GameObject inSelecting;
 
 	int SelectedBuilding;
 
@@ -45,15 +47,33 @@ public class BuildingLister : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (state == BuildingListerStates.Building)
+		
+		if (state == BuildingListerStates.Idle)
+		{
+			inBuilding.SetActive(false);
+			inSelecting.SetActive(false);
+			if (Input.GetButtonUp("BuildingList"))
+			{
+				Debug.Log("Buildning opening");
+
+				TogelGui();
+			}
+		}
+		else if (state == BuildingListerStates.Building)
 		{
 			inBuilding.SetActive(true);
-			inBuilding.SetActive(false);
+			inSelecting.SetActive(false);
 		}
 		else if (state == BuildingListerStates.Selecting)
 		{
 			inBuilding.SetActive(false);
-			inBuilding.SetActive(true);
+			inSelecting.SetActive(true);
+			if (Input.GetButtonUp("BuildingList"))
+			{
+				Debug.Log("Buildning opening");
+
+				TogelGui();
+			}
 		}
 
 		if (Input.GetMouseButtonDown(0) && SelectedBuilding != -1 && state == BuildingListerStates.Building)
@@ -97,9 +117,57 @@ public class BuildingLister : MonoBehaviour
 		SelectedBuilding = GetActiveTogle(toglegroup.ActiveToggles());
 		state = BuildingListerStates.Building;
 	}
+
+	public void CancelBuilding()
+	{
+		SelectedBuilding = -1;
+		state = BuildingListerStates.Selecting;
+	}
+
+	#region IhasGui
+	public void TogelGui()
+	{
+		if (!guion)
+		{
+			if (GameCon.AlloweGUI(this as IHasGui))
+			{
+				Open();
+			}
+		}
+		else
+		{
+			GameCon.CloseGUI(this as IHasGui);
+			Close();
+		}
+	}
+
+	public void Open()
+	{
+		guion = true;
+		state = BuildingListerStates.Selecting;
+	}
+
+	public void Close()
+	{
+		guion = false;
+		state = BuildingListerStates.Idle;
+	}
+
+	public int ClosingLevel()
+	{
+		if (state != BuildingListerStates.Building)
+		{
+			return 10;
+		}
+		else
+		{
+			return int.MaxValue;
+		}
+	}
+	#endregion
 }
 
-enum BuildingListerStates
+public enum BuildingListerStates
 {
 	Building,
 	Selecting,

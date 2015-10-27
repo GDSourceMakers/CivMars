@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlanedBuilding : Building
 {
-
-
 	Item[] NeededMaterials;
 	int[] NeededMaterialsPlaced;
 
@@ -16,7 +14,6 @@ public class PlanedBuilding : Building
 	public List<GameObject> neededItemsDrawn;
 
 	public IBuildable building;
-	
 
 	public float counter  = -1f;
 	public float buildtime;
@@ -32,8 +29,8 @@ public class PlanedBuilding : Building
 		{
 			Debug.LogErrorFormat("Can't find the GameController", this);
 		}
-		Canvas.SetActive(false);
-		Canvas.transform.position = Vector3.zero;
+		Graphicks.SetActive(false);
+		Graphicks.transform.position = Vector3.zero;
 
 		//maskRect = gameObject.transform.FindChild("Mask").GetComponent<RectTransform>();
 		defaultYPos = maskRect.localPosition.y;
@@ -110,30 +107,6 @@ public class PlanedBuilding : Building
 		TogelGui();
 	}
 
-	public new void TogelGui()
-	{
-		if (guion)
-		{
-			Canvas.SetActive(false);
-			GameCon.guiHandler.OpenGUI = null;
-			GameCon.guiHandler.isGUIOpen = false;
-			guion = false;
-		}
-		else
-		{
-			Canvas.SetActive(true);
-
-			if (GameCon.guiHandler.isGUIOpen)
-			{
-				GameCon.guiHandler.OpenGUI.TogelGui();
-			}
-			GameCon.guiHandler.OpenGUI = this;
-			GameCon.guiHandler.isGUIOpen = true;
-			guion = true;
-		}
-
-	}
-
 	public void SetBuilding(IBuildable b)
 	{
 		building = b;
@@ -174,6 +147,9 @@ public class PlanedBuilding : Building
 		}
 	}
 
+	/// <summary>
+	/// Removes Items From the player for the building
+	/// </summary>
 	public void Place()
 	{
 		Inventory playerinv = GameCon.playerclass.Inventory;

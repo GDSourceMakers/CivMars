@@ -12,6 +12,6 @@ public interface IHasGui
 
 	void Close();
 
-	bool CanBeTurnedOf();
+	int ClosingLevel();
 }
 

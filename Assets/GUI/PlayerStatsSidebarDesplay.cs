@@ -28,10 +28,11 @@ public class PlayerStatsSidebarDesplay : MonoBehaviour
 		
 		Health.color = new Color(0, 0, 0,1- GameCon.playerclass.health);
 
+		/*
 		foreach (GameObject item in hRPeaces)
 		{
 			//item.transform.position = new Vector3(item.transform.position.x);
 		}
-
+		*/
 	}
 }

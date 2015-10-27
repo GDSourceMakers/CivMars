@@ -22,7 +22,7 @@ public class GUIHandler : MonoBehaviour
         GameObject ac = GameObject.Find("Actions");
         for (int i = 0; i < ac.transform.childCount; i++)
         {
-            GameObject go = ac.transform.GetChild(i).gameObject;
+            //GameObject go = ac.transform.GetChild(i).gameObject;
             //actions[i] = go.AddComponent<ActionButton>();
         }
 

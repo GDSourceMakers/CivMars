@@ -48,7 +48,7 @@ public class Map : MonoBehaviour
 
 		//Debug.Log("Random random test: " +rand.NextDouble());
 
-		bool t = true;
+		//bool t = true;
 
 		for (int xPos = 0; xPos < mapHeight; xPos++)
 		{

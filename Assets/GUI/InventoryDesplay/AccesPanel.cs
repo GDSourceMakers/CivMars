@@ -35,11 +35,20 @@ public class AccesPanel : MonoBehaviour, IHasGui
 		UpdateTab();
 	}
 
+	public void ChangeBuilding( Building data)
+	{
+		OpenBuilding = data;
+		UpdateTab();
+	}
+
+
+	/*
 	public void ChangeTab(AccesPanelState a)
 	{
 		state = a;
 		UpdateTab();
 	}
+	*/
 
 	public void ChangeTab(string a)
 	{
@@ -82,6 +91,14 @@ public class AccesPanel : MonoBehaviour, IHasGui
 		}
 	}
 
+	public void TogelGui(Building opended)
+	{
+		OpenBuilding = opended;
+		UpdateTab();
+		TogelGui();
+	}
+
+	#region IhasGui
 	public void TogelGui()
 	{
 		if (!open)
@@ -108,10 +125,12 @@ public class AccesPanel : MonoBehaviour, IHasGui
 	{
 		open = false;
 		Graphicks.SetActive(false);
+		ChangeBuilding(null);
 	}
 
-	public bool CanBeTurnedOf()
+	public int ClosingLevel()
 	{
-		return false;
+		return 10;
 	}
+	#endregion
 }

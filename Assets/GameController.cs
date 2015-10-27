@@ -5,24 +5,17 @@ using System;
 
 public class GameController : MonoBehaviour
 {
-
+	//Gui
 	public GameState gameS;
-	public bool CanTurnOf;
+	public int CanTurnOf;
+	IHasGui OpendGui;
+
+
 	public Map map;
 	public Player playerclass;
 
-	//map Load
-
-	public GameObject mapPiece;
-	public float tileSize;
-	public Vector2 posMultiplyer;
-
 	//settings
 	public int language;
-
-	//Ore gen
-	public float orePercent;
-	public float oreReducer;
 
 	//UI
 	public GUIHandler guiHandler;
@@ -31,7 +24,7 @@ public class GameController : MonoBehaviour
 
 	public bool gameIsOn = false;
 
-	IHasGui OpendGui;
+	
 
 
 
@@ -45,6 +38,7 @@ public class GameController : MonoBehaviour
 	{
 		DontDestroyOnLoad(transform.gameObject);
 		buildingRegistry.CallRegister();
+		gameS = GameState.MainManu;
 	}
 
 	public void Update()
@@ -53,11 +47,19 @@ public class GameController : MonoBehaviour
 		{
 			playerclass.GetComponent<Rigidbody2D>().isKinematic = true;
 		}
+		else if(gameS != GameState.MainManu)
+		{
+			playerclass.GetComponent<Rigidbody2D>().isKinematic = false;
+		}
 	}
 
 	public bool AlloweGUI(IHasGui hasGui)
 	{
-		if (CanTurnOf)
+		if (OpendGui != null)
+		{
+			CanTurnOf = OpendGui.ClosingLevel();
+		}
+		if (CanTurnOf <= hasGui.ClosingLevel())
 		{
 			if (OpendGui != null)
 			{
@@ -65,7 +67,7 @@ public class GameController : MonoBehaviour
 			}
 			OpendGui = hasGui;
 
-			CanTurnOf = hasGui.CanBeTurnedOf();
+			CanTurnOf = hasGui.ClosingLevel();
 
 			gameS = GameState.Gui;
 			return true;
@@ -79,6 +81,8 @@ public class GameController : MonoBehaviour
 	public void CloseGUI(IHasGui hasGui)
 	{
 		OpendGui = null;
+		gameS = GameState.InGame;
+		CanTurnOf = -1;
 	}
 
 	void OnLevelWasLoaded(int level)
@@ -94,10 +98,10 @@ public class GameController : MonoBehaviour
 
 				Debug.Log("Jeej!");
 
-				Sprite[] GeneratedSprites = Resources.LoadAll<Sprite>("Texturas/Generated");
-				GameObject[] BuildingPrefabs = Resources.LoadAll<GameObject>("Prefabs/Buildings");
+				//Sprite[] GeneratedSprites = Resources.LoadAll<Sprite>("Texturas/Generated");
+				//GameObject[] BuildingPrefabs = Resources.LoadAll<GameObject>("Prefabs/Buildings");
 
-				int seed = 666421;
+				//int seed = 666421;
 
 				//GeneratedTile[,] t = TerrainGen.Generate(orePercent, oreReducer, seed, 2);
 
@@ -123,7 +127,7 @@ public class GameController : MonoBehaviour
 
 	public void TogleAccesPanel(Building other)
 	{
-		guiHandler.AccesPanel.TogelGui();
+		guiHandler.AccesPanel.TogelGui(other);
 	}
 
 	public void ChangeLanguage(int num)

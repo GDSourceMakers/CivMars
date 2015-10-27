@@ -270,13 +270,13 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 
 	public void UpdateData(Building datas)
 	{
-		if (datas != null)
+		if (datas is IInventory)
 		{
-			if (datas is IInventory)
-			{
-				SetOtherInv(((IInventory)datas).GetInventory());
-			}
+			SetOtherInv(((IInventory)datas).GetInventory());
 		}
-
+		else
+		{
+			SetOtherInv(null);
+		}
 	}
 }

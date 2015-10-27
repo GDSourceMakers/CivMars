@@ -18,7 +18,7 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 
 	public Sprite Icon;
 
-	Item[] buildingMaterials = {new SandOre(2)};
+	new Item[] buildingMaterials = {new SandOre(2)};
 
 	public void OpenInventory()
 	{
@@ -29,6 +29,8 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 	{
 		return inventory;
 	}
+
+
 
 	public Sprite GetImage()
 	{

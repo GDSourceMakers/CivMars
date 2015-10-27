@@ -20,28 +20,27 @@ public class Inventory
     }
 
 
-    public Item Add(Item added)
+    public Item Add(Item adding)
     {
-        int size = added.amount;
+        int size = adding.amount;
 
         foreach (Item item in inventory)
         {
-
             if (item != null)
             {
-
-                if (item.GetType() == added.GetType())
+                if (item.GetType() == adding.GetType())
                 {
-                    Debug.Log(added.GetType());
-
-                    size = AddAmount(added.amount, item);
+                    //Debug.Log(adding.GetType());
+                    size = item.Add(adding.amount);
 
                     Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
+
                     if (size == 0)
                     {
                         return item;
                     }
-                    added.amount = size;
+
+                    adding.amount = size;
                 }
             }
         }
@@ -50,7 +49,7 @@ public class Inventory
         {
             if (inventory[i] == null)
             {
-                inventory[i] = added;
+                inventory[i] = adding;
                 return inventory[i];
             }
         }
@@ -59,78 +58,106 @@ public class Inventory
 
     }
 
-    public void Remove(int i)
+    /// <summary>
+	/// Remove item at index
+	/// </summary>
+	/// <param name="index">index of the item</param>
+	public void Remove(int index)
     {
-        inventory[i] = null;
+        inventory[index] = null;
     }
 
 
+	/// <summary>
+	/// Remove amount from item at index
+	/// </summary>
+	/// <param name="index">index of the item</param>
+	/// <param name="amount">amount to remove</param>
+	public void Remove(int index, int amount)
+	{
+		inventory[index].Remove(amount);
+		if (inventory[index].amount == 0)
+		{
+			inventory[index] = null;
+		}
+	}
+
+	/// <summary>
+	/// Finds the Iten witch is T
+	/// Returns null if not found
+	/// </summary>
+	/// <typeparam name="T">Type of item</typeparam>
+	/// <returns>The first item witch matches</returns>
+	public Item Find<T>()
+	{
+		foreach (Item i in inventory)
+		{
+			if (i is T)
+			{
+				return i;
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Gives the item at the index
+	/// </summary>
+	/// <param name="i">index</param>
+	/// <returns>Item</returns>
 	public Item Get(int i)
     {
         return inventory[i];
     }
 
-    public void TransferItem(Inventory inv, int index)
+    /// <summary>
+	/// Transfers a item from this inventory to a other
+	/// </summary>
+	/// <param name="ToInv">other inv to transfer to</param>
+	/// <param name="index">this inventorys index to transfer</param>
+	public void TransferItem(Inventory ToInv, int index)
     {
-        this.Add(inv.Get(index));
-        inv.Remove(index);
+        this.Add(ToInv.Get(index));
+        ToInv.Remove(index);
     }
 
-    public void TransferItemAmount(Inventory Toinv, int Fromindex, int addingAmount)
+	/// <summary>
+	/// Transfers a specific amount of a item from this inventory to a other
+	/// </summary>
+	/// <param name="Toinv">other inv to transfer to</param>
+	/// <param name="Fromindex">this inventorys index to transfer</param>
+	/// <param name="transferingAmount">amount to tramsfer</param>
+	public void TransferItemAmount(Inventory Toinv, int Fromindex, int transferingAmount)
     {
-        
-		
-
-  //      Toinv.Add(inventory[Fromindex]);
-
-		//if (inventory[Fromindex].amount == 0)
-		//{
-		//	Remove(Fromindex);
-		//}
-
-		
 		Debug.Log(inventory[Fromindex]);
 
-		if (inventory[Fromindex].amount - addingAmount < 0)
+		if (inventory[Fromindex].amount - transferingAmount < 0)
 		{
 			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
-
-			addable.amount = (addingAmount - inventory[Fromindex].amount);
-
-			 Toinv.Add(addable);
-
+			addable.amount = (transferingAmount - inventory[Fromindex].amount);
+			Toinv.Add(addable);
 			Remove(Fromindex);
 			
 		}
-		else if (inventory[Fromindex].amount - addingAmount == 0)
+		else if (inventory[Fromindex].amount - transferingAmount == 0)
 		{
 			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
-
-			addable.amount = addingAmount;
-
+			addable.amount = transferingAmount;
 			Toinv.Add(addable);
-
 			Remove(Fromindex);
 		}
-		else if (inventory[Fromindex].amount - addingAmount > 0)
+		else if (inventory[Fromindex].amount - transferingAmount > 0)
 		{
 			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
-
-			addable.amount = addingAmount;
-
+			addable.amount = transferingAmount;
 			Toinv.Add(addable);
-
-			inventory[Fromindex].amount -= addingAmount;
-
-			//Remove(Fromindex);
+			inventory[Fromindex].amount -= transferingAmount;
 		}
-
-
-		;
-	
-
 }
 
+
+/*
     public int AddAmount(int rAmount, Item i)
     {
         if ((i.amount + rAmount) > (i.maxStackSize))
@@ -148,4 +175,5 @@ public class Inventory
         }
 
     }
+	*/
 }

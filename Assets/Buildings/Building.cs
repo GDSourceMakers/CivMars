@@ -11,7 +11,7 @@ public class Building : Tiled , IHasGui
 	private int y;
 	public List<Item> buildingMaterials;
 
-	public GameObject Canvas;
+	public GameObject Graphicks;
 	public bool guion;
 
 	public GameController GameCon;
@@ -24,50 +24,48 @@ public class Building : Tiled , IHasGui
 		{
 			Debug.LogErrorFormat("Can't find the GameController", this);
 		}
-		Canvas.SetActive(false);
-		Canvas.transform.position = Vector3.zero;
+		Graphicks.SetActive(false);
+		Graphicks.transform.position = Vector3.zero;
 	}
 
 
 	void OnMouseDown()
 	{
-		if (GameCon.AlloweGUI(this as IHasGui))
-		{
-			TogelGui();
-		}
+		TogelGui();
 	}
 
+	#region IhasGui
 	public void TogelGui()
 	{
-		if (guion)
+		if (!guion)
 		{
-			Close();
+			if (GameCon.AlloweGUI(this as IHasGui))
+			{
+				Open();
+			}
 		}
 		else
 		{
-			Open();
+			GameCon.CloseGUI(this as IHasGui);
+			Close();
 		}
-
 	}
 
 	public void Open()
 	{
-		Canvas.SetActive(true);
-		GameCon.guiHandler.OpenGUI = this;
-		GameCon.guiHandler.isGUIOpen = true;
 		guion = true;
+		Graphicks.SetActive(true);
 	}
 
 	public void Close()
 	{
-		Canvas.SetActive(false);
-		GameCon.guiHandler.OpenGUI = null;
-		GameCon.guiHandler.isGUIOpen = false;
 		guion = false;
+		Graphicks.SetActive(false);
 	}
 
-	public bool CanBeTurnedOf()
+	public int ClosingLevel()
 	{
-		return true;
+		return 1;
 	}
+	#endregion
 }

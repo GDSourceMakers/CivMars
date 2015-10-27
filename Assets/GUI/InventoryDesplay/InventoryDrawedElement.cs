@@ -8,7 +8,7 @@ public class InventoryDrawedElement : MonoBehaviour
 	GameController GameCon;
 
 	public bool isPlayer;
-	public string name;
+	public string drawname_name;
 	public int amount;
 	public int index;
 
@@ -57,7 +57,7 @@ public class InventoryDrawedElement : MonoBehaviour
 
 	public void Set(string setName)
 	{
-		this.name = setName;
+		this.drawname_name = setName;
 		//Debug.Log(setName);
 
 		nameDisplay.GetComponent<Text>().text = setName.ToString();
