@@ -25,13 +25,14 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 		GameCon.TogleAccesPanel(this);
 	}
 
+	/*
 	public Inventory GetInventory()
 	{
 		return inventory;
 	}
+	*/
 
-
-
+	#region buildable
 	public Sprite GetImage()
 	{
 		return Icon;
@@ -56,9 +57,61 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 	{
 		return 5f;
 	}
+	#endregion
 
 	public void Regystrate()
 	{
 		GameRegystry.RegisterBuilding(this as IBuildable);
+	}
+
+	public int GetInventorySize()
+	{
+		return inventory.size;
+		throw new NotImplementedException();
+	}
+
+	public string GetInventoryName()
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool HasCustomInventoryName()
+	{
+		return false;
+		throw new NotImplementedException();
+	}
+
+	public Item GetStackInSlot(int i)
+	{
+		return inventory.Get(i);
+		throw new NotImplementedException();
+	}
+
+	public int GetInventoryStackLimit(int i)
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool IsItemValidForSlot(int slot, Item givenItem)
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool IsUseableByPlayer(Player p_70300_1_)
+	{
+		return true;
+		throw new NotImplementedException();
+	}
+
+	public Item Add(Item i)
+	{
+		inventory.Add(i);
+		throw new NotImplementedException();
+	}
+
+	public Item Remove(Item i)
+	{
+		inventory.Remove(i);
+		throw new NotImplementedException();
 	}
 }

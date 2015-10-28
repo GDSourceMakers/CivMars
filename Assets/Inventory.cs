@@ -35,7 +35,7 @@ public class Inventory
 
                     Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
 
-                    if (size == 0)
+                    if (size == -1)
                     {
                         return item;
                     }
@@ -58,7 +58,34 @@ public class Inventory
 
     }
 
-    /// <summary>
+	public Item Remove(Item removing)
+	{
+		
+
+		foreach (Item item in inventory)
+		{
+			if (item != null)
+			{
+				if (item.GetType() == removing.GetType())
+				{
+					//Debug.Log(adding.GetType());
+					removing.amount = item.Remove(removing.amount);
+
+					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
+
+					if (size == -1)
+					{
+						return item;
+					}
+				}
+			}
+		}
+
+		return removing;
+
+	}
+
+	/// <summary>
 	/// Remove item at index
 	/// </summary>
 	/// <param name="index">index of the item</param>
@@ -66,7 +93,6 @@ public class Inventory
     {
         inventory[index] = null;
     }
-
 
 	/// <summary>
 	/// Remove amount from item at index

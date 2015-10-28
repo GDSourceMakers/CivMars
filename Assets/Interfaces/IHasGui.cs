@@ -13,5 +13,7 @@ public interface IHasGui
 	void Close();
 
 	int ClosingLevel();
+
+	
 }
 
