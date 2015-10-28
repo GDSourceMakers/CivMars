@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Player : MonoBehaviour, IGasTank
+public class Player : MonoBehaviour, IGasTank, IInventory
 {
 	public GameController GameCon;
 
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IGasTank
 
 
 
-	public Inventory Inventory = new Inventory(10);
+	public Inventory inventory = new Inventory(10);
 
 	public int eatSpeed;
 	public float breathAmount = 1;
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour, IGasTank
 			mined = (((Item)Activator.CreateInstance(null, ore.type.ToString() + "Ore").Unwrap()));
 			mined.amount = 1;
 
-			Inventory.Add(mined);
+			inventory.Add(mined);
 
 			Debug.Log("Ore: "+ ((OreTile)ore).amount+ " Item: "+((OreTile)ore).amount);
 
@@ -117,6 +117,67 @@ public class Player : MonoBehaviour, IGasTank
 	public GasTankCluster GetTankCluster()
 	{
 		return suit.GetTankCluster();
+	}
+
+	public int GetInventorySize()
+	{
+		return inventory.size;
+		throw new NotImplementedException();
+	}
+
+	public string GetInventoryName()
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool HasCustomInventoryName()
+	{
+		return false;
+		throw new NotImplementedException();
+	}
+
+	public Item GetStackInSlot(int i)
+	{
+		return inventory.Get(i);
+		throw new NotImplementedException();
+	}
+
+	public int GetInventoryStackLimit(int i)
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool IsItemValidForSlot(int slot, Item givenItem)
+	{
+		throw new NotImplementedException();
+	}
+
+	public bool IsUseableByPlayer(Player p_70300_1_)
+	{
+		return true;
+		throw new NotImplementedException();
+	}
+
+	public Item Add(Item i)
+	{
+		inventory.Add(i);
+		throw new NotImplementedException();
+	}
+
+	public Item Remove(Item i)
+	{
+		inventory.Remove(i);
+		throw new NotImplementedException();
+	}
+
+	public void TransferItem(IInventory ToInv, int index)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
+	{
+		throw new NotImplementedException();
 	}
 }
 

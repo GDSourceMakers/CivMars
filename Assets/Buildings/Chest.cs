@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 
 [AddComponentMenu("Buildings/Chest")]
-public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
+public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 {
 	new static public int ID = 2;
 
@@ -18,19 +18,19 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 
 	public Sprite Icon;
 
-	new Item[] buildingMaterials = {new SandOre(2)};
+	new Item[] buildingMaterials = { new SandOre(2) };
+
+	void Start()
+	{
+		base.Start();
+		Graphicks.SetActive(false);
+		Graphicks.transform.position = Vector3.zero;
+	}
 
 	public void OpenInventory()
 	{
 		GameCon.TogleAccesPanel(this);
 	}
-
-	/*
-	public Inventory GetInventory()
-	{
-		return inventory;
-	}
-	*/
 
 	#region buildable
 	public Sprite GetImage()
@@ -112,6 +112,16 @@ public class Chest : Building, IInventory, IBuildable,IRegystratabe, IHasGui
 	public Item Remove(Item i)
 	{
 		inventory.Remove(i);
+		throw new NotImplementedException();
+	}
+
+	public void TransferItem(IInventory ToInv, int index)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
+	{
 		throw new NotImplementedException();
 	}
 }

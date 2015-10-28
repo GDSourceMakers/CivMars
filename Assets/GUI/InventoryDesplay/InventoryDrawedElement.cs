@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[AddComponentMenu("Dual Inventory/Dual Inventory Element")]
+[AddComponentMenu("Inventory/Inventory Element")]
 public class InventoryDrawedElement : MonoBehaviour
 {
 	GameController GameCon;
@@ -12,8 +12,8 @@ public class InventoryDrawedElement : MonoBehaviour
 	public int amount;
 	public int index;
 
-	public Inventory other;
-	public Inventory thisinv;
+	public IInventory other;
+	public IInventory thisinv;
 
 
 	public GameObject nameDisplay;
@@ -69,7 +69,7 @@ public class InventoryDrawedElement : MonoBehaviour
 		Set(setAmount);
 	}
 
-	public void Set(Item item, bool isp, Inventory o, Inventory t, int i)
+	public void Set(Item item, bool isp, IInventory o, IInventory t, int i)
 	{
 		isPlayer = isp;
 		other = o;
@@ -93,7 +93,7 @@ public class InventoryDrawedElement : MonoBehaviour
 		}
 
 
-		other.TransferItem(thisinv, index);
+		thisinv.TransferItem(other, index);
 
 	}
 }

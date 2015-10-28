@@ -93,7 +93,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 				p.SetBuilding(GameRegystry.buildings[SelectedBuilding]);
 			}
 			GameCon.CloseGUI(this);
-			state = BuildingListerStates.Idle;
+			Close();
 		}
 	}
 

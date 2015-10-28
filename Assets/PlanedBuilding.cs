@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlanedBuilding : Building
 {
-	Item[] NeededMaterials;
-	int[] NeededMaterialsPlaced;
+	Item[] Materials;
+	int[] MaterialsAmount;
 
 	public Button buttonscript;
 	public GameObject NeededItemsDesp;
@@ -15,7 +15,7 @@ public class PlanedBuilding : Building
 
 	public IBuildable building;
 
-	public float counter  = -1f;
+	public float counter = -1f;
 	public float buildtime;
 
 	public float defaultYPos;
@@ -72,49 +72,37 @@ public class PlanedBuilding : Building
 
 	void UpdateMaterials()
 	{
-		for (int i = 0; i < NeededMaterials.Length; i++)
+		for (int i = 0; i < Materials.Length; i++)
 		{
 
 			if (neededItemsDrawn[i] == null)
 			{
 				GameObject go = Instantiate(neededItemPrefab);
-
 				neededItemsDrawn[i] = go;
-
 				neededItemsDrawn[i].transform.SetParent(NeededItemsDesp.transform);
 				neededItemsDrawn[i].transform.SetSiblingIndex(i);
-
-				neededItemsDrawn[i].transform.FindChild("Name").GetComponent<Text>().text = NeededMaterials[i].GetType().ToString();
-				neededItemsDrawn[i].transform.FindChild("Amount").GetComponent<Text>().text = NeededMaterialsPlaced[i] + "/" + NeededMaterials[i].amount.ToString();
-				neededItemsDrawn[i].transform.FindChild("Slider").GetComponent<Slider>().value = NeededMaterialsPlaced[i] / NeededMaterials[i].amount;
-
-				//go.transform.FindChild("Picture");
 			}
 			else
 			{
 				neededItemsDrawn[i].transform.SetParent(NeededItemsDesp.transform);
 				neededItemsDrawn[i].transform.SetSiblingIndex(i);
-
-				neededItemsDrawn[i].transform.FindChild("Name").GetComponent<Text>().text = NeededMaterials[i].GetType().ToString();
-				neededItemsDrawn[i].transform.FindChild("Amount").GetComponent<Text>().text = NeededMaterialsPlaced[i] + "/" + NeededMaterials[i].amount.ToString();
-				neededItemsDrawn[i].transform.FindChild("Slider").GetComponent<Slider>().value = (float)NeededMaterialsPlaced[i] / (float)NeededMaterials[i].amount;
 			}
-		}
-	}
 
-	void OnMouseDown()
-	{
-		TogelGui();
+			neededItemsDrawn[i].transform.FindChild("Name").GetComponent<Text>().text = Materials[i].GetType().ToString();
+			neededItemsDrawn[i].transform.FindChild("Amount").GetComponent<Text>().text = (MaterialsAmount[i] - Materials[i].amount) + "/" + MaterialsAmount[i];
+			neededItemsDrawn[i].transform.FindChild("Slider").GetComponent<Slider>().value = (float)(MaterialsAmount[i] - Materials[i].amount) / MaterialsAmount[i];
+		}
 	}
 
 	public void SetBuilding(IBuildable b)
 	{
 		building = b;
 		buildtime = b.GetBuildtime();
-		NeededMaterials = building.GetNeededMaterials();
-		NeededMaterialsPlaced = new int[NeededMaterials.Length];
-		for (int i = 0; i < NeededMaterials.Length; i++)
+		Materials = building.GetNeededMaterials();
+		MaterialsAmount = new int[Materials.Length];
+		for (int i = 0; i < Materials.Length; i++)
 		{
+			MaterialsAmount[i] = Materials[i].amount;
 			neededItemsDrawn.Add(null);
 		}
 	}
@@ -132,9 +120,9 @@ public class PlanedBuilding : Building
 		bool done = true;
 		done = true;
 
-		for (int i = 0; i < NeededMaterials.Length; i++)
+		for (int i = 0; i < Materials.Length; i++)
 		{
-			if (!(NeededMaterials[i].amount == NeededMaterialsPlaced[i]))
+			if (!((MaterialsAmount[i] - Materials[i].amount) == MaterialsAmount[i]))
 			{
 				done = false;
 			}
@@ -151,16 +139,24 @@ public class PlanedBuilding : Building
 	/// </summary>
 	public void Place()
 	{
-		Inventory playerinv = GameCon.playerclass.Inventory;
+		Inventory playerinv = GameCon.playerclass.inventory;
 
-		for (int j = 0; j < NeededMaterials.Length; j++)
+		for (int j = 0; j < Materials.Length; j++)
 		{
-			int neededamount;
-			neededamount = NeededMaterials[j].amount - NeededMaterialsPlaced[j];
-			
-			
+			if ((MaterialsAmount[j] - Materials[j].amount) < MaterialsAmount[j])
+			{
 
-			NeededMaterialsPlaced[j] = NeededMaterials[j].amount - (playerinv.Remove(NeededMaterials[j],neededamount));
+				Item remaining = playerinv.Remove(Materials[j]);
+				if (remaining != null)
+				{
+					Materials[j] = remaining;
+				}
+				else
+				{
+					Materials[j].amount = 0;
+				}
+				//Materials[j].amount -= (MaterialsAmount[j] - Materials[j].amount);
+			}
 		}
 	}
 }

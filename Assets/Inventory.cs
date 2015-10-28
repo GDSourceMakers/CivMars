@@ -59,42 +59,40 @@ public class Inventory
 	}
 
 
-	public int Remove(Item type, int amount)
+	public Item Remove(Item removing)
 	{
-		int size = amount;
 		for (int i = 0; i < inventory.GetLength(0); i++)
 		{
-
 			Item item = inventory[i];
-
 			if (item != null)
 			{
-				if (item.GetType() == type.GetType())
+				if (item.GetType() == removing.GetType())
 				{
 					//Debug.Log(adding.GetType());
-					size = item.Remove(amount);
+					removing.amount = item.Remove(removing.amount);
 					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
-					if (item.amount == 0)
-					{
-						item = null;
-					}
 
-					
+					Check(i);
 
-					if (size == -1)
-					{
-						return 0;
-					}
 
-					amount = size;
 				}
 			}
 		}
-
-		return size;
+		if (removing.amount == -1)
+		{
+			return null;
+		}
+		return removing;
 
 	}
 
+	void Check(int i)
+	{
+		if (inventory[i].amount <= 0)
+		{
+			inventory[i] = null;
+		}
+	}
 
 	/// <summary>
 	/// Remove item at index
@@ -113,8 +111,8 @@ public class Inventory
 	/// <param name="amount">amount to remove</param>
 	public void Remove(int index, int amount)
 	{
-		inventory[index].Remove(amount);
-		if (inventory[index].amount == 0)
+		
+		if (inventory[index].Remove(amount) < 0)
 		{
 			inventory[index] = null;
 		}
@@ -154,44 +152,34 @@ public class Inventory
 	/// </summary>
 	/// <param name="ToInv">other inv to transfer to</param>
 	/// <param name="index">this inventorys index to transfer</param>
-	public void TransferItem(Inventory ToInv, int index)
+	public void TransferItem(IInventory ToInv, int index)
 	{
-		this.Add(ToInv.Get(index));
-		ToInv.Remove(index);
+		ToInv.Add(this.Get(index));
+		this.Remove(Get(index));
 	}
 
 	/// <summary>
 	/// Transfers a specific amount of a item from this inventory to a other
 	/// </summary>
 	/// <param name="Toinv">other inv to transfer to</param>
-	/// <param name="Fromindex">this inventorys index to transfer</param>
+	/// <param name="fromindex">this inventorys index to transfer</param>
 	/// <param name="transferingAmount">amount to tramsfer</param>
-	public void TransferItemAmount(Inventory Toinv, int Fromindex, int transferingAmount)
+	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
 	{
-		Debug.Log(inventory[Fromindex]);
+		Debug.Log(inventory[fromindex]);
 
-		if (inventory[Fromindex].amount - transferingAmount < 0)
+		int remaining = inventory[fromindex].Remove(transferingAmount);
+		Check(fromindex);
+		Item addable = (((Item)Activator.CreateInstance(null, inventory[fromindex].GetType().ToString()).Unwrap()));
+		if (remaining == -1)
 		{
-			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
-			addable.amount = (transferingAmount - inventory[Fromindex].amount);
-			Toinv.Add(addable);
-			Remove(Fromindex);
-
-		}
-		else if (inventory[Fromindex].amount - transferingAmount == 0)
-		{
-			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
 			addable.amount = transferingAmount;
-			Toinv.Add(addable);
-			Remove(Fromindex);
 		}
-		else if (inventory[Fromindex].amount - transferingAmount > 0)
+		else
 		{
-			Item addable = (((Item)Activator.CreateInstance(null, inventory[Fromindex].GetType().ToString()).Unwrap()));
-			addable.amount = transferingAmount;
-			Toinv.Add(addable);
-			inventory[Fromindex].amount -= transferingAmount;
+			addable.amount = transferingAmount - remaining;
 		}
+		Toinv.Add(addable);
 	}
 
 

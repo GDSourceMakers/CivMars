@@ -47,7 +47,7 @@ public class Item
 	/// Remove amonunt fron the item
 	/// </summary>
 	/// <param name="remAmount">amount to remove</param>
-	/// <returns></returns>
+	/// <returns>Returns the remaining amount or -1 if completed</returns>
 	public int Remove(int remAmount)
 	{
 		if ((amount - remAmount) < 0)

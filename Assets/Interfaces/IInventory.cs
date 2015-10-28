@@ -58,5 +58,18 @@ public interface IInventory
 	//Removes the item to the inventory returns the remained amount
 	Item Remove(Item i);
 
+	/// <summary>
+	/// Transfers a item from this inventory to a other
+	/// </summary>
+	/// <param name="ToInv">other inv to transfer to</param>
+	/// <param name="index">this inventorys index to transfer</param>
+	void TransferItem(IInventory ToInv, int index);
 
+	/// <summary>
+	/// Transfers a specific amount of a item from this inventory to a other
+	/// </summary>
+	/// <param name="Toinv">other inv to transfer to</param>
+	/// <param name="fromindex">this inventorys index to transfer</param>
+	/// <param name="transferingAmount">amount to tramsfer</param>
+	void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount);
 }

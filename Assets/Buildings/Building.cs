@@ -18,15 +18,13 @@ public class Building : Tiled , IHasGui, IPointerClickHandler
 	public GameController GameCon;
 
 
-	void Awake()
+	public void Start()
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 		if (GameCon == null)
 		{
 			Debug.LogErrorFormat("Can't find the GameController", this);
 		}
-		Graphicks.SetActive(false);
-		Graphicks.transform.position = Vector3.zero;
 	}
 
 	#region IhasGui
