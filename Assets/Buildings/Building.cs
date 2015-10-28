@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [AddComponentMenu("Buildings/Building")]
-public class Building : Tiled , IHasGui
+public class Building : Tiled , IHasGui, IPointerClickHandler
 {
 	static public int ID;
 
@@ -26,12 +27,6 @@ public class Building : Tiled , IHasGui
 		}
 		Graphicks.SetActive(false);
 		Graphicks.transform.position = Vector3.zero;
-	}
-
-
-	void OnMouseDown()
-	{
-		TogelGui();
 	}
 
 	#region IhasGui
@@ -66,6 +61,11 @@ public class Building : Tiled , IHasGui
 	public int ClosingLevel()
 	{
 		return 1;
+	}
+
+	public void OnPointerClick(PointerEventData eventData)
+	{
+		TogelGui();
 	}
 	#endregion
 }

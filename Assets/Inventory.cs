@@ -6,70 +6,32 @@ using System;
 public class Inventory
 {
 
-    public Item[] inventory;
+	public Item[] inventory;
 
-    public int size;
+	public int size;
 
 
-    public Inventory(int InventorySize)
-    {
+	public Inventory(int InventorySize)
+	{
 		if (InventorySize < 1)
 			Debug.LogErrorFormat("Inventory size can't be less than 0", this);
-        inventory = new Item[InventorySize];
-        this.size = InventorySize;
-    }
+		inventory = new Item[InventorySize];
+		this.size = InventorySize;
+	}
 
 
-    public Item Add(Item adding)
-    {
-        int size = adding.amount;
-
-        foreach (Item item in inventory)
-        {
-            if (item != null)
-            {
-                if (item.GetType() == adding.GetType())
-                {
-                    //Debug.Log(adding.GetType());
-                    size = item.Add(adding.amount);
-
-                    Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
-
-                    if (size == -1)
-                    {
-                        return item;
-                    }
-
-                    adding.amount = size;
-                }
-            }
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (inventory[i] == null)
-            {
-                inventory[i] = adding;
-                return inventory[i];
-            }
-        }
-
-        return null;
-
-    }
-
-	public Item Remove(Item removing)
+	public Item Add(Item adding)
 	{
-		
+		int size = adding.amount;
 
 		foreach (Item item in inventory)
 		{
 			if (item != null)
 			{
-				if (item.GetType() == removing.GetType())
+				if (item.GetType() == adding.GetType())
 				{
 					//Debug.Log(adding.GetType());
-					removing.amount = item.Remove(removing.amount);
+					size = item.Add(adding.amount);
 
 					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
 
@@ -77,22 +39,72 @@ public class Inventory
 					{
 						return item;
 					}
+
+					adding.amount = size;
 				}
 			}
 		}
 
-		return removing;
+		for (int i = 0; i < 10; i++)
+		{
+			if (inventory[i] == null)
+			{
+				inventory[i] = adding;
+				return inventory[i];
+			}
+		}
+
+		return null;
 
 	}
+
+
+	public int Remove(Item type, int amount)
+	{
+		int size = amount;
+		for (int i = 0; i < inventory.GetLength(0); i++)
+		{
+
+			Item item = inventory[i];
+
+			if (item != null)
+			{
+				if (item.GetType() == type.GetType())
+				{
+					//Debug.Log(adding.GetType());
+					size = item.Remove(amount);
+					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
+					if (item.amount == 0)
+					{
+						item = null;
+					}
+
+					
+
+					if (size == -1)
+					{
+						return 0;
+					}
+
+					amount = size;
+				}
+			}
+		}
+
+		return size;
+
+	}
+
 
 	/// <summary>
 	/// Remove item at index
 	/// </summary>
 	/// <param name="index">index of the item</param>
 	public void Remove(int index)
-    {
-        inventory[index] = null;
-    }
+	{
+		inventory[index] = null;
+	}
+
 
 	/// <summary>
 	/// Remove amount from item at index
@@ -133,20 +145,20 @@ public class Inventory
 	/// <param name="i">index</param>
 	/// <returns>Item</returns>
 	public Item Get(int i)
-    {
-        return inventory[i];
-    }
+	{
+		return inventory[i];
+	}
 
-    /// <summary>
+	/// <summary>
 	/// Transfers a item from this inventory to a other
 	/// </summary>
 	/// <param name="ToInv">other inv to transfer to</param>
 	/// <param name="index">this inventorys index to transfer</param>
 	public void TransferItem(Inventory ToInv, int index)
-    {
-        this.Add(ToInv.Get(index));
-        ToInv.Remove(index);
-    }
+	{
+		this.Add(ToInv.Get(index));
+		ToInv.Remove(index);
+	}
 
 	/// <summary>
 	/// Transfers a specific amount of a item from this inventory to a other
@@ -155,7 +167,7 @@ public class Inventory
 	/// <param name="Fromindex">this inventorys index to transfer</param>
 	/// <param name="transferingAmount">amount to tramsfer</param>
 	public void TransferItemAmount(Inventory Toinv, int Fromindex, int transferingAmount)
-    {
+	{
 		Debug.Log(inventory[Fromindex]);
 
 		if (inventory[Fromindex].amount - transferingAmount < 0)
@@ -164,7 +176,7 @@ public class Inventory
 			addable.amount = (transferingAmount - inventory[Fromindex].amount);
 			Toinv.Add(addable);
 			Remove(Fromindex);
-			
+
 		}
 		else if (inventory[Fromindex].amount - transferingAmount == 0)
 		{
@@ -180,26 +192,26 @@ public class Inventory
 			Toinv.Add(addable);
 			inventory[Fromindex].amount -= transferingAmount;
 		}
-}
+	}
 
 
-/*
-    public int AddAmount(int rAmount, Item i)
-    {
-        if ((i.amount + rAmount) > (i.maxStackSize))
-        {
-			int reamaining = (i.amount + rAmount) - i.maxStackSize;
-            i.amount = i.maxStackSize;
-            Debug.Log(i.amount);
-            return reamaining;
-        }
-        else
-        {
-            i.amount = i.amount + rAmount;
-            Debug.Log(i.amount);
-            return 0;
-        }
+	/*
+		public int AddAmount(int rAmount, Item i)
+		{
+			if ((i.amount + rAmount) > (i.maxStackSize))
+			{
+				int reamaining = (i.amount + rAmount) - i.maxStackSize;
+				i.amount = i.maxStackSize;
+				Debug.Log(i.amount);
+				return reamaining;
+			}
+			else
+			{
+				i.amount = i.amount + rAmount;
+				Debug.Log(i.amount);
+				return 0;
+			}
 
-    }
-	*/
+		}
+		*/
 }

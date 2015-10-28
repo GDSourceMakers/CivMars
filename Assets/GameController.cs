@@ -33,7 +33,6 @@ public class GameController : MonoBehaviour
 		buildingRegistry = this.GetComponent<AssetsLoader>();
 	}
 
-
 	void Start()
 	{
 		DontDestroyOnLoad(transform.gameObject);
@@ -111,6 +110,7 @@ public class GameController : MonoBehaviour
 				//MapLoad.MapDraw(map, mapPiece, GeneratedSprites, BuildingPrefabs, tileSize);
 
 				gameIsOn = true;
+				gameS = GameState.InGame;
 
 				Camera.main.GetComponent<CameraChase>().MapLoaded();
 			}

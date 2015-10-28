@@ -123,8 +123,7 @@ public class PlanedBuilding : Building
 	{
 		GameObject go = GameObject.Instantiate(building.GetPrefab());
 		go.transform.position = this.transform.position;
-		GameCon.guiHandler.OpenGUI = null;
-		GameCon.guiHandler.isGUIOpen = false;
+		GameCon.CloseGUI(this);
 		Destroy(this.gameObject);
 	}
 
@@ -158,38 +157,10 @@ public class PlanedBuilding : Building
 		{
 			int neededamount;
 			neededamount = NeededMaterials[j].amount - NeededMaterialsPlaced[j];
-			for (int i = 0; i < playerinv.size; i++)
-			{
-				if (playerinv.inventory[i] != null)
-				{
-					if (playerinv.inventory[i].GetType() == NeededMaterials[j].GetType())
-					{
-						if (playerinv.inventory[i].amount == neededamount)
-						{
-							playerinv.Remove(i);
-							neededamount = 0;
-						}
-						else if (playerinv.inventory[i].amount < neededamount)
-						{
-							neededamount = neededamount - playerinv.inventory[i].amount;
-							playerinv.Remove(i);
-						}
-						else if (playerinv.inventory[i].amount > neededamount)
-						{
-							neededamount = 0;
-							playerinv.inventory[i].amount -= neededamount;
-						}
-					}
-				}
-			}
-			if (neededamount == 0)
-			{
-				NeededMaterialsPlaced[j] = NeededMaterials[j].amount;
-			}
-			else
-			{
-				NeededMaterialsPlaced[j] = NeededMaterials[j].amount - neededamount;
-			}
+			
+			
+
+			NeededMaterialsPlaced[j] = NeededMaterials[j].amount - (playerinv.Remove(NeededMaterials[j],neededamount));
 		}
 	}
 }
