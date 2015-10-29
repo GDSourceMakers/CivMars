@@ -9,6 +9,7 @@ public class PlanedBuilding : Building
 	int[] MaterialsAmount;
 
 	public Button buttonscript;
+	public Text Name;
 	public GameObject NeededItemsDesp;
 	public GameObject neededItemPrefab;
 	public List<GameObject> neededItemsDrawn;
@@ -105,6 +106,7 @@ public class PlanedBuilding : Building
 			MaterialsAmount[i] = Materials[i].amount;
 			neededItemsDrawn.Add(null);
 		}
+		Name.text = building.GetType().ToString();
 	}
 
 	void BuildBuilding()

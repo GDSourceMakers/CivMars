@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 
 	GameController GameCon;
 
-	ToggleGroup toglegroup;
+	TogleGroupAdvanced toglegroup;
 
 	public BuildingListerStates state;
 
@@ -29,7 +30,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 		List<IBuildable> buildables = GameRegystry.buildings;
-		toglegroup = transform.FindChild("InSelecting").FindChild("Panel").GetComponent<ToggleGroup>();
+		toglegroup = transform.FindChild("InSelecting").FindChild("Panel").GetComponent<TogleGroupAdvanced>();
 
 		state = BuildingListerStates.Idle;
 
@@ -97,24 +98,9 @@ public class BuildingLister : MonoBehaviour, IHasGui
 		}
 	}
 
-	int GetActiveTogle(IEnumerable<Toggle> t)
-	{
-		int i = 0;
-
-		foreach (Toggle item in t)
-		{
-			if (item.isOn)
-			{
-				return i;
-			}
-			i++;
-		}
-		return -1;
-	}
-
 	public void BuildSelected()
 	{
-		SelectedBuilding = GetActiveTogle(toglegroup.ActiveToggles());
+		SelectedBuilding = toglegroup.ActiveToggle().transform.GetSiblingIndex();
 		if (SelectedBuilding == -1)
 		{
 			return;

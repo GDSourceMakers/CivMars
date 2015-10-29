@@ -10,8 +10,8 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 	public GameObject InventoryDubleElement;
 	public GameObject InventoryElementBack;
 
-	public GameObject[] drawedInvPlayer = new GameObject[10];
-	public GameObject[] drawedInvOther = new GameObject[10];
+	GameObject[] drawedInvPlayer = new GameObject[10];
+	GameObject[] drawedInvOther = new GameObject[10];
 
 	InventoryDrawedElement InventoryDravedElement;
 
@@ -32,15 +32,15 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 	{
 		if (other == null)
 		{
-			UpdateInventorySection(player, drawedInvPlayer, InventoryCanvasPlayer.transform.FindChild("Items").gameObject, true);
+			UpdateInventorySection(player, drawedInvPlayer, InventoryCanvasPlayer, true);
 		}
 		else
 		{
-			UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer.transform.FindChild("Items").gameObject, true);
+			UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer, true);
 		}
 		if (other != null)
 		{
-			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther.transform.FindChild("Items").gameObject, false);
+			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther, false);
 		}
 		else
 		{
@@ -134,7 +134,14 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 			}
 			drawed[i] = actual;
 		}
-	}
+
+		int a = invThis.GetInventorySize() / 3;
+        if (invThis.GetInventorySize() % 3 > 0)
+		{
+			a++;
+		}
+		drawingCanvas.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (a * (50))+10);
+    }
 
 
 	void UpdateInventorySection(IInventory invThis, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)

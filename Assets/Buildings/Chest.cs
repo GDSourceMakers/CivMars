@@ -11,8 +11,6 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	public Text Name;
 	public Text InventoryButtonText;
-	public Text asd;
-
 
 	public Inventory inventory = new Inventory(15);
 
@@ -67,7 +65,6 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 	public int GetInventorySize()
 	{
 		return inventory.size;
-		throw new NotImplementedException();
 	}
 
 	public string GetInventoryName()
@@ -78,13 +75,11 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 	public bool HasCustomInventoryName()
 	{
 		return false;
-		throw new NotImplementedException();
 	}
 
 	public Item GetStackInSlot(int i)
 	{
 		return inventory.Get(i);
-		throw new NotImplementedException();
 	}
 
 	public int GetInventoryStackLimit(int i)
@@ -100,19 +95,16 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 	public bool IsUseableByPlayer(Player p_70300_1_)
 	{
 		return true;
-		throw new NotImplementedException();
 	}
 
 	public Item Add(Item i)
 	{
-		inventory.Add(i);
-		throw new NotImplementedException();
+		return inventory.Add(i);
 	}
 
 	public Item Remove(Item i)
 	{
-		inventory.Remove(i);
-		throw new NotImplementedException();
+		return inventory.Remove(i);
 	}
 
 	public void TransferItem(IInventory ToInv, int index)

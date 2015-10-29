@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: cde13e22c1a16eb4cab835983d3f4fc4
-timeCreated: 1446059722
+guid: 026edcbde644ba048842d09533d74478
+timeCreated: 1446108967
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Element_Top
-    21300002: Element_Midle
-    21300004: Element_Bottom
+    21300000: Button_0
+    21300002: Button_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,7 +28,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -46,43 +45,23 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 97, y: 97, z: 98, w: 98}
-  spritePixelsToUnits: 100
+  spriteBorder: {x: 59, y: 84, z: 84, w: 63}
+  spritePixelsToUnits: 440
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Element_Top
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 150
-        width: 200
-        height: 50
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 69, y: 25, z: 116, w: 17}
-    - name: Element_Midle
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 67
-        width: 200
-        height: 83
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 76, y: 29, z: 79, w: 20}
-    - name: Element_Bottom
+    - name: Button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 67
+        width: 220
+        height: 220
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 65, y: 64, z: 94, w: 1}
+      border: {x: 69, y: 91, z: 91, w: 69}
   spritePackingTag: 
   userData: 
   assetBundleName: 

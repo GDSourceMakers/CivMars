@@ -10,7 +10,7 @@ using UnityEngine;
 public class MainBuilding : Building , IInventory, IGasTank
 {
 	new static public int ID = 1;
-
+	
 	public Text Name;
     public Text InventoryButtonText;
     
@@ -79,8 +79,7 @@ public class MainBuilding : Building , IInventory, IGasTank
 
 	public Item Add(Item i)
 	{
-		inventory.Add(i);
-		throw new NotImplementedException();
+		return inventory.Add(i);
 	}
 
 	public Item Remove(Item i)

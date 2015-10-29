@@ -44,14 +44,14 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 		float CarbonDioxideTank = carbonDioxide.amount;
 		float CarbonDioxideTankFull = carbonDioxide.maxAmount;
 
-		float OxigenHp =			Mathf.Clamp((OxigenTank * 5)		/ OxigenTankFull		,0, 1);
-		float CarbonDioxideHp =		Mathf.Clamp(((CarbonDioxideTankFull - CarbonDioxideTank) * 5) / CarbonDioxideTankFull	,0, 1); ;
+		float OxigenHp = Mathf.Clamp((OxigenTank * 5) / OxigenTankFull, 0, 1);
+		float CarbonDioxideHp = Mathf.Clamp(((CarbonDioxideTankFull - CarbonDioxideTank) * 5) / CarbonDioxideTankFull, 0, 1); ;
 
 		health =
 			(
-				((OxigenHp) * 10)		*
+				((OxigenHp) * 10) *
 				((CarbonDioxideHp) * 10)
-			)/Mathf.Pow(10,2);
+			) / Mathf.Pow(10, 2);
 		//Debug.Log("Deadly Carbon percent: " + CarbonDioxideHp + "  Deadly Oxigen percent: " + OxigenHp + "  health: "+ health);
 	}
 
@@ -62,8 +62,8 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public void Breath()
 	{
-			GetTankCluster().GetTank(0).RemoveAmount(breathAmount * Time.deltaTime, GasType.Oxigen);
-			GetTankCluster().GetTank(1).AddAmount(breathAmount * Time.deltaTime, GasType.CarbonDeOxide);
+		GetTankCluster().GetTank(0).RemoveAmount(breathAmount * Time.deltaTime, GasType.Oxigen);
+		GetTankCluster().GetTank(1).AddAmount(breathAmount * Time.deltaTime, GasType.CarbonDeOxide);
 	}
 
 	public void walk()
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	{
 
 		Item mined;
-		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1*(int)Mathf.Round(transform.position.y));
+		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
 
 		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 			inventory.Add(mined);
 
-			Debug.Log("Ore: "+ ((OreTile)ore).amount+ " Item: "+((OreTile)ore).amount);
+			Debug.Log("Ore: " + ((OreTile)ore).amount + " Item: " + ((OreTile)ore).amount);
 
 			if (((OreTile)ore).Mine(1))
 			{
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public void MineStar()
 	{
-		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1*(int)Mathf.Round(transform.position.y));
+		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
 		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
 
@@ -122,7 +122,6 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	public int GetInventorySize()
 	{
 		return inventory.size;
-		throw new NotImplementedException();
 	}
 
 	public string GetInventoryName()
@@ -133,13 +132,11 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	public bool HasCustomInventoryName()
 	{
 		return false;
-		throw new NotImplementedException();
 	}
 
 	public Item GetStackInSlot(int i)
 	{
 		return inventory.Get(i);
-		throw new NotImplementedException();
 	}
 
 	public int GetInventoryStackLimit(int i)
@@ -155,29 +152,26 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	public bool IsUseableByPlayer(Player p_70300_1_)
 	{
 		return true;
-		throw new NotImplementedException();
 	}
 
 	public Item Add(Item i)
 	{
-		inventory.Add(i);
-		throw new NotImplementedException();
+		return inventory.Add(i);
 	}
 
 	public Item Remove(Item i)
 	{
-		inventory.Remove(i);
-		throw new NotImplementedException();
+		return inventory.Remove(i);
 	}
 
 	public void TransferItem(IInventory ToInv, int index)
 	{
-		throw new NotImplementedException();
+		inventory.TransferItem(ToInv, index);
 	}
 
 	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
 	{
-		throw new NotImplementedException();
+		inventory.TransferItemAmount(Toinv, fromindex, transferingAmount);
 	}
 }
 

@@ -22,7 +22,7 @@ public class Inventory
 
 	public Item Add(Item adding)
 	{
-		int size = adding.amount;
+		//int size = adding.amount;
 
 		foreach (Item item in inventory)
 		{
@@ -31,16 +31,14 @@ public class Inventory
 				if (item.GetType() == adding.GetType())
 				{
 					//Debug.Log(adding.GetType());
-					size = item.Add(adding.amount);
+					adding.amount = item.Add(adding.amount);
 
 					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
 
-					if (size == -1)
+					if (adding.amount == -1)
 					{
-						return item;
+						return null;
 					}
-
-					adding.amount = size;
 				}
 			}
 		}
@@ -50,7 +48,7 @@ public class Inventory
 			if (inventory[i] == null)
 			{
 				inventory[i] = adding;
-				return inventory[i];
+				return null;
 			}
 		}
 
@@ -155,7 +153,7 @@ public class Inventory
 	public void TransferItem(IInventory ToInv, int index)
 	{
 		ToInv.Add(this.Get(index));
-		this.Remove(Get(index));
+		this.Remove(index);
 	}
 
 	/// <summary>
@@ -169,7 +167,7 @@ public class Inventory
 		Debug.Log(inventory[fromindex]);
 
 		int remaining = inventory[fromindex].Remove(transferingAmount);
-		Check(fromindex);
+		
 		Item addable = (((Item)Activator.CreateInstance(null, inventory[fromindex].GetType().ToString()).Unwrap()));
 		if (remaining == -1)
 		{
@@ -180,6 +178,7 @@ public class Inventory
 			addable.amount = transferingAmount - remaining;
 		}
 		Toinv.Add(addable);
+		Check(fromindex);
 	}
 
 
