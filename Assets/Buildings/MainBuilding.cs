@@ -7,7 +7,7 @@ using UnityEngine;
 
 [AddComponentMenu("Buildings/Main Building")]
 [System.Serializable]
-public class MainBuilding : Building , IInventory, IGasTank
+public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 {
 	new static public int ID = 1;
 	
@@ -97,4 +97,9 @@ public class MainBuilding : Building , IInventory, IGasTank
 	{
 		inventory.TransferItemAmount(Toinv, fromindex, transferingAmount);
     }
+
+	public void Regystrate()
+	{
+		GameRegystry.RegisterBuilding(this);
+	}
 }

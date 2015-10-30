@@ -73,12 +73,12 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public void Mine()
 	{
-
+/*
 		Item mined;
 		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
 
-		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
+		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapManagger.tiles[(int)pos.x, (int)pos.y]);
 
 		if (ore.GetType() == typeof(OreTile))
 		{
@@ -98,12 +98,13 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 				GameCon.map.MapUpdate((int)pos.x, (int)pos.y, GameCon.map);
 			}
 		}
-
+		*/
 
 	}
 
 	public void MineStar()
 	{
+		/*
 		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
 		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 		{
 			GameCon.guiHandler.actions[0].Action(((OreTile)ore).miningTime[(int)ore.type], "Mine");
 		}
+		*/
 	}
 
 	public GasTankCluster GetTankCluster()

@@ -29,7 +29,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 	void Start()
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		List<IBuildable> buildables = GameRegystry.buildings;
+		List<IBuildable> buildables = GameRegystry.buildableBuildings;
 		toglegroup = transform.FindChild("InSelecting").FindChild("Panel").GetComponent<TogleGroupAdvanced>();
 
 		state = BuildingListerStates.Idle;
@@ -91,7 +91,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 				GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y] = p;
 				GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y].transform.position = pos;
 
-				p.SetBuilding(GameRegystry.buildings[SelectedBuilding]);
+				p.SetBuilding(GameRegystry.buildableBuildings[SelectedBuilding]);
 			}
 			GameCon.CloseGUI(this);
 			Close();

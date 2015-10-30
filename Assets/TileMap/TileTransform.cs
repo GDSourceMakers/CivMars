@@ -14,7 +14,7 @@ public class TileTransform : MonoBehaviour
 		set
 		{
 			position_r = value;
-			transform.position = position;
+			transform.localPosition = position;
 		}
 		get
 		{

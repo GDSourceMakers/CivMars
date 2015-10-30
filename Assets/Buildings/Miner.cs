@@ -77,7 +77,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 	#region IRegystratabe
 	public void Regystrate()
 	{
-		GameRegystry.RegisterBuilding(this);
+		GameRegystry.RegisterBuildableBuilding(this);
 	}
 	#endregion
 

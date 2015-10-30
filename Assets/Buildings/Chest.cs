@@ -59,7 +59,7 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	public void Regystrate()
 	{
-		GameRegystry.RegisterBuilding(this as IBuildable);
+		GameRegystry.RegisterBuildableBuilding(this as IBuildable);
 	}
 
 	public int GetInventorySize()
