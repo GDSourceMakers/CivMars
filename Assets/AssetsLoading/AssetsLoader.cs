@@ -20,6 +20,19 @@ public class AssetsLoader : MonoBehaviour
 				a.Regystrate();
 			}
 		}
+
+		GameObject[] goTiles = Resources.LoadAll<GameObject>("GeneratedTiles");
+
+		foreach (GameObject item in goTiles)
+		{
+			IRegystratabe a = item.GetComponent<IRegystratabe>();
+
+			if (a != null)
+			{
+				Debug.Log(item.name);
+				a.Regystrate();
+			}
+		}
 	}
 
 }

@@ -1,5 +1,7 @@
-﻿
+﻿using System;
 using UnityEngine;
+#region old
+
 
 public class OreTile : GeneratedTile
 {
@@ -12,34 +14,34 @@ public class OreTile : GeneratedTile
 
 		float amountnext = amount;
 		#region Somehow not working :(
-		/*
-		for (int i = -1; i < 2; i++)
-		{
-			for (int j = -1; j < 2; j++)
-			{
-				if (i != 0 && j != 0)
-				{
-					Debug.Log(i + " , " + j);
 
-					if ((x != l - 1) && (x != 0) && (y != l - 1) && (y != 0))
-					{
-						
+		//for (int i = -1; i < 2; i++)
+		//{
+		//	for (int j = -1; j < 2; j++)
+		//	{
+		//		if (i != 0 && j != 0)
+		//		{
+		//			Debug.Log(i + " , " + j);
 
-						if ((map[x + i, y + j] == null) || ((int)map[x + i, y + j].type < (int)base.type))
-						{
-							if (rnd.Next(0, 100) >= h)
-							{
-								map[x + i, y + j] = null;
-								map[x + i, y + j] = new OreTile(base.type, x + 1, y, amountnext);
+		//			if ((x != l - 1) && (x != 0) && (y != l - 1) && (y != 0))
+		//			{
 
-								map = ((OreTile)map[x + i, y + j]).Spread(map, h + reduce, rnd, reduce);
-							}
-						}
-					}
-				}
-			}
-		}
-		*/
+
+		//				if ((map[x + i, y + j] == null) || ((int)map[x + i, y + j].type < (int)base.type))
+		//				{
+		//					if (rnd.Next(0, 100) >= h)
+		//					{
+		//						map[x + i, y + j] = null;
+		//						map[x + i, y + j] = new OreTile(base.type, x + 1, y, amountnext);
+
+		//						map = ((OreTile)map[x + i, y + j]).Spread(map, h + reduce, rnd, reduce);
+		//					}
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
+
 		#endregion
 
 
@@ -128,6 +130,6 @@ public class OreTile : GeneratedTile
 
 
 	}
-
-
 }
+#endregion
+

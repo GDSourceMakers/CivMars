@@ -8,8 +8,8 @@ public class Building : Tiled , IHasGui, IPointerClickHandler
 {
 	static public int ID;
 
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 	public List<Item> buildingMaterials;
 
 	public GameObject Graphicks;

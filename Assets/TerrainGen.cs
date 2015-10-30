@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
-
+/*
 public class TerrainGen{
 
 
@@ -61,4 +61,4 @@ public class TerrainGen{
         }
     }
 
-
+	*/

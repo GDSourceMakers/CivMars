@@ -13,5 +13,12 @@ static class GameRegystry
 		buildings.Add(b);
 	}
 
+
+	public static List<IWorldGen> ores = new List<IWorldGen>();
+
+	public static void RegisterWorldGen(IWorldGen b)
+	{
+		ores.Add(b);
+	}
 }
 

@@ -18,7 +18,7 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	new Item[] buildingMaterials = { new SandOre(2) };
 
-	void Start()
+	new void Start()
 	{
 		base.Start();
 		Graphicks.SetActive(false);
