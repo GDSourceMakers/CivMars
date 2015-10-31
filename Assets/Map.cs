@@ -24,7 +24,8 @@ public class Map : MonoBehaviour
 
 	public void BuildMap()
 	{
-		System.Random r = new System.Random(987);
+		//987, 
+		System.Random r = new System.Random(098);
 		foreach (IWorldGen item in GameRegystry.ores)
 		{
 			item.Generate(r, mapManagger);

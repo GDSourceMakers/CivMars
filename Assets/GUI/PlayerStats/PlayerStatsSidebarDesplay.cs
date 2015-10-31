@@ -10,7 +10,7 @@ public class PlayerStatsSidebarDesplay : MonoBehaviour
 
 	GameController GameCon;
 
-	GameObject[] hRPeaces = new GameObject[10];
+	//GameObject[] hRPeaces = new GameObject[10];
 
 	// Use this for initialization
 	void Start()

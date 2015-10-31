@@ -41,7 +41,6 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	public int GetInventorySize()
 	{
 		return inventory.size;
-		throw new NotImplementedException();
 	}
 
 	public string GetInventoryName()
@@ -52,13 +51,11 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	public bool HasCustomInventoryName()
 	{
 		return false;
-		throw new NotImplementedException();
 	}
 
 	public Item GetStackInSlot(int i)
 	{
 		return inventory.Get(i);
-		throw new NotImplementedException();
 	}
 
 	public int GetInventoryStackLimit(int i)
@@ -74,7 +71,6 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	public bool IsUseableByPlayer(Player p_70300_1_)
 	{
 		return true;
-		throw new NotImplementedException();
 	}
 
 	public Item Add(Item i)

@@ -77,7 +77,6 @@ public class GasDesplayElement : MonoBehaviour {
 
 	public void ChangedState()
 	{
-		bool h = false;
 		if (inButton.isOn != inPressed )
 		{
 			if (inButton.isOn)
@@ -98,7 +97,6 @@ public class GasDesplayElement : MonoBehaviour {
             }
 			inPressed = inButton.isOn;
 			outPressed = outButton.isOn;
-			h = true;
 		}
 		if(outButton.isOn != outPressed) 
 		{
@@ -120,7 +118,6 @@ public class GasDesplayElement : MonoBehaviour {
 			}
 			inPressed = inButton.isOn;
 			outPressed = outButton.isOn;
-			h = true;
 		}
 		/*
 		if(!h)

@@ -4,9 +4,6 @@ using System.Collections;
 [RequireComponent(typeof(TileTransform))]
 public class Tiled : MonoBehaviour {
 
-	int x;
-	int y;
-
 	new public TileTransform transform;
 
 	// Use this for initialization

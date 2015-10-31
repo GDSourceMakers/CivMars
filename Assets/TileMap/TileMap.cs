@@ -80,6 +80,11 @@ public class TileMap : MonoBehaviour
 		}
 	}
 
+	public void RemoveTile(TileVector p)
+	{
+		RemoveTile(p.x, p.y);
+	}
+
 	public bool Inside(TileVector a)
 	{
 		return
@@ -323,4 +328,13 @@ public class TileMap : MonoBehaviour
 		return IsTileOn(pos.x, pos.y);
 	}
 
+	public TileTransform GetTileOn(int x, int y)
+	{
+		return tiles[x, y];
+	}
+
+	public TileTransform GetTileOn(TileVector v)
+	{
+		return tiles[v.x, v.y];
+	}
 }

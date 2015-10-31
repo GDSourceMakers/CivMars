@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public float health = 1;
 
-
+	OreTile mining;
 
 	public Inventory inventory = new Inventory(10);
 
@@ -73,47 +73,31 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public void Mine()
 	{
-/*
 		Item mined;
-		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
+		mined = ((Item)Activator.CreateInstance(((OreTile)mining).GetItemType()));
+		mined.amount = 1;
 
-		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapManagger.tiles[(int)pos.x, (int)pos.y]);
+		inventory.Add(mined);
 
-		if (ore.GetType() == typeof(OreTile))
-		{
+		Debug.Log("Ore: " + ((OreTile)mining).GetAmountLeft() + " Item: " + ((OreTile)mining).GetAmountLeft());
 
-			//((OreTile)ore).amount -= 1;
-
-			mined = (((Item)Activator.CreateInstance(null, ore.type.ToString() + "Ore").Unwrap()));
-			mined.amount = 1;
-
-			inventory.Add(mined);
-
-			Debug.Log("Ore: " + ((OreTile)ore).amount + " Item: " + ((OreTile)ore).amount);
-
-			if (((OreTile)ore).Mine(1))
-			{
-				Debug.Log("Out Mined");
-				GameCon.map.MapUpdate((int)pos.x, (int)pos.y, GameCon.map);
-			}
-		}
-		*/
-
+		((OreTile)mining).Mine(1);
 	}
 
 	public void MineStar()
 	{
-		/*
-		Vector2 pos = new Vector2((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
-		GeneratedTile ore = ((GeneratedTile)GameCon.map.mapGenerated[(int)pos.x, (int)pos.y]);
+		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
 
-		if (ore.GetType() == typeof(OreTile))
+		OreTile ore = ((OreTile)GameCon.map.mapManagger.GetTileOn(pos).GetComponent<OreTile>());
+
+		if (ore.GetType() != null)
 		{
-			GameCon.guiHandler.actions[0].Action(((OreTile)ore).miningTime[(int)ore.type], "Mine");
+			mining = ore;
+			GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
 		}
-		*/
+
 	}
 
 	public GasTankCluster GetTankCluster()

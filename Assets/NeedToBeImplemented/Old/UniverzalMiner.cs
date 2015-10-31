@@ -9,7 +9,7 @@ using System.Text;
     {
         public int capacity;
         public int speed;
-        public OreType type;
+        //public OreType type;
    
     }
 

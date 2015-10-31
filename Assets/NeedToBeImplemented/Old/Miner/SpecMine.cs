@@ -7,7 +7,7 @@ using System.Text;
 
     public class SpecMine : Miner
     {
-        public OreType type;
+        //public OreType type;
         public int capacity;
 
 
