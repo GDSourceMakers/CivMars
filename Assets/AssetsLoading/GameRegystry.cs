@@ -6,11 +6,14 @@ using System.Text;
 
 static class GameRegystry
 {
-	public static List<IBuildable> buildableBuildings = new List<IBuildable>();
+	public static Dictionary<String,Building> buildings = new Dictionary<String, Building>();
 
-	public static void RegisterBuildableBuilding(IBuildable b)
+	public static void RegisterBuildableBuilding(string ID, Building b)
 	{
-		buildableBuildings.Add(b);
+		if (b is Building)
+		{
+			buildings.Add(ID, b);
+		}
 	}
 
 
@@ -19,13 +22,6 @@ static class GameRegystry
 	public static void RegisterWorldGen(IWorldGen b)
 	{
 		ores.Add(b);
-	}
-
-	public static List<Tiled> buildings = new List<Tiled>();
-
-	public static void RegisterBuilding(Tiled b)
-	{
-		buildings.Add(b);
 	}
 }
 

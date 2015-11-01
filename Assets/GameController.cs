@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour
 		if (level == 1)
 		{
 			guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
-			map = GameObject.Find("TileMap").GetComponent<Map>();
+			map = GameObject.Find("Map").GetComponent<Map>();
 			playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
 			if (Application.loadedLevelName == "Main" && !gameIsOn)

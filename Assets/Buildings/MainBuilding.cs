@@ -9,7 +9,7 @@ using UnityEngine;
 [System.Serializable]
 public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 {
-	new static public int ID = 1;
+	static public string ID = "CivMars.MainBuilding";
 	
 	public Text Name;
     public Text InventoryButtonText;
@@ -22,7 +22,7 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 
 	void Start()
 	{
-		base.Start();
+		base.Awake();
 		Graphicks.SetActive(false);
 		Graphicks.transform.position = Vector3.zero;
 	}
@@ -96,6 +96,6 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 
 	public void Regystrate()
 	{
-		GameRegystry.RegisterBuilding(this);
+		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 }

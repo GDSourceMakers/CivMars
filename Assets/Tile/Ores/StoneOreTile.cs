@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class StoneOreTile : OreTile
 {
+	new float amount = 2f;
 
-	static float miningTime = 0.2f;
+	static Type item = typeof(StoneOre);
 
 	override public void Regystrate()
 	{
@@ -23,6 +25,27 @@ public class StoneOreTile : OreTile
 	public override float GetMiningTime()
 	{
 		return 4.5f;
+	}
+
+	public override Type GetItemType()
+	{
+		return item;
+	}
+
+	public override bool Mine(int remAmount)
+	{
+		amount -= remAmount;
+		if (amount <= 0)
+		{
+			transform.tileMap.RemoveTile(transform.position);
+			return true;
+		}
+		return false;
+	}
+
+	public override float GetAmountLeft()
+	{
+		return amount;
 	}
 
 }

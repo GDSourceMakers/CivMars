@@ -7,9 +7,18 @@ using UnityEngine.UI;
 
 public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 {
+	static public string ID = "CivMars.Miner";
+
 	public Sprite icon;
 
-	Item[] neededMaterials = {new SandOre(3), new StoneOre(2) };
+	Item[] neededMaterials = { new SandOre(1)};
+
+	public OreTile mining;
+	public float time;
+	public float startTime;
+    public bool on;
+
+	Inventory inv = new Inventory(1);
 
 	public void OpenInventory()
 	{
@@ -20,7 +29,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public Item Add(Item i)
 	{
-		throw new NotImplementedException();
+		return i;
 	}
 
 	public string GetInventoryName()
@@ -30,7 +39,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public int GetInventorySize()
 	{
-		throw new NotImplementedException();
+		return 1;
 	}
 
 	public int GetInventoryStackLimit(int i)
@@ -40,7 +49,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public Item GetStackInSlot(int i)
 	{
-		throw new NotImplementedException();
+		return inv.Get(i);
 	}
 
 	public bool HasCustomInventoryName()
@@ -55,36 +64,36 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public bool IsUseableByPlayer(Player p_70300_1_)
 	{
-		throw new NotImplementedException();
+		return true;
 	}
 
 	public Item Remove(Item i)
 	{
-		throw new NotImplementedException();
+		return inv.Remove(i);
 	}
 
 	public void TransferItem(IInventory ToInv, int index)
 	{
-		throw new NotImplementedException();
+		inv.TransferItem(ToInv, index);
 	}
 
-	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
+	public void TransferItemAmount(IInventory ToInv, int index, int transferingAmount)
 	{
-		throw new NotImplementedException();
+		inv.TransferItemAmount(ToInv, index, transferingAmount);
 	}
 	#endregion
 
 	#region IRegystratabe
 	public void Regystrate()
 	{
-		GameRegystry.RegisterBuildableBuilding(this);
+		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 	#endregion
 
 	#region IBuildable
 	public float GetBuildtime()
 	{
-		return 10f;
+		return 1f;
 	}
 
 	public Sprite GetImage()
@@ -105,7 +114,52 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 	public Item[] GetNeededMaterials()
 	{
 		return neededMaterials;
-    }
+	}
+
 	#endregion
+
+
+	// Update is called every frame, if the MonoBehaviour is enabled
+	public void Update()
+	{
+		if (on)
+		{
+			if (time > 0f)
+			{
+				time -= Time.deltaTime;
+			}
+			else
+			{
+				time = startTime;
+				Item minedOre = ((Item)Activator.CreateInstance(((OreTile)mining).GetItemType()));
+				minedOre.amount = 1;
+				mining.Mine(1);
+                this.Add(minedOre);
+			}
+		}
+	}
+
+	public void TurnOn(bool a)
+	{
+		on = a;
+	}
+
+	public void Setup()
+	{
+		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
+		TileTransform tile = GameCon.map.Generated.GetTileOn(pos);
+
+		if (tile != null)
+		{
+			OreTile ore = ((OreTile)tile.GetComponent<OreTile>());
+
+			if (ore != null)
+			{
+				mining = ore;
+				startTime = ore.GetMiningTime();
+			}
+		}
+		
+	}
 }
 

@@ -15,6 +15,7 @@ public class TileVector
 		set
 		{
 			this.x_pos = value;
+			if(swaping == TileVectorTypes.xSwaped || swaping == TileVectorTypes.xySwaped)
 			normal.x = value;
 			magnitude = x_pos * y_pos;
 		}
@@ -27,7 +28,8 @@ public class TileVector
 		set
 		{
 			this.y_pos = value;
-			normal.y = value;
+			if (swaping == TileVectorTypes.ySwaped || swaping == TileVectorTypes.xySwaped)
+				normal.y = value;
 			magnitude = x_pos * y_pos;
 		}
 	}
@@ -37,37 +39,55 @@ public class TileVector
 		get;
 		private set;
 	}
-	
+
 
 	public static TileVector zero = new TileVector(0, 0);
 
 	Vector2 normal;
 
+	TileVectorTypes swaping = TileVectorTypes.none;
+
+	public TileVector(int set_x, int set_y, TileVectorTypes swap)
+	{
+		x = set_x;
+		y = set_y;
+		swaping = swap;
+	}
+
 	public TileVector(int set_x, int set_y)
 	{
 		x = set_x;
 		y = set_y;
+		swaping = TileVectorTypes.none;
+	}
+
+	public TileVector(float set_x, float set_y, TileVectorTypes swap)
+	{
+		x = (int)Mathf.Floor(set_x);
+		y = (int)Mathf.Floor(set_y);
+		swaping = swap;
 	}
 
 	public TileVector(float set_x, float set_y)
 	{
 		x = (int)Mathf.Floor(set_x);
-		y = (int)Mathf.Floor(set_x);
+		y = (int)Mathf.Floor(set_y);
+		swaping = TileVectorTypes.none;
 	}
 
 	static public TileVector operator +(TileVector l, TileVector r)
 	{
-		return new TileVector(l.x + r.x, l.y + r.y);
+		return new TileVector(l.x + r.x, l.y + r.y,l.swaping);
 	}
 
 	static public TileVector operator -(TileVector l, TileVector r)
 	{
-		return new TileVector(l.x - r.x, l.y - r.y);
+		return new TileVector(l.x - r.x, l.y - r.y,l.swaping);
 	}
 
 	static public implicit operator TileVector(Vector2 v)
 	{
-		return new TileVector(v.x,v.y);
+		return new TileVector(v.x, v.y);
 	}
 
 	static public implicit operator TileVector(Vector3 v)
@@ -77,11 +97,44 @@ public class TileVector
 
 	static public implicit operator Vector2(TileVector v)
 	{
-		return new Vector2(v.x, -v.y);
+		if (v.swaping == TileVectorTypes.xSwaped)
+		{
+			return new Vector2(-v.x, v.y);
+		}
+		else if (v.swaping == TileVectorTypes.xySwaped)
+		{
+			return new Vector2(-v.x, -v.y);
+		}
+		else if (v.swaping == TileVectorTypes.ySwaped)
+		{
+			return new Vector2(v.x, -v.y);
+		}
+		return new Vector2(v.x, v.y);
 	}
 
 	static public implicit operator Vector3(TileVector v)
 	{
-		return new Vector3(v.x, -v.y);
+		if (v.swaping == TileVectorTypes.xSwaped)
+		{
+			return new Vector3(-v.x, v.y);
+		}
+		else if (v.swaping == TileVectorTypes.xySwaped)
+		{
+			return new Vector3(-v.x, -v.y);
+		}
+		else if (v.swaping == TileVectorTypes.ySwaped)
+		{
+			return new Vector3(v.x, -v.y);
+		}
+		return new Vector3(v.x, v.y);
 	}
 }
+
+public enum TileVectorTypes
+{
+	xSwaped,
+	ySwaped,
+	xySwaped,
+	none
+}
+

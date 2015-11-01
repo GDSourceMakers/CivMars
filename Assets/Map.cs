@@ -10,7 +10,9 @@ public class Map : MonoBehaviour
 	public Vector3 posMultiplyer;
 	public Tiled[,] mapBuilt = new Tiled[100, 100];
 
-	public TileMap mapManagger;
+	public TileMap Generated;
+	public TileMap Buildings;
+
 
 	// Use this for initialization
 	void Start()
@@ -28,23 +30,24 @@ public class Map : MonoBehaviour
 		System.Random r = new System.Random(098);
 		foreach (IWorldGen item in GameRegystry.ores)
 		{
-			item.Generate(r, mapManagger);
+			item.Generate(r, Generated);
 		}
 	}
 
 	public void AddBasicBuildings()
 	{
 		int xMpos;
-		xMpos = ((int)Mathf.Floor((float)mapHeight / 2));
+		xMpos = mapHeight / 2;
 
-		Debug.Log(MainBuilding.ID);
-		mapBuilt[xMpos, xMpos] = Instantiate(GameRegystry.buildings[MainBuilding.ID-1].gameObject).GetComponent<MainBuilding>();
-		mapBuilt[xMpos, xMpos].transform.position = new Vector3(xMpos, -xMpos, -2) + posMultiplyer;
-        mapBuilt[xMpos + 5, xMpos - 5] = Instantiate(GameRegystry.buildableBuildings[Chest.ID-2].GetPrefab()).GetComponent<Chest>();
-		mapBuilt[xMpos + 5, xMpos - 5].transform.position = new Vector3(xMpos + 5, -(xMpos - 5),-2) +posMultiplyer;
+		TileTransform mainBuilding = Instantiate(GameRegystry.buildings[MainBuilding.ID].gameObject).GetComponent<TileTransform>();
+		Buildings.SetTile(xMpos, xMpos, mainBuilding);
+
+		TileTransform chest = Instantiate(GameRegystry.buildings[Chest.ID].gameObject).GetComponent<TileTransform>();
+		Buildings.SetTile(xMpos, xMpos, chest);
+
 	}
 
-	
+
 
 	// Update is called once per frame
 	void Update()
@@ -54,6 +57,6 @@ public class Map : MonoBehaviour
 
 	public void MapUpdate(int x, int y, Map map)
 	{
-		mapManagger.RemoveTile(x, y);
+		Generated.RemoveTile(x, y);
 	}
 }

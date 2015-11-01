@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 [AddComponentMenu("Buildings/Building")]
 public class Building : Tiled , IHasGui, IPointerClickHandler
 {
-	static public int ID;
 
 	public int x;
 	public int y;
@@ -18,7 +17,7 @@ public class Building : Tiled , IHasGui, IPointerClickHandler
 	public GameController GameCon;
 
 
-	public void Start()
+	public virtual void Awake()
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 		if (GameCon == null)

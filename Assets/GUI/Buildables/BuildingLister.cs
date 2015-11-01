@@ -13,42 +13,52 @@ public class BuildingLister : MonoBehaviour, IHasGui
 
 	public GameObject planedBuildingPrefab;
 
-	public bool guion;
+	bool guion;
 
 	GameController GameCon;
 
 	TogleGroupAdvanced toglegroup;
 
-	public BuildingListerStates state;
+	BuildingListerStates state;
 
 	public GameObject inBuilding;
 	public GameObject inSelecting;
 
 	int SelectedBuilding;
 
+	List<string> buildingID;
+
 	void Start()
 	{
 		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		List<IBuildable> buildables = GameRegystry.buildableBuildings;
 		toglegroup = transform.FindChild("InSelecting").FindChild("Panel").GetComponent<TogleGroupAdvanced>();
-
 		state = BuildingListerStates.Idle;
 
-		for (int i = 0; i < buildables.Count; i++)
+		buildingID = new List<string>();
+
+		foreach (KeyValuePair<string, Building> item in GameRegystry.buildings)
+		{
+			if (item.Value is IBuildable)
+			{
+				buildingID.Add(item.Key);
+			}
+		}
+
+		for (int i = 0; i < buildingID.Count; i++)
 		{
 			GameObject actual = Instantiate(buildableDrawElement);
 			actual.transform.SetParent(buildingDesplayCanvas.transform);
 			actual.transform.SetSiblingIndex(i);
-			actual.transform.FindChild("Icon").GetComponent<Image>().sprite = buildables[i].GetImage();
+			actual.transform.FindChild("Icon").GetComponent<Image>().sprite = ((IBuildable)GameRegystry.buildings[buildingID[i]]).GetImage();
 			actual.GetComponent<Toggle>().group = toglegroup;
-        }
+		}
 
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		
+
 		if (state == BuildingListerStates.Idle)
 		{
 			inBuilding.SetActive(false);
@@ -79,19 +89,19 @@ public class BuildingLister : MonoBehaviour, IHasGui
 
 		if (Input.GetMouseButtonDown(0) && SelectedBuilding != -1 && state == BuildingListerStates.Building)
 		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			Vector3 pos = new Vector3(Mathf.Round(ray.origin.x), Mathf.Round(ray.origin.y));
+			TileVector pos = new TileVector(Mathf.Round(ray.x), -1 * Mathf.Round(ray.y));
 
-			Debug.Log(GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y]);
+			Debug.Log(GameCon.map.mapBuilt[(int)pos.x, (int)pos.y]);
 
-			if (GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y] == null)
+			if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
 			{
 				PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();
-				GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y] = p;
-				GameCon.map.mapBuilt[(int)pos.x, -1 * (int)pos.y].transform.position = pos;
+				GameCon.map.Buildings.SetTile(pos.x, pos.y, p.transform);
 
-				p.SetBuilding(GameRegystry.buildableBuildings[SelectedBuilding]);
+				p.SetBuilding(((IBuildable)GameRegystry.buildings[buildingID[SelectedBuilding]]));
+
 			}
 			GameCon.CloseGUI(this);
 			Close();
@@ -105,7 +115,7 @@ public class BuildingLister : MonoBehaviour, IHasGui
 		{
 			return;
 		}
-		
+
 		state = BuildingListerStates.Building;
 	}
 

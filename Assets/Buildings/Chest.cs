@@ -7,7 +7,7 @@ using System.Collections.Generic;
 [AddComponentMenu("Buildings/Chest")]
 public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 {
-	new static public int ID = 2;
+	static public string ID = "CivMars.Chest";
 
 	public Text Name;
 	public Text InventoryButtonText;
@@ -18,9 +18,9 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	new Item[] buildingMaterials = { new SandOre(2) };
 
-	new void Start()
+	void Start()
 	{
-		base.Start();
+		base.Awake();
 		Graphicks.SetActive(false);
 		Graphicks.transform.position = Vector3.zero;
 	}
@@ -55,12 +55,19 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 	{
 		return 5f;
 	}
+
+	public void Setup()
+	{
+	}
+
 	#endregion
 
 	public void Regystrate()
 	{
-		GameRegystry.RegisterBuildableBuilding(this as IBuildable);
+		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
+
+	#region Inventory
 
 	public int GetInventorySize()
 	{
@@ -116,4 +123,8 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 	{
 		throw new NotImplementedException();
 	}
+
+
+
+	#endregion
 }

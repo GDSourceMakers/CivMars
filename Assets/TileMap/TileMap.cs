@@ -12,8 +12,10 @@ public class TileMap : MonoBehaviour
 	public int y_max;
 
 
-	public bool swapedX;
-	public bool swapedY;
+	//public bool swapedX;
+	//public bool swapedY;
+
+	public TileVectorTypes swaping;
 
 	public Vector3 TileSize;
 
@@ -26,16 +28,18 @@ public class TileMap : MonoBehaviour
 	{
 		tiles = new TileTransform[x_max, y_max];
 		backgroundTiles = new TileTransform[x_max, y_max];
-
-		for (int i = 0; i < x_max; i++)
+		if (BackgroundLayer != null)
 		{
-			for (int j = 0; j < y_max; j++)
+			for (int i = 0; i < x_max; i++)
 			{
-				TileTransform a = Instantiate(background.gameObject).GetComponent<TileTransform>();
-				backgroundTiles[i, j] = a;
-				a.transform.SetParent(BackgroundLayer.transform);
-				a.position = new TileVector(i, j);
-				a.SetTileMap(this);
+				for (int j = 0; j < y_max; j++)
+				{
+					TileTransform a = Instantiate(background.gameObject).GetComponent<TileTransform>();
+					backgroundTiles[i, j] = a;
+					a.transform.SetParent(BackgroundLayer.transform);
+					a.position = new TileVector(i, j, swaping);
+					a.SetTileMap(this);
+				}
 			}
 		}
 	}
@@ -62,20 +66,21 @@ public class TileMap : MonoBehaviour
 
 	public void SetTile(int x, int y, TileTransform t)
 	{
+		
 		if (IsTileOn(x, y))
 		{
 			tiles[x, y] = t;
 			t.transform.SetParent(ForegroundLayer.transform);
-			t.position = new TileVector(x, y);
+			t.position = new TileVector(x, y, swaping);
 			t.SetTileMap(this);
 		}
 	}
 
 	public void RemoveTile(int x, int y)
 	{
-		if (IsTileOn(x, y))
+		if (!IsTileOn(x, y))
 		{
-			GameObject.DestroyImmediate(tiles[x, y]);
+			GameObject.DestroyImmediate(tiles[x, y].gameObject);
 			tiles[x, y] = null;
 		}
 	}
@@ -97,203 +102,211 @@ public class TileMap : MonoBehaviour
 		return Inside(new TileVector(x, y));
 	}
 
+	/*
 	void OnDrawGizmos()
 	{
-		#region Fore
-		#region vertical
-		if (x_max > 0)
+		if (ForegroundLayer != null)
 		{
+			#region Fore
+			#region vertical
+			if (x_max > 0)
+			{
 
-			if (swapedX)
-			{
-				for (float x = ForegroundLayer.transform.position.x + (TileSize.x / 2);
-							x > -x_max * TileSize.x;
-							x -= TileSize.x)
+				if (swapedX)
 				{
-					if (swapedY)
+					for (float x = ForegroundLayer.transform.position.x + (TileSize.x / 2);
+								x > -x_max * TileSize.x;
+								x -= TileSize.x)
 					{
-						Vector3 start = new Vector3(x, -(ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, -(ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedY)
+						{
+							Vector3 start = new Vector3(x, -(ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, -(ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3(x, (ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, (ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
-					else
+				}
+				else
+				{
+					for (float x = ForegroundLayer.transform.position.x - (TileSize.x / 2);
+								x < x_max * TileSize.x;
+								x += TileSize.x)
 					{
-						Vector3 start = new Vector3(x, (ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, (ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedY)
+						{
+							Vector3 start = new Vector3(x, -(ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, -(ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3(x, (ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, (ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
 				}
 			}
-			else
+
+			#endregion
+
+			#region horisontal
+			if (y_max > 0)
 			{
-				for (float x = ForegroundLayer.transform.position.x - (TileSize.x / 2);
-							x < x_max * TileSize.x;
-							x += TileSize.x)
+
+				if (swapedY)
 				{
-					if (swapedY)
+					for (float y = ForegroundLayer.transform.position.y + (TileSize.y / 2);
+								y > -y_max * TileSize.y;
+								y -= TileSize.y)
 					{
-						Vector3 start = new Vector3(x, -(ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, -(ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedX)
+						{
+							Vector3 start = new Vector3(-(ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(-(ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3((ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3((ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
-					else
+				}
+				else
+				{
+					for (float y = ForegroundLayer.transform.position.y - (TileSize.y / 2);
+								y < y_max * TileSize.y;
+								y += TileSize.y)
 					{
-						Vector3 start = new Vector3(x, (ForegroundLayer.transform.position.y - (TileSize.y / 2)), ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, (ForegroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedX)
+						{
+							Vector3 start = new Vector3(-(ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3(-(ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3((ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Vector3 end = new Vector3((ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
 				}
 			}
+			#endregion
+
+			#endregion
 		}
 
-		#endregion
-
-		#region horisontal
-		if (y_max > 0)
+		if (BackgroundLayer != null)
 		{
+			#region Background
+			#region vertical
+			if (x_max > 0)
+			{
 
-			if (swapedY)
-			{
-				for (float y = ForegroundLayer.transform.position.y + (TileSize.y / 2);
-							y > -y_max * TileSize.y;
-							y -= TileSize.y)
+				if (swapedX)
 				{
-					if (swapedX)
+					for (float x = BackgroundLayer.transform.position.x + (TileSize.x / 2);
+								x > -x_max * TileSize.x;
+								x -= TileSize.x)
 					{
-						Vector3 start = new Vector3(-(ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(-(ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedY)
+						{
+							Vector3 start = new Vector3(x, -(BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, -(BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3(x, (BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, (BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
-					else
+				}
+				else
+				{
+					for (float x = BackgroundLayer.transform.position.x - (TileSize.x / 2);
+								x < x_max * TileSize.x;
+								x += TileSize.x)
 					{
-						Vector3 start = new Vector3((ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3((ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedY)
+						{
+							Vector3 start = new Vector3(x, -(BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, -(BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3(x, (BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(x, (BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
 				}
 			}
-			else
+
+			#endregion
+
+			#region horisontal
+			if (y_max > 0)
 			{
-				for (float y = ForegroundLayer.transform.position.y - (TileSize.y / 2);
-							y < y_max * TileSize.y;
-							y += TileSize.y)
+
+				if (swapedY)
 				{
-					if (swapedX)
+					for (float y = BackgroundLayer.transform.position.y + (TileSize.y / 2);
+								y > -y_max * TileSize.y;
+								y -= TileSize.y)
 					{
-						Vector3 start = new Vector3(-(ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3(-(ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedX)
+						{
+							Vector3 start = new Vector3(-(BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(-(BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3((BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3((BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
-					else
+				}
+				else
+				{
+					for (float y = BackgroundLayer.transform.position.y - (TileSize.y / 2);
+								y < y_max * TileSize.y;
+								y += TileSize.y)
 					{
-						Vector3 start = new Vector3((ForegroundLayer.transform.position.x - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Vector3 end = new Vector3((ForegroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, ForegroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
+						if (swapedX)
+						{
+							Vector3 start = new Vector3(-(BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3(-(BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
+						else
+						{
+							Vector3 start = new Vector3((BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Vector3 end = new Vector3((BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
+							Gizmos.DrawLine(start, end);
+						}
 					}
 				}
 			}
+			#endregion
+			#endregion
 		}
-		#endregion
-
-		#endregion
-
-		#region Background
-		#region vertical
-		if (x_max > 0)
-		{
-
-			if (swapedX)
-			{
-				for (float x = BackgroundLayer.transform.position.x + (TileSize.x / 2);
-							x > -x_max * TileSize.x;
-							x -= TileSize.x)
-				{
-					if (swapedY)
-					{
-						Vector3 start = new Vector3(x, -(BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, -(BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-					else
-					{
-						Vector3 start = new Vector3(x, (BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, (BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-				}
-			}
-			else
-			{
-				for (float x = BackgroundLayer.transform.position.x - (TileSize.x / 2);
-							x < x_max * TileSize.x;
-							x += TileSize.x)
-				{
-					if (swapedY)
-					{
-						Vector3 start = new Vector3(x, -(BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, -(BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-					else
-					{
-						Vector3 start = new Vector3(x, (BackgroundLayer.transform.position.y - (TileSize.y / 2)), BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(x, (BackgroundLayer.transform.position.y + (y_max * TileSize.y) - (TileSize.x / 2)), BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-				}
-			}
-		}
-
-		#endregion
-
-		#region horisontal
-		if (y_max > 0)
-		{
-
-			if (swapedY)
-			{
-				for (float y = BackgroundLayer.transform.position.y + (TileSize.y / 2);
-							y > -y_max * TileSize.y;
-							y -= TileSize.y)
-				{
-					if (swapedX)
-					{
-						Vector3 start = new Vector3(-(BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(-(BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-					else
-					{
-						Vector3 start = new Vector3((BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3((BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-				}
-			}
-			else
-			{
-				for (float y = BackgroundLayer.transform.position.y - (TileSize.y / 2);
-							y < y_max * TileSize.y;
-							y += TileSize.y)
-				{
-					if (swapedX)
-					{
-						Vector3 start = new Vector3(-(BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3(-(BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-					else
-					{
-						Vector3 start = new Vector3((BackgroundLayer.transform.position.x - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Vector3 end = new Vector3((BackgroundLayer.transform.position.x + (x_max * TileSize.x) - (TileSize.x / 2)), y, BackgroundLayer.transform.position.z);
-						Gizmos.DrawLine(start, end);
-					}
-				}
-			}
-		}
-		#endregion
-		#endregion
 	}
+	*/
 
 	/*
 	public bool TileTipeOn(int x, int y)
@@ -335,6 +348,13 @@ public class TileMap : MonoBehaviour
 
 	public TileTransform GetTileOn(TileVector v)
 	{
-		return tiles[v.x, v.y];
+		//if (tiles[v.x, v.y] != null)
+		//{
+			return tiles[v.x, v.y];
+		//}
+		//else
+		//{
+		//	return BackgroundLayer[v.x, v.y];
+        //}
 	}
 }

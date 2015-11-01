@@ -112,7 +112,9 @@ public class PlanedBuilding : Building
 	void BuildBuilding()
 	{
 		GameObject go = GameObject.Instantiate(building.GetPrefab());
-		go.transform.position = this.transform.position;
+		GameCon.map.Buildings.tiles[transform.position.x, transform.position.y] = null;
+		GameCon.map.Buildings.SetTile(transform.position.x, transform.position.y, go.AddComponent<TileTransform>());
+		go.GetComponent<IBuildable>().Setup();
 		GameCon.CloseGUI(this);
 		Destroy(this.gameObject);
 	}

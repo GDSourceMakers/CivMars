@@ -16,5 +16,7 @@ public interface IBuildable
 	Image GetBuildedState();
 
 	Item[] GetNeededMaterials();
+
+	void Setup();
 }
 

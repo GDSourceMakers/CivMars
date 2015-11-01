@@ -80,7 +80,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 		inventory.Add(mined);
 
-		Debug.Log("Ore: " + ((OreTile)mining).GetAmountLeft() + " Item: " + ((OreTile)mining).GetAmountLeft());
+		Debug.Log("Ore: " + ((OreTile)mining).GetAmountLeft() + " Item: " + mined.amount);
 
 		((OreTile)mining).Mine(1);
 	}
@@ -89,13 +89,16 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	{
 
 		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
-
-		OreTile ore = ((OreTile)GameCon.map.mapManagger.GetTileOn(pos).GetComponent<OreTile>());
-
-		if (ore.GetType() != null)
+		TileTransform tile = GameCon.map.Generated.GetTileOn(pos);
+		if (tile != null)
 		{
-			mining = ore;
-			GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
+			OreTile ore = ((OreTile)tile.GetComponent<OreTile>());
+
+			if (ore.GetType() != null)
+			{
+				mining = ore;
+				GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
+			}
 		}
 
 	}

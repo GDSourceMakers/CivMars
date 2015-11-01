@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class SandTile : OreTile {
+public class SandTile : OreTile
+{
+	new float amount = 2f;
 
-	static float miningTime = 0.2f;
+	static Type item = typeof(SandOre);
 
 	override public void Regystrate()
 	{
@@ -24,4 +27,24 @@ public class SandTile : OreTile {
 		return 4f;
 	}
 
+	public override Type GetItemType()
+	{
+		return item;
+	}
+
+	public override bool Mine(int remAmount)
+	{
+		amount -= remAmount;
+		if (amount <= 0)
+		{
+			transform.tileMap.RemoveTile(transform.position);
+			return true;
+		}
+		return false;
+	}
+
+	public override float GetAmountLeft()
+	{
+		return amount;
+	}
 }

@@ -33,7 +33,7 @@ public class Inventory
 					//Debug.Log(adding.GetType());
 					adding.amount = item.Add(adding.amount);
 
-					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + item.amount);
+					Debug.Log("Inventory added: " + item.GetType() + " Amount: " + adding.amount);
 
 					if (adding.amount == -1)
 					{
