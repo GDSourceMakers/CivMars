@@ -18,11 +18,11 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	new Item[] buildingMaterials = { new SandOre(2) };
 
-	void Start()
+	public override void Awake()
 	{
 		base.Awake();
 		Graphicks.SetActive(false);
-		Graphicks.transform.position = Vector3.zero;
+		this.Graphicks.transform.position = Vector3.zero;
 	}
 
 	public void OpenInventory()

@@ -93,8 +93,6 @@ public class BuildingLister : MonoBehaviour, IHasGui
 
 			TileVector pos = new TileVector(Mathf.Round(ray.x), -1 * Mathf.Round(ray.y));
 
-			Debug.Log(GameCon.map.mapBuilt[(int)pos.x, (int)pos.y]);
-
 			if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
 			{
 				PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();

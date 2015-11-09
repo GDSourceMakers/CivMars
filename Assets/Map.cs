@@ -8,7 +8,6 @@ public class Map : MonoBehaviour
 	public int mapHeight = 100;
 
 	public Vector3 posMultiplyer;
-	public Tiled[,] mapBuilt = new Tiled[100, 100];
 
 	public TileMap Generated;
 	public TileMap Buildings;
@@ -43,11 +42,9 @@ public class Map : MonoBehaviour
 		Buildings.SetTile(xMpos, xMpos, mainBuilding);
 
 		TileTransform chest = Instantiate(GameRegystry.buildings[Chest.ID].gameObject).GetComponent<TileTransform>();
-		Buildings.SetTile(xMpos, xMpos, chest);
+		Buildings.SetTile(xMpos+5, xMpos+5, chest);
 
 	}
-
-
 
 	// Update is called once per frame
 	void Update()
@@ -55,8 +52,4 @@ public class Map : MonoBehaviour
 
 	}
 
-	public void MapUpdate(int x, int y, Map map)
-	{
-		Generated.RemoveTile(x, y);
-	}
 }

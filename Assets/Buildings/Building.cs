@@ -7,23 +7,20 @@ using UnityEngine.EventSystems;
 public class Building : Tiled , IHasGui, IPointerClickHandler
 {
 
-	public int x;
-	public int y;
 	public List<Item> buildingMaterials;
 
 	public GameObject Graphicks;
 	public bool guion;
 
-	public GameController GameCon;
-
-
-	public virtual void Awake()
+	public override void Awake()
 	{
-		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		if (GameCon == null)
-		{
-			Debug.LogErrorFormat("Can't find the GameController", this);
-		}
+		base.Awake();
+	}
+
+	public void PositionUpdate()
+	{
+		Graphicks.SetActive(false);
+		this.Graphicks.transform.position = Vector3.zero;
 	}
 
 	#region IhasGui

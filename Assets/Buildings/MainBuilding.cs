@@ -20,13 +20,12 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	public static float[] max = { 1000f, 1000f, 1000f, 1000f };
 	public GasTankCluster tanks = new GasTankCluster(4, max);
 
-	void Start()
+	public override void Awake()
 	{
 		base.Awake();
 		Graphicks.SetActive(false);
-		Graphicks.transform.position = Vector3.zero;
+		//this.Graphicks.transform.position = Vector3.zero;
 	}
-
 
 	public void OpenInventory()
     {

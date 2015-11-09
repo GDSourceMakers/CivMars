@@ -26,8 +26,12 @@ public class TileMap : MonoBehaviour
 
 	public void Awake()
 	{
+		//Cretion of the Arrays
 		tiles = new TileTransform[x_max, y_max];
 		backgroundTiles = new TileTransform[x_max, y_max];
+
+		//Draws Statick background
+		#region Draw Background
 		if (BackgroundLayer != null)
 		{
 			for (int i = 0; i < x_max; i++)
@@ -42,6 +46,7 @@ public class TileMap : MonoBehaviour
 				}
 			}
 		}
+		#endregion
 	}
 
 	// Use this for initialization
@@ -55,19 +60,17 @@ public class TileMap : MonoBehaviour
 	{
 	}
 
-	/*
-	public void SetUp(int x, int y)
-	{
-		Tiles = new TileTransform[x, y];
-		x_max = x - 1;
-		y_max = y - 1;
-	}
-	*/
 
+	/// <summary>
+	/// Set te TileTransform to the coordinates
+	/// </summary>
+	/// <param name="x">x coordinate</param>
+	/// <param name="y">y coordinate</param>
+	/// <param name="t">Tile to set</param>
 	public void SetTile(int x, int y, TileTransform t)
 	{
 		
-		if (IsTileOn(x, y))
+		if (HasTileOn(x, y))
 		{
 			tiles[x, y] = t;
 			t.transform.SetParent(ForegroundLayer.transform);
@@ -76,20 +79,34 @@ public class TileMap : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// Removes the tile on coordinates
+	/// </summary>
+	/// <param name="x">x coordinate</param>
+	/// <param name="y">y coordinate</param>
 	public void RemoveTile(int x, int y)
 	{
-		if (!IsTileOn(x, y))
+		if (!HasTileOn(x, y))
 		{
 			GameObject.DestroyImmediate(tiles[x, y].gameObject);
 			tiles[x, y] = null;
 		}
 	}
 
+	/// <summary>
+	/// Removes the tile on coordinates
+	/// </summary>
+	/// <param name="p">Coordinates in Tile Vector</param>
 	public void RemoveTile(TileVector p)
 	{
 		RemoveTile(p.x, p.y);
 	}
 
+	/// <summary>
+	/// Returns true if the coordinates are inside of the map
+	/// </summary>
+	/// <param name="a">Coordinates in TileVector</param>
+	/// <returns></returns>
 	public bool Inside(TileVector a)
 	{
 		return
@@ -97,10 +114,18 @@ public class TileMap : MonoBehaviour
 		(a.y >= 0 && a.y <= y_max - 1);
 	}
 
+
+	/// <summary>
+	/// Returns true if the coordinates are inside of the map
+	/// </summary>
+	/// <param name="x">x coordinate</param>
+	/// <param name="y">y coordinate</param>
+	/// <returns></returns>
 	public bool Inside(int x, int y)
 	{
 		return Inside(new TileVector(x, y));
 	}
+
 
 	/*
 	void OnDrawGizmos()
@@ -308,26 +333,15 @@ public class TileMap : MonoBehaviour
 	}
 	*/
 
-	/*
-	public bool TileTipeOn(int x, int y)
-	{
-		if (t == BasicTileType.Null)
-		{
-			return tiles[x, y] == null;
-		}
-		else if (t == BasicTileType.Other)
-		{
-			return tiles[x, y] != null;
-		}
-		else if (t == BasicTileType.Surface)
-		{
-			return tiles[x, y] != null;
-		}
-		return false;
-	}
-	*/
 
-	public bool IsTileOn(int x, int y)
+
+	/// <summary>
+	/// Returns True if TileMap has tile on coordinates
+	/// </summary>
+	/// <param name="x">x coordinate</param>
+	/// <param name="y">y coordinate</param>
+	/// <returns></returns>
+	public bool HasTileOn(int x, int y)
 	{
 		if (Inside(x, y))
 		{
@@ -336,16 +350,34 @@ public class TileMap : MonoBehaviour
 		return false;
 	}
 
-	public bool IsTileOn(TileVector pos)
+	/// <summary>
+	/// Returns True if TileMap has tile on coordinates
+	/// </summary>
+	/// <param name="cor">Coordinates in TileVector</param>
+	/// <returns></returns>
+	public bool HasTileOn(TileVector cor)
 	{
-		return IsTileOn(pos.x, pos.y);
+		return HasTileOn(cor.x, cor.y);
 	}
 
+
+	/// <summary>
+	/// Returns the TileTransform of the tile on coordinates
+	/// </summary>
+	/// <param name="x">x coordinate</param>
+	/// <param name="y">y coordinate</param>
+	/// <returns></returns>
 	public TileTransform GetTileOn(int x, int y)
 	{
 		return tiles[x, y];
 	}
 
+
+	/// <summary>
+	/// Returns the TileTransform of the tile on coordinates
+	/// </summary>
+	/// <param name="cor">Coordinates in TileVector</param>
+	/// <returns></returns>
 	public TileTransform GetTileOn(TileVector v)
 	{
 		//if (tiles[v.x, v.y] != null)

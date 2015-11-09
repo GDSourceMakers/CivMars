@@ -8,13 +8,16 @@ public class TileTransform : MonoBehaviour
 
 	[SerializeField]
 	TileVector position_r;
-	
+
 	public TileVector position
 	{
 		set
 		{
 			position_r = value;
 			transform.localPosition = position;
+
+			this.gameObject.SendMessage("PositionUpdate", SendMessageOptions.DontRequireReceiver);
+
 		}
 		get
 		{
@@ -27,6 +30,6 @@ public class TileTransform : MonoBehaviour
 	{
 		tileMap = t;
 	}
-	
+
 
 }

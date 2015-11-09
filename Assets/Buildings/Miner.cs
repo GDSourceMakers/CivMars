@@ -8,17 +8,26 @@ using UnityEngine.UI;
 public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 {
 	static public string ID = "CivMars.Miner";
-
+	Item[] neededMaterials = { new SandOre(1) };
 	public Sprite icon;
 
-	Item[] neededMaterials = { new SandOre(1)};
 
 	public OreTile mining;
 	public float time;
 	public float startTime;
-    public bool on;
+	public bool on;
+
+	public Text TypeDesplay;
+	public Slider TimeLeft;
 
 	Inventory inv = new Inventory(1);
+
+	public override void Awake()
+	{
+		base.Awake();
+		Graphicks.SetActive(false);
+		this.Graphicks.transform.position = Vector3.zero;
+	}
 
 	public void OpenInventory()
 	{
@@ -124,19 +133,31 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 	{
 		if (on)
 		{
-			if (time > 0f)
+			if (mining != null)
 			{
-				time -= Time.deltaTime;
+				if (time > 0f)
+				{
+					time -= Time.deltaTime;
+				}
+				else
+				{
+					time = startTime;
+					Item minedOre = ((Item)Activator.CreateInstance(((OreTile)mining).GetItemType()));
+					minedOre.amount = 1;
+					mining.Mine(1);
+					inv.Add(minedOre);
+				}
+
+				TypeDesplay.text = "Mining: " + mining.GetType();
+				TimeLeft.value = time;
 			}
 			else
 			{
-				time = startTime;
-				Item minedOre = ((Item)Activator.CreateInstance(((OreTile)mining).GetItemType()));
-				minedOre.amount = 1;
-				mining.Mine(1);
-                this.Add(minedOre);
+				TypeDesplay.text = "No ore was found!";
 			}
 		}
+
+
 	}
 
 	public void TurnOn(bool a)
@@ -146,7 +167,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public void Setup()
 	{
-		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
+		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.y), TileVectorTypes.ySwaped);
 		TileTransform tile = GameCon.map.Generated.GetTileOn(pos);
 
 		if (tile != null)
@@ -157,9 +178,10 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 			{
 				mining = ore;
 				startTime = ore.GetMiningTime();
+				TimeLeft.maxValue = startTime;
 			}
 		}
-		
+
 	}
 }
 

@@ -23,21 +23,18 @@ public class PlanedBuilding : Building
 	public float defaultXPos;
 	public RectTransform maskRect;
 
-	void Start()
+	public override void Awake()
 	{
-		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		if (GameCon == null)
-		{
-			Debug.LogErrorFormat("Can't find the GameController", this);
-		}
+		base.Awake();
 		Graphicks.SetActive(false);
-		Graphicks.transform.position = Vector3.zero;
+		this.Graphicks.transform.position = Vector3.zero;
+	}
 
+	void Start()
+	{ 
 		//maskRect = gameObject.transform.FindChild("Mask").GetComponent<RectTransform>();
 		defaultYPos = maskRect.localPosition.y;
-
 		counter = -1f;
-
 	}
 
 	void Update()
@@ -95,6 +92,12 @@ public class PlanedBuilding : Building
 		}
 	}
 
+
+
+	/// <summary>
+	/// Sets what building to build
+	/// </summary>
+	/// <param name="b">Ibuildable for building</param>
 	public void SetBuilding(IBuildable b)
 	{
 		building = b;
@@ -109,16 +112,25 @@ public class PlanedBuilding : Building
 		Name.text = building.GetType().ToString();
 	}
 
+	/// <summary>
+	/// Builds The actual building
+	/// </summary>
 	void BuildBuilding()
 	{
 		GameObject go = GameObject.Instantiate(building.GetPrefab());
+
 		GameCon.map.Buildings.tiles[transform.position.x, transform.position.y] = null;
-		GameCon.map.Buildings.SetTile(transform.position.x, transform.position.y, go.AddComponent<TileTransform>());
+		GameCon.map.Buildings.SetTile(transform.position.x, transform.position.y, go.GetComponent<TileTransform>());
 		go.GetComponent<IBuildable>().Setup();
+
+		//Destroy itself
 		GameCon.CloseGUI(this);
 		Destroy(this.gameObject);
 	}
 
+	/// <summary>
+	/// Starts The building counter
+	/// </summary>
 	public void Build()
 	{
 		bool done = true;

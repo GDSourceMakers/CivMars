@@ -27,7 +27,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 			{
 				TileVector pos = new TileVector(i, j);
 
-				if (r.Next(1000) <= chanche && first && map.IsTileOn(pos))
+				if (r.Next(1000) <= chanche && first && map.HasTileOn(pos))
 				{
 					first = true;
 					GameObject a = Instantiate(this.gameObject);
@@ -53,7 +53,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 			for (int j = -1; j < 2; j++)
 			{
 				TileVector pos = transform.position + new TileVector(i, j);
-				if ((i != 0 || j != 0) && map.Inside(pos) && map.IsTileOn(pos))
+				if ((i != 0 || j != 0) && map.Inside(pos) && map.HasTileOn(pos))
 				{
 					if (r.Next(1000) <= chancheCurrent)
 					{

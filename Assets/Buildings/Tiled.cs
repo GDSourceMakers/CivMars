@@ -6,13 +6,17 @@ public class Tiled : MonoBehaviour {
 
 	new public TileTransform transform;
 
+	protected GameController GameCon;
+
 	// Use this for initialization
-	void Awake () {
+	public virtual void Awake () {
 		transform = GetComponent<TileTransform>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+		if (GameCon == null)
+		{
+			Debug.LogErrorFormat("Can't find the GameController", this);
+		}
+
 	}
 }
