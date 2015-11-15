@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 {
 	static public string ID = "CivMars.Miner";
-	Item[] neededMaterials = { new SandOre(1) };
+	static Item[] neededMaterials = { new SandOre(1) };
 	public Sprite icon;
 
 
@@ -19,6 +16,8 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public Text TypeDesplay;
 	public Slider TimeLeft;
+
+	bool invOn;
 
 	Inventory inv = new Inventory(1);
 
@@ -31,8 +30,26 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public void OpenInventory()
 	{
-		GameCon.TogleAccesPanel(this);
+
+		GameCon.guiHandler.defaultInventory.gameObject.SetActive(!invOn);
+		invOn = !invOn;
+		if (invOn)
+			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+		else
+			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+
 	}
+
+	#region IHasGUI
+
+	public override void Close()
+	{
+		base.Close();
+		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
+		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+	}
+
+	#endregion
 
 	#region IInventory
 

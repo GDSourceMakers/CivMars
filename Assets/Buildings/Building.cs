@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [AddComponentMenu("Buildings/Building")]
-public class Building : Tiled , IHasGui, IPointerClickHandler
+public class Building : Tiled, IHasGui, IPointerClickHandler
 {
 
 	public List<Item> buildingMaterials;
@@ -40,13 +40,13 @@ public class Building : Tiled , IHasGui, IPointerClickHandler
 		}
 	}
 
-	public void Open()
+	public virtual void Open()
 	{
 		guion = true;
 		Graphicks.SetActive(true);
 	}
 
-	public void Close()
+	public virtual void Close()
 	{
 		guion = false;
 		Graphicks.SetActive(false);
@@ -59,7 +59,8 @@ public class Building : Tiled , IHasGui, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		TogelGui();
+		if (!eventData.rawPointerPress.transform.IsChildOf(Graphicks.transform))
+			TogelGui();
 	}
 	#endregion
 }

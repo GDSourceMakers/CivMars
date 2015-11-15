@@ -109,7 +109,7 @@ public class Inventory
 	/// <param name="amount">amount to remove</param>
 	public void Remove(int index, int amount)
 	{
-		
+
 		if (inventory[index].Remove(amount) < 0)
 		{
 			inventory[index] = null;
@@ -149,27 +149,31 @@ public class Inventory
 	/// Transfers a item from this inventory to a other
 	/// </summary>
 	/// <param name="ToInv">other inv to transfer to</param>
-	/// <param name="index">this inventorys index to transfer</param>
-	public void TransferItem(IInventory ToInv, int index)
+	/// <param name="fromindex">this inventorys index to transfer</param>
+	public void TransferItem(IInventory ToInv, int fromindex)
 	{
-		ToInv.Add(this.Get(index));
-		this.Remove(index);
+		Item r = ToInv.Add(this.Get(fromindex));
+		if (r != null)
+			this.Remove(fromindex, this.Get(fromindex).amount - r.amount);
+		else
+			this.Remove(fromindex);
 	}
 
 	/// <summary>
 	/// Transfers a specific amount of a item from this inventory to a other
 	/// </summary>
-	/// <param name="Toinv">other inv to transfer to</param>
+	/// <param name="ToInv">other inv to transfer to</param>
 	/// <param name="fromindex">this inventorys index to transfer</param>
 	/// <param name="transferingAmount">amount to tramsfer</param>
-	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
+	public void TransferItemAmount(IInventory ToInv, int fromindex, int transferingAmount)
 	{
 		Debug.Log(inventory[fromindex]);
 
-		int remaining = inventory[fromindex].Remove(transferingAmount);
-		
+		int remaining = inventory[fromindex].amount - transferingAmount;
+
 		Item addable = (((Item)Activator.CreateInstance(null, inventory[fromindex].GetType().ToString()).Unwrap()));
-		if (remaining == -1)
+
+		if (remaining < 0)
 		{
 			addable.amount = transferingAmount;
 		}
@@ -177,7 +181,8 @@ public class Inventory
 		{
 			addable.amount = transferingAmount - remaining;
 		}
-		Toinv.Add(addable);
+		Item r = ToInv.Add(this.Get(fromindex));
+		this.Remove(fromindex, this.Get(fromindex).amount - r.amount);
 		Check(fromindex);
 	}
 

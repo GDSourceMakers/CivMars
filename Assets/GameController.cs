@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 	public GameState gameS;
 	public int CanTurnOf;
 	IHasGui OpendGui;
-
+	public InventoryDesplay defaultInv;
 
 	public Map map;
 	public Player playerclass;
@@ -97,17 +97,8 @@ public class GameController : MonoBehaviour
 
 				Debug.Log("Jeej!");
 
-				//Sprite[] GeneratedSprites = Resources.LoadAll<Sprite>("Texturas/Generated");
-				//GameObject[] BuildingPrefabs = Resources.LoadAll<GameObject>("Prefabs/Buildings");
-
-				//int seed = 666421;
-
-				//GeneratedTile[,] t = TerrainGen.Generate(orePercent, oreReducer, seed, 2);
-
 				map.BuildMap();
 				map.AddBasicBuildings();
-
-				//MapLoad.MapDraw(map, mapPiece, GeneratedSprites, BuildingPrefabs, tileSize);
 
 				gameIsOn = true;
 				gameS = GameState.InGame;

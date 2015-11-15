@@ -16,7 +16,9 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	public Sprite Icon;
 
-	new Item[] buildingMaterials = { new SandOre(2) };
+	static Item[] buildingMaterials = { new SandOre(2) };
+
+	bool invOn;
 
 	public override void Awake()
 	{
@@ -27,10 +29,30 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	public void OpenInventory()
 	{
-		GameCon.TogleAccesPanel(this);
+		
+		GameCon.guiHandler.defaultInventory.gameObject.SetActive(!invOn);
+		invOn = !invOn;
+		if (invOn)
+			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+		else
+			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+
 	}
 
-	#region buildable
+	#region IHasGUI
+
+	public override void Close()
+	{
+		base.Close();
+		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
+		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+	}
+
+	#endregion
+
+
+	#region IBuildable
+
 	public Sprite GetImage()
 	{
 		return Icon;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5d3e27d99a790c243b54dc9df58e8d24
-timeCreated: 1446058774
+timeCreated: 1447257087
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,7 +47,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 72, y: 72, z: 122, w: 125}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -72,7 +72,7 @@ TextureImporter:
         height: 67
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 95, y: 65, z: 94, w: 1}
+      border: {x: 95, y: 63, z: 94, w: 4}
     - name: BackGround_Midle
       rect:
         serializedVersion: 2

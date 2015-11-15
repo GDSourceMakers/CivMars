@@ -13,14 +13,12 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 	GameObject[] drawedInvPlayer = new GameObject[10];
 	GameObject[] drawedInvOther = new GameObject[10];
 
-	InventoryDrawedElement InventoryDravedElement;
-
 	IInventory player;
 	IInventory other;
 
 	void Start()
 	{
-		player = (IInventory)GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 
 	void Update()
@@ -33,21 +31,17 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 		if (other == null)
 		{
 			UpdateInventorySection(player, drawedInvPlayer, InventoryCanvasPlayer, true);
-		}
-		else
-		{
-			UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer, true);
-		}
-		if (other != null)
-		{
-			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther, false);
-		}
-		else
-		{
+
 			foreach (GameObject item in drawedInvOther)
 			{
 				Destroy(item);
 			}
+		}
+		else
+		{
+			UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer, true);
+
+			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther, false);
 		}
 	}
 
@@ -71,7 +65,6 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 						actual = null;
 
 						//Create item
-						actual = null;
 						actual = Instantiate(InventoryDubleElement);
 						actual.transform.SetParent(drawingCanvas.transform);
 						actual.transform.SetSiblingIndex(i);
@@ -79,7 +72,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 						actual.GetComponent<InventoryDrawedElement>().Set(invThis.GetStackInSlot(i), isplayer, invOthe, invThis, i);
 					}
 					//Item element
-					else if (actual.GetComponent<InventoryDrawedElement>() != null)
+					else
 					{
 						//update item
 						drawed[i].GetComponent<InventoryDrawedElement>().Set(invThis.GetStackInSlot(i).amount);
@@ -105,12 +98,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 				if (actual != null)
 				{
 					// background
-					if (actual.GetComponent<InventoryDrawedElement>() == null)
-					{
-						//OK
-					}
-					// Item element
-					else if (actual.GetComponent<InventoryDrawedElement>() != null)
+					if (actual.GetComponent<InventoryDrawedElement>() != null)
 					{
 						//Destroy older
 						Destroy(actual);

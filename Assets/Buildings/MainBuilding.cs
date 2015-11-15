@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine.UI;
 using UnityEngine;
 
 [AddComponentMenu("Buildings/Main Building")]
 [System.Serializable]
-public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
+public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 {
 	static public string ID = "CivMars.MainBuilding";
-	
+
 	public Text Name;
-    public Text InventoryButtonText;
-    
+	public Text InventoryButtonText;
+
 
 	public Inventory inventory = new Inventory(20);
 
 	public static float[] max = { 1000f, 1000f, 1000f, 1000f };
 	public GasTankCluster tanks = new GasTankCluster(4, max);
+	[SerializeField]
+	States invOn;
 
 	public override void Awake()
 	{
@@ -28,14 +27,67 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	}
 
 	public void OpenInventory()
-    {
-        GameCon.TogleAccesPanel(this);
-    }
+	{
+		if (invOn != States.Inv)
+		{
+			GameCon.guiHandler.defaultInventory.gameObject.SetActive(true);
+			GameCon.guiHandler.defaultGas.gameObject.SetActive(false);
+
+			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+			GameCon.guiHandler.defaultGas.SetOtherInv(null);
+			invOn = States.Inv;
+		}
+		else
+		{
+			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
+
+			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			invOn = States.None;
+		}
+	}
+
+	public void OpenGas()
+	{
+
+		if (invOn != States.Gas)
+		{
+			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
+			GameCon.guiHandler.defaultGas.gameObject.SetActive(true);
+
+			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultGas.SetOtherInv(this);
+			invOn = States.Gas;
+		}
+		else
+		{
+			GameCon.guiHandler.defaultGas.gameObject.SetActive(false);
+
+			GameCon.guiHandler.defaultGas.SetOtherInv(null);
+			invOn = States.None;
+		}
+
+	}
+
+	#region IHasGUI
+
+	public override void Close()
+	{
+		base.Close();
+		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
+		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+
+		GameCon.guiHandler.defaultGas.gameObject.SetActive(false);
+		GameCon.guiHandler.defaultGas.SetOtherInv(null);
+	}
+
+	#endregion
 
 	public GasTankCluster GetTankCluster()
 	{
 		return tanks;
 	}
+
+	#region IInventory
 
 	public int GetInventorySize()
 	{
@@ -86,15 +138,28 @@ public class MainBuilding : Building , IInventory, IGasTank,IRegystratabe
 	public void TransferItem(IInventory ToInv, int index)
 	{
 		inventory.TransferItem(ToInv, index);
-    }
+	}
 
 	public void TransferItemAmount(IInventory Toinv, int fromindex, int transferingAmount)
 	{
 		inventory.TransferItemAmount(Toinv, fromindex, transferingAmount);
-    }
+	}
 
+	#endregion
+
+	#region IRgeistraste
 	public void Regystrate()
 	{
 		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
+	#endregion
+
+
+}
+
+enum States
+{
+	None,
+    Inv,
+	Gas
 }
