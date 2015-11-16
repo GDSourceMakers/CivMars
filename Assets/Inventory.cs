@@ -107,13 +107,16 @@ public class Inventory
 	/// </summary>
 	/// <param name="index">index of the item</param>
 	/// <param name="amount">amount to remove</param>
-	public void Remove(int index, int amount)
+	public int Remove(int index, int amount)
 	{
-
-		if (inventory[index].Remove(amount) < 0)
+		int remaining = inventory[index].Remove(amount);
+        if (remaining >= 0)
 		{
 			inventory[index] = null;
+			return -1;
 		}
+		return remaining;
+
 	}
 
 	/// <summary>

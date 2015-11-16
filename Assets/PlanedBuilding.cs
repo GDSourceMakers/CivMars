@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class PlanedBuilding : Building
 {
-	Item[] Materials;
+	Item[] Materials = new Item[1];
 	int[] MaterialsAmount;
 
 	public Button buttonscript;
@@ -31,7 +32,7 @@ public class PlanedBuilding : Building
 	}
 
 	void Start()
-	{ 
+	{
 		//maskRect = gameObject.transform.FindChild("Mask").GetComponent<RectTransform>();
 		defaultYPos = maskRect.localPosition.y;
 		counter = -1f;
@@ -87,8 +88,8 @@ public class PlanedBuilding : Building
 			}
 
 			neededItemsDrawn[i].transform.FindChild("Name").GetComponent<Text>().text = Materials[i].GetType().ToString();
-			neededItemsDrawn[i].transform.FindChild("Amount").GetComponent<Text>().text = (MaterialsAmount[i] - Materials[i].amount) + "/" + MaterialsAmount[i];
-			neededItemsDrawn[i].transform.FindChild("Slider").GetComponent<Slider>().value = (float)(MaterialsAmount[i] - Materials[i].amount) / MaterialsAmount[i];
+			neededItemsDrawn[i].transform.FindChild("Amount").GetComponent<Text>().text = Materials[i].amount + "/" + MaterialsAmount[i];
+			neededItemsDrawn[i].transform.FindChild("Slider").GetComponent<Slider>().value = (float)MaterialsAmount[i] / Materials[i].amount;
 		}
 	}
 
@@ -102,13 +103,21 @@ public class PlanedBuilding : Building
 	{
 		building = b;
 		buildtime = b.GetBuildtime();
-		Materials = building.GetNeededMaterials();
+
+		building.GetNeededMaterials().CopyTo(Materials, 0);
+
+
+
 		MaterialsAmount = new int[Materials.Length];
+
+		
 		for (int i = 0; i < Materials.Length; i++)
 		{
-			MaterialsAmount[i] = Materials[i].amount;
+			//MaterialsAmount[i] = Materials[i].amount;
 			neededItemsDrawn.Add(null);
 		}
+		
+
 		Name.text = building.GetType().ToString();
 	}
 
@@ -133,20 +142,13 @@ public class PlanedBuilding : Building
 	/// </summary>
 	public void Build()
 	{
-		bool done = true;
-		done = true;
-
 		for (int i = 0; i < Materials.Length; i++)
 		{
-			if (!((MaterialsAmount[i] - Materials[i].amount) == MaterialsAmount[i]))
+			if ((Materials[i].amount - MaterialsAmount[i]) == 0)
 			{
-				done = false;
+				counter = buildtime;
+				return;
 			}
-		}
-
-		if (done)
-		{
-			counter = buildtime;
 		}
 	}
 
@@ -157,21 +159,25 @@ public class PlanedBuilding : Building
 	{
 		Inventory playerinv = GameCon.playerclass.inventory;
 
-		for (int j = 0; j < Materials.Length; j++)
+		for (int i = 0; i < Materials.Length; i++)
 		{
-			if ((MaterialsAmount[j] - Materials[j].amount) < MaterialsAmount[j])
+			if ((Materials[i].amount - MaterialsAmount[i]) != 0)
 			{
 
-				Item remaining = playerinv.Remove(Materials[j]);
+				Item needed = (Item)Activator.CreateInstance(null, Materials[i].GetType().ToString()).Unwrap();
+				needed.amount = Materials[i].amount;
+
+				Item remaining = playerinv.Remove(needed);
 				if (remaining != null)
 				{
-					Materials[j] = remaining;
+					Materials[i] = remaining;
+					MaterialsAmount[i] += Materials[i].amount - remaining.amount;
 				}
 				else
 				{
-					Materials[j].amount = 0;
+					MaterialsAmount[i] = Materials[i].amount;
 				}
-				//Materials[j].amount -= (MaterialsAmount[j] - Materials[j].amount);
+				
 			}
 		}
 	}
