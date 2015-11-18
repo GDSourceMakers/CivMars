@@ -18,3 +18,4 @@ public class IronIngot : Item, IRegystratabe
 	}
 }
 
+
