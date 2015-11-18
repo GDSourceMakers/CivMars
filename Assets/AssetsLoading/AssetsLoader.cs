@@ -33,6 +33,8 @@ public class AssetsLoader : MonoBehaviour
 				a.Regystrate();
 			}
 		}
+
+
 	}
 
 }

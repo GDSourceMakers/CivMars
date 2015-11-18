@@ -5,18 +5,24 @@ using System.Text;
 
 class CoalOreTile : OreTile
 {
+
+
+
 	new float amount = 2f;
 
 	static Type item = typeof(CoalOre);
 
+
 	public override void Generate(System.Random r, TileMap map)
 	{
-		chanche = 10;
-		chanche2 = 120;
-		chancheReduce = 20;
+		chanche = 120;
+		chanche2 = 10;
+		chancheReduce = 5;
 		distance = -1;
+		
 		base.Generate(r, map);
 	}
+
 
 	override public void Regystrate()
 	{

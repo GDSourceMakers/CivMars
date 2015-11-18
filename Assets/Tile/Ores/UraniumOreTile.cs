@@ -4,6 +4,7 @@ using System;
 
 public class UraniumOreTile : OreTile
 {
+
 	new float amount = 2f;
 
 	static Type item = typeof(UraniumOre);

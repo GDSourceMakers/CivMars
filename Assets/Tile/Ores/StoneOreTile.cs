@@ -4,21 +4,22 @@ using System;
 
 public class StoneOreTile : OreTile
 {
+
 	new float amount = 2f;
 
 	static Type item = typeof(StoneOre);
 
 	override public void Regystrate()
 	{
+		chanche = 20;
+		chanche2 = 220;
+		chancheReduce = 20;
+		distance = -1;
 		GameRegystry.RegisterWorldGen(this);
 	}
 
 	public override void Generate(System.Random r, TileMap map)
 	{
-		chanche = 20;
-		chanche2 = 220;
-		chancheReduce = 20;
-		distance = -1;
 		base.Generate(r, map);
 	}
 

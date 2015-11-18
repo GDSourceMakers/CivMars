@@ -4,10 +4,10 @@ using System;
 
 public class OreTile : Tiled, IRegystratabe, IWorldGen
 {
-	static public float chanche;
-	static public float chanche2;
-	static public float chancheReduce;
-	static public float distance;
+	public float chanche = 0;
+	public float chanche2 = 0;
+	public float chancheReduce = 0;
+	public float distance = 0;
 
 	float amount = 2;
 
@@ -15,7 +15,6 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 
 	public virtual void Generate(System.Random r, TileMap map)
 	{
-
 		//throw new NotImplementedException();
 		bool first = true;
 
@@ -27,7 +26,9 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 			{
 				TileVector pos = new TileVector(i, j);
 
-				if (r.Next(1000) <= chanche && first && map.HasTileOn(pos))
+				bool k = map.HasTileOn(pos);
+
+				if (r.Next(0,1000) <= chanche && first && k)
 				{
 					first = true;
 					GameObject a = Instantiate(this.gameObject);

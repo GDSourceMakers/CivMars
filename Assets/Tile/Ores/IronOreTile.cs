@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 public class IronOreTile : OreTile
-{
+{ 
 	new float amount = 2f;
 
 	static Type item = typeof(IronOre);

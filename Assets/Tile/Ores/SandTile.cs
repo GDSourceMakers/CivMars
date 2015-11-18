@@ -10,15 +10,15 @@ public class SandTile : OreTile
 
 	override public void Regystrate()
 	{
+		chanche = 30;
+		chanche2 = 150;
+		chancheReduce = 20;
+		distance = -1;
 		GameRegystry.RegisterWorldGen(this);
 	}
 
 	public override void Generate(System.Random r, TileMap map)
 	{
-		chanche = 30;
-		chanche2 = 150;
-		chancheReduce = 20;
-		distance = -1;
 		base.Generate(r, map);
 	}
 

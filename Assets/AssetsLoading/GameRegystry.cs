@@ -23,5 +23,36 @@ static class GameRegystry
 	{
 		ores.Add(b);
 	}
+
+	public static Dictionary<String, List<Recipe>> recepies = new Dictionary<String, List<Recipe>>();
+
+	public static void RegisterRecepie(string ID, Recipe b)
+	{
+		if (recepies.ContainsKey(ID))
+		{
+			recepies[ID].Add(b);
+		}
+		else
+		{
+			recepies.Add(ID, new List<Recipe>());
+			recepies[ID].Add(b);
+		}
+	}
+
+	public static Dictionary<String, Item> items = new Dictionary<String, Item>();
+
+	public static void RegisterItem(string ID, Item b)
+	{
+		if (recepies.ContainsKey(ID))
+		{
+			throw new System.NotImplementedException();
+		}
+		else
+		{
+			if (b is IRegystratabe)
+				((IRegystratabe)b).Regystrate();
+			items.Add(ID, b);
+		}
+	}
 }
 
