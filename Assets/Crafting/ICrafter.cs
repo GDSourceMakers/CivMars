@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 
 
-interface ICrafter
+public interface ICrafter
 {
+	void AddToQueue(int i);
 
+	CraftingProcess[] GetQueue();
+
+	string GetCraftingID();
 
 }
 

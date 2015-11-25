@@ -104,6 +104,7 @@ public class PlanedBuilding : Building
 		building = b;
 		buildtime = b.GetBuildtime();
 
+		Materials = new Item[building.GetNeededMaterials().Length];
 		building.GetNeededMaterials().CopyTo(Materials, 0);
 
 

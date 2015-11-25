@@ -16,7 +16,7 @@ public class AssetsLoader : MonoBehaviour
 
 			if (a != null)
 			{
-				Debug.Log(item.name);
+				//Debug.Log(item.name);
 				a.Regystrate();
 			}
 		}
@@ -29,12 +29,12 @@ public class AssetsLoader : MonoBehaviour
 
 			if (a != null)
 			{
-				Debug.Log(item.name);
+				//Debug.Log(item.name);
 				a.Regystrate();
 			}
 		}
 
-
+		CivMarsInit.Init();
 	}
 
 }

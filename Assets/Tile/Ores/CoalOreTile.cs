@@ -6,10 +6,6 @@ using System.Text;
 class CoalOreTile : OreTile
 {
 
-
-
-	new float amount = 2f;
-
 	static Type item = typeof(CoalOre);
 
 

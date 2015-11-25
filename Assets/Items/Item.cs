@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-
+using UnityEngine;
 
 public class Item
 {
 	public int amount;
 	public int maxStackSize;
+	public Sprite texture;
+
 
 	public Item(int setAmount)
 	{

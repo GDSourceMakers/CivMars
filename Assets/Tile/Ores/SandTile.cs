@@ -4,7 +4,7 @@ using System;
 
 public class SandTile : OreTile
 {
-	new float amount = 2f;
+
 
 	static Type item = typeof(SandOre);
 

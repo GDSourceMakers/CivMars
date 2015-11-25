@@ -12,7 +12,7 @@ public class GUIHandler : MonoBehaviour
 
 	public InventoryDesplay defaultInventory;
 	public GasDesplay defaultGas;
-
+	public CraftingDesplay defaultCrafting;
 
 	// Use this for initialization
 	void Start()

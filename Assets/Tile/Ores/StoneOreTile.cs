@@ -5,7 +5,6 @@ using System;
 public class StoneOreTile : OreTile
 {
 
-	new float amount = 2f;
 
 	static Type item = typeof(StoneOre);
 

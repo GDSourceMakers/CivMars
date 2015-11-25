@@ -6,6 +6,13 @@ using UnityEngine;
 [System.Serializable]
 public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 {
+	enum States
+	{
+		None,
+		Inv,
+		Gas
+	}
+
 	static public string ID = "CivMars.MainBuilding";
 
 	public Text Name;
@@ -157,9 +164,4 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 
 }
 
-enum States
-{
-	None,
-    Inv,
-	Gas
-}
+

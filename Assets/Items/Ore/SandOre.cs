@@ -15,4 +15,6 @@ public class SandOre : Item
 	{
 		maxStackSize = 4;
 	}
+
+
 }

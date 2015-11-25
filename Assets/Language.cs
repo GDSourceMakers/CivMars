@@ -12,7 +12,7 @@ public abstract class Language
     {"SandOre",     "Sand",     "homok"     },
     {"IronOre",     "Iron Ore", "vas érc"   },
     {"UraniumOre",  "Uran Ore", "urán érc"  },
-    {"CoalOre",     "Coal Ore", ""          },
+    {"IronIngot",     "Iron Ingot", ""          },
     {"CoalOre",     "Coal Ore", ""          }
     };
 

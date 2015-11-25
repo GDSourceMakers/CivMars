@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 
-class CivMarsInit
+public static class CivMarsInit
 {
-	public void Init()
+	public static void Init()
 	{
 		GameRegystry.RegisterItem("CivMars.IronIngot", new IronIngot());
 	}
