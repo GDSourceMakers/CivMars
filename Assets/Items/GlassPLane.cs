@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-
-public class GlassPlane:Item
-    {
+public class GlassPlane:Item, IRegystratabe
+{
         public string name = "GlassPlane";
+
+
     public GlassPlane(int am) : base(am, 30)
 	{
         texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.GlassPlane");

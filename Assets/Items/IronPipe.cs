@@ -5,8 +5,8 @@ using System.Text;
 using UnityEngine;
 
 
-public class IronPipe:Item
-    {
+public class IronPipe:Item, IRegystratabe
+{
         public string name = "IronPipe";
     public IronPipe(int am) : base(am, 10)
 	{
