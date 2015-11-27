@@ -42,10 +42,10 @@ public class Furnance : Building, IRegystratabe, IBuildable, IInventory, IHasGui
 			{
 				a.status -= Time.deltaTime;
 
-				if (a.status <= 0)
+				if (a.status <= 0f)
 				{
 					remaining = (Item)Activator.CreateInstance(a.recipe.Crafted.GetType());
-					remaining.amount = a.amount * a.recipe.Crafted.amount;
+					//remaining.amount = a.amount * a.recipe.Crafted.amount;
 					craftingQueue.RemoveAt(0);
 				}
 
