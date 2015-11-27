@@ -6,8 +6,8 @@ using UnityEngine;
 
 
 
-public class IronPlate:Item
-    {
+public class IronPlate:Item, IRegystratabe
+{
         public string name = "IronPlate";
 
     public IronPlate(int am) : base(am, 10)
