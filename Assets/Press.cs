@@ -37,7 +37,7 @@ public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBu
 		if (remaining == null && craftingQueue.Count > 0)
 		{
 			CraftingProcess a = (CraftingProcess)craftingQueue[0];
-			if (a.hasItems)
+			if (a.HasItems())
 			{
 				a.status -= Time.deltaTime;
 
