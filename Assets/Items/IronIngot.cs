@@ -8,6 +8,7 @@ public class IronIngot : Item, IRegystratabe
 {
 	public string name = "IronIngot";
 
+
 	public IronIngot(int am) : base(am, 10)
 	{
 		texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.StealIngot");
@@ -24,7 +25,7 @@ public class IronIngot : Item, IRegystratabe
 	{
 
 		Item[] a = { new SandOre(2) };
-        Recipe r = new Recipe("CivMars.Furnance", a , this,10);
+        Recipe r = new Recipe("CivMars.Furnance", a , new IronIngot(1),10);
 		GameRegystry.RegisterRecepie(r.buildingID, r);
 	}
 }
