@@ -24,8 +24,8 @@ public class IronIngot : Item, IRegystratabe
 	public void Regystrate()
 	{
 
-		Item[] a = { new SandOre(2) };
-        Recipe r = new Recipe("CivMars.Furnance", a , new IronIngot(1),10);
+		Item[] a = { new IronOre(2) };
+        Recipe r = new Recipe("CivMars.Furnace", a , new IronIngot(1),10);
 		GameRegystry.RegisterRecepie(r.buildingID, r);
 	}
 }
