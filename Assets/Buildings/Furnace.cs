@@ -45,7 +45,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 				if (a.status <= 0f)
 				{
 					remaining = (Item)Activator.CreateInstance(a.recipe.Crafted.GetType());
-					//remaining.amount = a.amount * a.recipe.Crafted.amount;
+					remaining.amount = a.amount * a.recipe.Crafted.amount;
 					craftingQueue.RemoveAt(0);
 				}
 
@@ -76,7 +76,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 				}
 			}
 		}
-		else if(remaining != null)
+		else if (remaining != null)
 		{
 			remaining = inv.Add(remaining);
 		}
@@ -271,6 +271,11 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 	public string GetCraftingID()
 	{
 		return ID;
+	}
+
+	public void RemoveFromQueue(int i)
+	{
+		craftingQueue.RemoveAt(i);
 	}
 	#endregion
 

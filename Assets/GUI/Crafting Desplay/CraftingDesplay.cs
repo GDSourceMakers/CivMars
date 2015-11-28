@@ -11,14 +11,17 @@ public class CraftingDesplay : MonoBehaviour
 	public GameObject RecipeListCanvas;
 	public GameObject RecipeMaterialsCanvas;
 	public GameObject QueueCanvas;
+	public GameObject QueueMaterialsCanvas;
 	public Image RecipeIcon;
 	public Text RecipeText;
 
 	public List<GameObject> recipesDesplayed;
 	public List<GameObject> queueDesplayed;
+	public List<GameObject> queueMaterialDesplayed;
 
 	public GameObject recipeDesplayPref;
 	public GameObject queueItemPref;
+	public GameObject queueMaterialItemPref;
 
 	public ICrafter crafter;
 
@@ -43,23 +46,54 @@ public class CraftingDesplay : MonoBehaviour
 			if (i == queueDesplayed.Count)
 			{
 				queueDesplayed.Add(Instantiate(queueItemPref));
-				queueDesplayed[i].transform.FindChild("Slider").GetComponent<Slider>().maxValue = k[i].recipe.time;
-				queueDesplayed[i].transform.FindChild("Slider").GetComponent<Slider>().value = k[i].status;
-				queueDesplayed[i].transform.FindChild("Image").GetComponent<Image>().sprite = k[i].recipe.Crafted.texture;
+				queueDesplayed[i].GetComponent<QueueItem>().Set(k[i].recipe.time, k[i].status, k[i].recipe.Crafted.texture, this);
 				queueDesplayed[i].transform.SetParent(QueueCanvas.transform);
 			}
 			else
 			{
-				queueDesplayed[i].transform.FindChild("Slider").GetComponent<Slider>().maxValue = k[i].recipe.time;
-				queueDesplayed[i].transform.FindChild("Slider").GetComponent<Slider>().value = k[i].status;
-				queueDesplayed[i].transform.FindChild("Image").GetComponent<Image>().sprite = k[i].recipe.Crafted.texture;
+				queueDesplayed[i].GetComponent<QueueItem>().Set(k[i].recipe.time, k[i].status, k[i].recipe.Crafted.texture, this);
 			}
 		}
 
 		for (int i = k.Length; i < queueDesplayed.Count; i++)
 		{
 			Destroy(queueDesplayed[i]);
+			queueDesplayed.RemoveAt(i);
 		}
+
+		if (k.Length > 0)
+		{
+			for (int i = 0; i < k[0].recipe.Materials.Length; i++)
+			{
+				if (i == queueMaterialDesplayed.Count)
+				{
+					queueMaterialDesplayed.Add(Instantiate(queueMaterialItemPref));
+					queueMaterialDesplayed[i].transform.FindChild("Image").GetComponent<Image>().sprite = k[0].recipe.Materials[i].texture;
+					queueMaterialDesplayed[i].transform.FindChild("Text").GetComponent<Text>().text = k[0].recipe.Materials[i].amount - k[0].materials[i] + "/" + k[0].recipe.Materials[i].amount;
+					queueMaterialDesplayed[i].transform.SetParent(QueueMaterialsCanvas.transform);
+				}
+				else
+				{
+					queueMaterialDesplayed[i].transform.FindChild("Image").GetComponent<Image>().sprite = k[0].recipe.Materials[i].texture;
+					queueMaterialDesplayed[i].transform.FindChild("Text").GetComponent<Text>().text = k[0].recipe.Materials[i].amount - k[0].materials[i] + "/" + k[0].recipe.Materials[i].amount;
+				}
+			}
+
+			for (int i = k.Length; i < queueMaterialDesplayed.Count; i++)
+			{
+				Destroy(queueMaterialDesplayed[i]);
+				queueMaterialDesplayed.RemoveAt(i);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < queueMaterialDesplayed.Count; i++)
+			{
+				Destroy(queueMaterialDesplayed[i]);
+				queueMaterialDesplayed.RemoveAt(i);
+			}
+		}
+
 
 	}
 
@@ -80,6 +114,11 @@ public class CraftingDesplay : MonoBehaviour
 	public void AddToQueue(int i)
 	{
 		crafter.AddToQueue(i);
+	}
+
+	public void RemoveFromQueue(int i)
+	{
+		crafter.RemoveFromQueue(i);
 	}
 
 	public void SetBuilding(ICrafter b)

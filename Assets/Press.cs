@@ -271,6 +271,11 @@ public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBu
 	{
 		return ID;
 	}
+
+	public void RemoveFromQueue(int i)
+	{
+		craftingQueue.RemoveAt(i);
+	}
 	#endregion
 
 }

@@ -35,6 +35,12 @@ public class AssetsLoader : MonoBehaviour
 		}
 
 		CivMarsInit.Init();
+		/*
+		for (int i = 0; i < length; i++)
+		{
+			xasd.y = (total * (Scrollbar / 100)) + (total - xasd.height);
+		}
+		*/
 	}
 
 }
