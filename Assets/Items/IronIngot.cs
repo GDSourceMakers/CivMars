@@ -11,13 +11,13 @@ public class IronIngot : Item, IRegystratabe
 
 	public IronIngot(int am) : base(am, 10)
 	{
-		texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.StealIngot");
+		texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.StealIngot");
 		maxStackSize = 10;
 	}
 
 	public IronIngot()
 	{
-		texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.StealIngot");
+		texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.StealIngot");
 		maxStackSize = 10;
 	}
 

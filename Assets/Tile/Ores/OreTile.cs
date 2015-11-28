@@ -9,7 +9,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 	public float chancheReduce = 0;
 	public float distance = 0;
 
-	public float amount = 2;
+	public float amount = 40;
 
 	public virtual void Regystrate() { }
 

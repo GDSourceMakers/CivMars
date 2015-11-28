@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 
-public class Furnance : Building, IRegystratabe, IBuildable, IInventory, IHasGui, ICrafter
+public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui, ICrafter
 {
 
 	enum States
@@ -16,7 +16,7 @@ public class Furnance : Building, IRegystratabe, IBuildable, IInventory, IHasGui
 
 	public List<CraftingProcess> craftingQueue = new List<CraftingProcess>();
 
-	static public string ID = "CivMars.Furnance";
+	static public string ID = "CivMars.Furnace";
 	static Item[] neededMaterials = { new SandOre(1) };
 	public Sprite icon;
 
