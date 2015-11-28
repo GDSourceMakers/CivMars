@@ -16,7 +16,7 @@ public class IronPipe:Item, IRegystratabe
 
     public IronPipe()
     {
-        texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.IronPipe");
+        texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.IronPipe");
         maxStackSize = 10;
     }
 

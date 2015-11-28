@@ -18,7 +18,7 @@ public class IronPlate:Item, IRegystratabe
 
     public IronPlate()
     {
-        texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.IronPlate");
+        texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.IronPlate");
         maxStackSize = 10;
     }
 

@@ -17,7 +17,7 @@ public class GlassPlane:Item, IRegystratabe
 
     public GlassPlane()
     {
-        texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.GlassPlane");
+        texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.GlassPlane");
         maxStackSize = 30;
     }
 

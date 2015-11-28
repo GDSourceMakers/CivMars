@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Surface : Tiled {
 
+	/*
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +13,5 @@ public class Surface : Tiled {
 	void Update () {
 	
 	}
+	*/
 }

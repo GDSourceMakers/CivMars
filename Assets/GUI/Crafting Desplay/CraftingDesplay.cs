@@ -56,7 +56,7 @@ public class CraftingDesplay : MonoBehaviour
 			}
 		}
 
-		for (int i = k.Length; i < queueDesplayed.Count - k.Length; i++)
+		for (int i = k.Length; i < queueDesplayed.Count; i++)
 		{
 			Destroy(queueDesplayed[i]);
 		}
