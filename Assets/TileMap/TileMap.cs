@@ -10,7 +10,7 @@ public class TileMap : MonoBehaviour
 	public TileTransform[,] backgroundTiles;
 	public int x_max;
 	public int y_max;
-
+	public bool hasBorder;
 
 	//public bool swapedX;
 	//public bool swapedY;
@@ -23,6 +23,12 @@ public class TileMap : MonoBehaviour
 
 	public GameObject BackgroundLayer;
 	public GameObject ForegroundLayer;
+
+	public BoxCollider2D TopCollider;
+	public BoxCollider2D LeftCollider;
+	public BoxCollider2D BottomCollider;
+	public BoxCollider2D RighttCollider;
+
 
 	public void Awake()
 	{
@@ -47,19 +53,33 @@ public class TileMap : MonoBehaviour
 			}
 		}
 		#endregion
+
+		//setup colliders
+		if (hasBorder)
+		{
+			float total_x = x_max * TileSize.x;
+			float total_y = y_max * TileSize.y;
+
+			TopCollider.size = new Vector2(total_x, 1);
+			TopCollider.offset = new Vector2(total_x / 2 - TileSize.x / 2, TileSize.y);
+
+			LeftCollider.size = new Vector2(1, total_y);
+			LeftCollider.offset = new Vector2(-TileSize.x, -(total_y / 2 - TileSize.y / 2));
+
+			BottomCollider.size = new Vector2(total_x, 1);
+			BottomCollider.offset = new Vector2(total_x / 2 - TileSize.x / 2, -total_y);
+
+			RighttCollider.size = new Vector2(1, total_y);
+			RighttCollider.offset = new Vector2(total_x, -(total_y / 2 - TileSize.y / 2));
+		}
 	}
 
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
+	/*
 	// Update is called once per frame
 	void Update()
 	{
 	}
-
+	*/
 
 	/// <summary>
 	/// Set te TileTransform to the coordinates
@@ -69,7 +89,7 @@ public class TileMap : MonoBehaviour
 	/// <param name="t">Tile to set</param>
 	public void SetTile(int x, int y, TileTransform t)
 	{
-		
+
 		if (HasTileOn(x, y))
 		{
 			tiles[x, y] = t;
@@ -382,11 +402,11 @@ public class TileMap : MonoBehaviour
 	{
 		//if (tiles[v.x, v.y] != null)
 		//{
-			return tiles[v.x, v.y];
+		return tiles[v.x, v.y];
 		//}
 		//else
 		//{
 		//	return BackgroundLayer[v.x, v.y];
-        //}
+		//}
 	}
 }

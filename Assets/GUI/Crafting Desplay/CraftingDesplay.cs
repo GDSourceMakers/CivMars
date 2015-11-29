@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class CraftingDesplay : MonoBehaviour
 {
-
-	public List<Recipe> a;
+	public List<Recipe> recipes;
 	public string buildingID;
 
 	public GameObject RecipeListCanvas;
@@ -16,6 +15,7 @@ public class CraftingDesplay : MonoBehaviour
 	public Text RecipeText;
 
 	public List<GameObject> recipesDesplayed;
+	public List<GameObject> recepiesDetealdMaterials;
 	public List<GameObject> queueDesplayed;
 	public List<GameObject> queueMaterialDesplayed;
 
@@ -41,6 +41,7 @@ public class CraftingDesplay : MonoBehaviour
 	{
 		CraftingProcess[] k = crafter.GetQueue();
 
+		#region Queue
 		for (int i = 0; i < k.Length; i++)
 		{
 			if (i == queueDesplayed.Count)
@@ -60,9 +61,12 @@ public class CraftingDesplay : MonoBehaviour
 			Destroy(queueDesplayed[i]);
 			queueDesplayed.RemoveAt(i);
 		}
+		#endregion
 
+		#region Queue Material;
 		if (k.Length > 0)
 		{
+
 			for (int i = 0; i < k[0].recipe.Materials.Length; i++)
 			{
 				if (i == queueMaterialDesplayed.Count)
@@ -85,14 +89,7 @@ public class CraftingDesplay : MonoBehaviour
 				queueMaterialDesplayed.RemoveAt(i);
 			}
 		}
-		else
-		{
-			for (int i = 0; i < queueMaterialDesplayed.Count; i++)
-			{
-				Destroy(queueMaterialDesplayed[i]);
-				queueMaterialDesplayed.RemoveAt(i);
-			}
-		}
+		#endregion
 
 
 	}
@@ -103,12 +100,42 @@ public class CraftingDesplay : MonoBehaviour
 		{
 			RecipeIcon.sprite = null;
 			RecipeText.text = "";
+			for (int j = 0; j < recepiesDetealdMaterials.Count; j++)
+			{
+				recepiesDetealdMaterials[j].SetActive(false);
+			}
 		}
 		else
 		{
-			RecipeIcon.sprite = a[i].Crafted.texture;
-			RecipeText.text = a[i].Crafted.ToString();
+			RecipeIcon.sprite = recipes[i].Crafted.texture;
+			RecipeText.text = recipes[i].Crafted.ToString();
+
+			for (int j = 0; j < recepiesDetealdMaterials.Count; j++)
+			{
+				if (j == recipes[j].Materials.Length)
+				{
+					recepiesDetealdMaterials[j].SetActive(false);
+                }
+				else
+				{
+					recepiesDetealdMaterials[j].SetActive(true);
+					recepiesDetealdMaterials[j].transform.FindChild("Image").GetComponent<Image>().sprite = recipes[i].Materials[j].texture;
+					recepiesDetealdMaterials[j].transform.FindChild("Text").GetComponent<Text>().text = recipes[i].Materials[j].amount.ToString();
+					Debug.Log(recipes[i].Materials[j].amount.ToString());
+
+				}
+			}
+
+			for (int j = recepiesDetealdMaterials.Count; j < recipes[i].Materials.Length; j++)
+			{
+				recepiesDetealdMaterials.Add(Instantiate(queueMaterialItemPref));
+				recepiesDetealdMaterials[j].transform.SetParent(RecipeMaterialsCanvas.transform);
+				recepiesDetealdMaterials[j].transform.FindChild("Image").GetComponent<Image>().sprite = recipes[i].Materials[j].texture;
+				recepiesDetealdMaterials[j].transform.FindChild("Text").GetComponent<Text>().text = recipes[i].Materials[j].amount.ToString();
+
+			}
 		}
+		
 	}
 
 	public void AddToQueue(int i)
@@ -142,7 +169,7 @@ public class CraftingDesplay : MonoBehaviour
 			buildingID = b.GetCraftingID();
 			crafter = b;
 
-			a = GameRegystry.recepies[buildingID];
+			recipes = GameRegystry.recepies[buildingID];
 
 			foreach (Recipe item in GameRegystry.recepies[buildingID])
 			{

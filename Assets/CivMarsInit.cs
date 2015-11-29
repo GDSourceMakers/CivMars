@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
+[Mod]
 public static class CivMarsInit
 {
+	[ModInit]
 	public static void Init()
 	{
 		GameRegystry.RegisterItem("CivMars.IronIngot", new IronIngot());
