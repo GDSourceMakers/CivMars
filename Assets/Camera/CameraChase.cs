@@ -159,8 +159,8 @@ public class CameraChase : MonoBehaviour
 			float xPos = chase.transform.position.x;
 			float yPos = -1 * chase.transform.position.y;
 
-			float xCameraH = CameraScript.orthographicSize * Screen.width / Screen.height;
-			float yCameraH = CameraScript.orthographicSize;
+			float xCameraH = CameraScript.orthographicSize * Screen.width / Screen.height * (1 - CameraScript.rect.y);
+			float yCameraH = CameraScript.orthographicSize * (1-CameraScript.rect.y);
 
 			//transform.position = new Vector3(Mathf.Clamp(xPos, xCameraH, GameCon.map.mapHeight - xCameraH),-1 * Mathf.Clamp(-1*yPos, yCameraH, GameCon.map.mapHeight - yCameraH), transform.position.z);
 			transform.position = new Vector3(
