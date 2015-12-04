@@ -35,6 +35,7 @@ public class AssetsLoader : MonoBehaviour
 		}
 
 		CivMarsInit.Init();
+
 	}
 
 }

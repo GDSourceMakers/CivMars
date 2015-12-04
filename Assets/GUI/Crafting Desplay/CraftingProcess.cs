@@ -8,7 +8,7 @@ public class CraftingProcess
 {
 	public Recipe recipe;
 	public float status;
-	bool hasItems = false;
+	//bool hasItems = false;
 
 	int[] r_materials;
 	public int[] materials
@@ -29,7 +29,6 @@ public class CraftingProcess
 					k = false;
 				}
 			}
-			hasItems = k;
 		}
 	}
 
@@ -37,7 +36,6 @@ public class CraftingProcess
 
 	public CraftingProcess(Recipe r, int am)
 	{
-		hasItems = false;
 		recipe = r;
 		status = r.time;
 		materials = new int[r.Materials.Length];
