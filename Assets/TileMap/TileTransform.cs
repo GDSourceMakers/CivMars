@@ -16,8 +16,7 @@ public class TileTransform : MonoBehaviour
 			position_r = value;
 			transform.localPosition = position;
 
-			this.gameObject.SendMessage("PositionUpdate", SendMessageOptions.DontRequireReceiver);
-
+			gameObject.SendMessage("PositionUpdate", SendMessageOptions.DontRequireReceiver);
 		}
 		get
 		{

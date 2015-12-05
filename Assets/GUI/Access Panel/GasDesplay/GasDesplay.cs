@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GasDesplay : MonoBehaviour, IAccesTab
+public class GasDesplay : MonoBehaviour
 {
 
 

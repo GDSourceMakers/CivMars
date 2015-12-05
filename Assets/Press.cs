@@ -93,18 +93,16 @@ public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBu
 	{
 		if (invOn != States.Inv)
 		{
-			GameCon.guiHandler.defaultInventory.gameObject.SetActive(true);
 			GameCon.guiHandler.defaultCrafting.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+			GameCon.guiHandler.defaultInventory.Activate(this);
 			GameCon.guiHandler.defaultCrafting.SetBuilding(null);
 			invOn = States.Inv;
 		}
 		else
 		{
-			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			invOn = States.None;
 		}
 	}
@@ -117,7 +115,7 @@ public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBu
 			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 			GameCon.guiHandler.defaultCrafting.gameObject.SetActive(true);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			GameCon.guiHandler.defaultCrafting.SetBuilding(this);
 			invOn = States.Craft;
 		}
@@ -137,7 +135,7 @@ public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBu
 	{
 		base.Close();
 		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
-		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+		GameCon.guiHandler.defaultInventory.Deactive();
 
 		GameCon.guiHandler.defaultCrafting.gameObject.SetActive(false);
 		GameCon.guiHandler.defaultCrafting.SetBuilding(null);

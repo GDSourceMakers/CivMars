@@ -30,13 +30,11 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 
 	public void OpenInventory()
 	{
-
-		GameCon.guiHandler.defaultInventory.gameObject.SetActive(!invOn);
 		invOn = !invOn;
 		if (invOn)
-			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+			GameCon.guiHandler.defaultInventory.Activate(this);
 		else
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 
 	}
 
@@ -45,8 +43,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 	public override void Close()
 	{
 		base.Close();
-		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
-		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+		GameCon.guiHandler.defaultInventory.Deactive();
 	}
 
 	#endregion

@@ -52,7 +52,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 			}
 			else
 			{
-				Inventory playerinv = GameCon.playerclass.inventory;
+				Inventory inv = this.inv;
 
 				for (int i = 0; i < a.recipe.Materials.Length; i++)
 				{
@@ -61,7 +61,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 						Item needed = (Item)Activator.CreateInstance(null, a.recipe.Materials[i].GetType().ToString()).Unwrap();
 						needed.amount = a.materials[i];
 
-						Item remainingItem = playerinv.Remove(needed);
+						Item remainingItem = inv.Remove(needed);
 						if (remainingItem != null)
 						{
 							a.materials[i] = remainingItem.amount;
@@ -93,10 +93,9 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 	{
 		if (invOn != States.Inv)
 		{
-			GameCon.guiHandler.defaultInventory.gameObject.SetActive(true);
 			GameCon.guiHandler.defaultCrafting.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+			GameCon.guiHandler.defaultInventory.Activate(this);
 			GameCon.guiHandler.defaultCrafting.SetBuilding(null);
 			invOn = States.Inv;
 		}
@@ -104,7 +103,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 		{
 			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			invOn = States.None;
 		}
 	}
@@ -117,7 +116,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 			GameCon.guiHandler.defaultCrafting.gameObject.SetActive(true);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			GameCon.guiHandler.defaultCrafting.SetBuilding(this);
 			invOn = States.Craft;
 		}
@@ -137,7 +136,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 	{
 		base.Close();
 		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
-		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+		GameCon.guiHandler.defaultInventory.Deactive();
 
 		GameCon.guiHandler.defaultCrafting.gameObject.SetActive(false);
 		GameCon.guiHandler.defaultCrafting.SetBuilding(null);
