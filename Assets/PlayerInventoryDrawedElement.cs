@@ -3,22 +3,18 @@ using System.Collections;
 using UnityEngine.UI;
 
 [AddComponentMenu("Inventory/Inventory Element")]
-public class InventoryDrawedElement : MonoBehaviour
+public class PlayerInventoryDrawedElement : MonoBehaviour
 {
 	GameController GameCon;
 
-	public bool isPlayer;
+	//public bool isPlayer;
 	public string drawname_name;
 	public int amount;
 	public int index;
 
-	public IInventory other;
-	public IInventory thisinv;
-
-
 	public GameObject nameDisplay;
 	public GameObject amountDisplay;
-	public Button button;
+	public GameObject iconDesplay;
 
 
 	// Use this for initialization
@@ -30,18 +26,11 @@ public class InventoryDrawedElement : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (other == null)
-		{
-			button.gameObject.SetActive(false);
-		}
-		else
-		{
-			button.gameObject.SetActive(true);
-		}
 	}
 
 
 	#region Set
+	/*
 	public void Set(int setAmount)
 	{
 		this.amount = setAmount;
@@ -64,32 +53,22 @@ public class InventoryDrawedElement : MonoBehaviour
 		Set(setName);
 		Set(setAmount);
 	}
+	*/
 
-	public void Set(Item item, bool isp, IInventory o, IInventory t, int i)
+	public void Set(Item item, int i)
 	{
-		isPlayer = isp;
-		other = o;
-		thisinv = t;
+		//isPlayer = isp;
+		//other = o;
+		//thisinv = t;
 		index = i;
 
+		amount = item.amount;
+		amountDisplay.GetComponent<Text>().text = amount.ToString();
 
-		Set(item.amount);
-		Set(Language.Get(item, GameCon.language));
+		drawname_name = Language.Get(item, GameCon.language);
+		nameDisplay.GetComponent<Text>().text = drawname_name;
+
+		iconDesplay.GetComponent<Image>().sprite = item.texture;
 	}
 	#endregion
-
-
-	public void Transfer()
-	{
-		Debug.Log("Transfer");
-		if (Input.GetButton("Specific"))
-		{
-			thisinv.TransferItemAmount(other, index, 1);
-			return;
-		}
-
-
-		thisinv.TransferItem(other, index);
-
-	}
 }

@@ -112,13 +112,7 @@ public class GameController : MonoBehaviour
 
 	public void TogleAccesPanel()
 	{
-		TogleAccesPanel(null);
-		return;
-	}
-
-	public void TogleAccesPanel(Building other)
-	{
-		guiHandler.AccesPanel.TogelGui(other);
+		guiHandler.AccesPanel.TogelGui();
 	}
 
 	public void ChangeLanguage(int num)

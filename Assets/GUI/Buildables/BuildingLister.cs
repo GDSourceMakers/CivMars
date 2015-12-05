@@ -91,7 +91,8 @@ public class BuildingLister : MonoBehaviour, IHasGui
 		{
 			Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			TileVector pos = new TileVector(Mathf.Round(ray.x), -1 * Mathf.Round(ray.y));
+			TileVector pos = new TileVector(Mathf.Round(ray.x-0.5f), -1 * Mathf.Round(ray.y+0.5f
+				));
 
 			if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
 			{

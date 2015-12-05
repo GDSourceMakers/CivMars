@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-class PlayerStatsTabDesplay : MonoBehaviour, IAccesTab
+class PlayerStatsTabDesplay : MonoBehaviour
 {
 	GameController GameCon;
 	Player player;

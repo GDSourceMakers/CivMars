@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class InventoryDesplay : MonoBehaviour, IAccesTab
+public class InventoryDesplay : MonoBehaviour
 {
 	public GameObject InventoryCanvasPlayer;
 	public GameObject InventoryCanvasOther;
@@ -28,21 +28,9 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 
 	public void UpdateInventory()
 	{
-		if (other == null)
-		{
-			UpdateInventorySection(player, drawedInvPlayer, InventoryCanvasPlayer, true);
+		UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer, true);
 
-			foreach (GameObject item in drawedInvOther)
-			{
-				Destroy(item);
-			}
-		}
-		else
-		{
-			UpdateInventorySection(player, other, drawedInvPlayer, InventoryCanvasPlayer, true);
-
-			UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther, false);
-		}
+		UpdateInventorySection(other, player, drawedInvOther, InventoryCanvasOther, false);
 	}
 
 	void UpdateInventorySection(IInventory invThis, IInventory invOthe, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
@@ -89,6 +77,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 					actual.transform.SetSiblingIndex(i);
 
 					actual.GetComponent<InventoryDrawedElement>().Set(invThis.GetStackInSlot(i), isplayer, invOthe, invThis, i);
+					drawed[i] = actual;
 				}
 			}
 			//nics item
@@ -124,14 +113,14 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 		}
 
 		int a = invThis.GetInventorySize() / 3;
-        if (invThis.GetInventorySize() % 3 > 0)
+		if (invThis.GetInventorySize() % 3 > 0)
 		{
 			a++;
 		}
-		drawingCanvas.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (a * (50))+10);
-    }
+		drawingCanvas.GetComponent<RectTransform>().sizeDelta = new Vector2(0, (a * (50)) + 10);
+	}
 
-
+	/*
 	void UpdateInventorySection(IInventory invThis, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
 	{
 		for (int i = 0; i < invThis.GetInventorySize(); i++)
@@ -223,8 +212,34 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 			drawed[i] = actual;
 		}
 	}
+	*/
 
+	public void Activate(IInventory OtherInventory)
+	{
+		if (OtherInventory != null)
+		{
+			other = OtherInventory;
 
+			drawedInvOther = new GameObject[other.GetInventorySize()];
+
+			gameObject.SetActive(true);
+		}
+	}
+
+	public void Deactive()
+	{
+		other = null;
+
+		foreach (GameObject des in drawedInvOther)
+		{
+			Destroy(des);
+		}
+
+		gameObject.SetActive(false);
+
+	}
+
+/*
 	public void SetOtherInv(IInventory OtherInventory)
 	{
 		other = OtherInventory;
@@ -245,6 +260,7 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 			}
 		}
 	}
+*/
 
 	public void UpdateData()
 	{
@@ -255,11 +271,11 @@ public class InventoryDesplay : MonoBehaviour, IAccesTab
 	{
 		if (datas is IInventory)
 		{
-			SetOtherInv(((IInventory)datas));
+			Activate(((IInventory)datas));
 		}
 		else
 		{
-			SetOtherInv(null);
+			Deactive();
 		}
 	}
 }

@@ -37,10 +37,9 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 	{
 		if (invOn != States.Inv)
 		{
-			GameCon.guiHandler.defaultInventory.gameObject.SetActive(true);
 			GameCon.guiHandler.defaultGas.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(this);
+			GameCon.guiHandler.defaultInventory.Activate(this);
 			GameCon.guiHandler.defaultGas.SetOtherInv(null);
 			invOn = States.Inv;
 		}
@@ -48,7 +47,7 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 		{
 			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			invOn = States.None;
 		}
 	}
@@ -61,7 +60,7 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 			GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
 			GameCon.guiHandler.defaultGas.gameObject.SetActive(true);
 
-			GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+			GameCon.guiHandler.defaultInventory.Deactive();
 			GameCon.guiHandler.defaultGas.SetOtherInv(this);
 			invOn = States.Gas;
 		}
@@ -81,10 +80,12 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 	{
 		base.Close();
 		GameCon.guiHandler.defaultInventory.gameObject.SetActive(false);
-		GameCon.guiHandler.defaultInventory.SetOtherInv(null);
+		GameCon.guiHandler.defaultInventory.Deactive();
 
 		GameCon.guiHandler.defaultGas.gameObject.SetActive(false);
 		GameCon.guiHandler.defaultGas.SetOtherInv(null);
+
+		invOn = States.None;
 	}
 
 	#endregion

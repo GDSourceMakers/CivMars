@@ -20,6 +20,8 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	public float breathAmount = 1;
 	public int speed;
 
+	public float miningTime;
+
 	public void Start()
 	{
 		GetTankCluster().GetTank(0).gasType = GasType.Oxigen;
@@ -53,6 +55,14 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 				((CarbonDioxideHp) * 10)
 			) / Mathf.Pow(10, 2);
 		//Debug.Log("Deadly Carbon percent: " + CarbonDioxideHp + "  Deadly Oxigen percent: " + OxigenHp + "  health: "+ health);
+
+		Mine();
+
+		if (Input.GetButtonUp("Mine") && (GameCon.gameS == GameState.InGame) && mining == null)
+		{
+			Debug.Log("Mine");
+			MineStar();
+		}
 	}
 
 	public void Eat()
@@ -73,23 +83,34 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 
 	public void Mine()
 	{
-		Item mined;
+		if (mining != null)
+		{
+			if (miningTime > 0)
+			{
+				miningTime -= Time.deltaTime;
+			}
+			else
+			{
+				Item mined;
+				mined = ((Item)Activator.CreateInstance(mining.GetItemType()));
+				mined.amount = 1;
 
-		mined = ((Item)Activator.CreateInstance(((OreTile)mining).GetItemType()));
-		mined.amount = 1;
+				inventory.Add(mined);
 
-		inventory.Add(mined);
+				mining.Mine(1);
 
-		Debug.Log("Ore: " + ((OreTile)mining).GetAmountLeft() + " Item: " + mined.amount);
+				mining = null;
+			}
+		}
 
-		((OreTile)mining).Mine(1);
 	}
 
 	public void MineStar()
 	{
 
-		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x), -1 * (int)Mathf.Round(transform.position.y));
+		TileVector pos = new TileVector((int)Mathf.Round(transform.position.x-0.5f), -1 * (int)Mathf.Round(transform.position.y+0.5f));
 		TileTransform tile = GameCon.map.Generated.GetTileOn(pos);
+
 		if (tile != null)
 		{
 			OreTile ore = ((OreTile)tile.GetComponent<OreTile>());
@@ -97,16 +118,23 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 			if (ore.GetType() != null)
 			{
 				mining = ore;
-				GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
+				//GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
+				miningTime = ((OreTile)ore).GetMiningTime();
 			}
 		}
 
 	}
 
+	#region Tank
+
 	public GasTankCluster GetTankCluster()
 	{
 		return suit.GetTankCluster();
 	}
+
+	#endregion
+
+	#region IInventory
 
 	public int GetInventorySize()
 	{
@@ -162,5 +190,7 @@ public class Player : MonoBehaviour, IGasTank, IInventory
 	{
 		inventory.TransferItemAmount(Toinv, fromindex, transferingAmount);
 	}
+
+	#endregion
 }
 
