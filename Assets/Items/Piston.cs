@@ -25,7 +25,7 @@ class Piston : Item, IRegystratabe
     public void Regystrate()
     {
 
-        Item[] a = { new IronPlate(2), new IronIngot(1), new ControlCircuit(1) };
+        Item[] a = { new IronPlate(2), new IronIngot(1), new ControlCircuit(1), new IronPipe(2) };
         Recipe r = new Recipe("CivMars.Press", a, new Piston(1), 150);
         GameRegystry.RegisterRecepie(r.buildingID, r);
     }

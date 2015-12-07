@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class Roof : Item
+public class Roof : Item, IRegystratabe
 {
     public string name = "Roof";
 
