@@ -3,7 +3,8 @@ using System.Collections;
 using System;
 
 public class IronOreTile : OreTile
-{ 
+{
+	public string ID = CivMarsInit.BlockSpace + ".IronOre";
 
 
 	static Type item = typeof(IronOre);
@@ -19,7 +20,7 @@ public class IronOreTile : OreTile
 
 	override public void Regystrate()
 	{
-		GameRegystry.RegisterWorldGen(this);
+		GameRegystry.RegisterWorldGen(ID, this);
 	}
 
 	public override float GetMiningTime()

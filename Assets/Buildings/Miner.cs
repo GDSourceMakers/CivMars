@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 {
-	static public string ID = "CivMars.Miner";
+	public string ID = "CivMars.Miner";
 	static Item[] neededMaterials = { new SandOre(1) };
 	public Sprite icon;
 
@@ -109,6 +109,7 @@ public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
 	#region IRegystratabe
 	public void Regystrate()
 	{
+		base.ID = this.ID;
 		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 	#endregion

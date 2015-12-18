@@ -2,14 +2,16 @@
 using System.Collections;
 using System;
 
-public class OreTile : Tiled, IRegystratabe, IWorldGen
+public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 {
+	public string ID;
+
 	public float chanche = 0;
 	public float chanche2 = 0;
 	public float chancheReduce = 0;
 	public float distance = 0;
 
-	public float amount = 40;
+	public int amount = 40;
 
 	public virtual void Regystrate() { }
 
@@ -98,5 +100,22 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen
 			return true;
 		}
 		return false;
+	}
+
+	public SavedTile Save()
+	{
+		SavedOre s = new SavedOre(ID, amount);
+
+		return s;
+	}
+
+	public void Load(SavedTile data)
+	{
+		amount = ((SavedOre)data).amount;
+	}
+
+	public GameObject GetPrefab()
+	{
+		return this.gameObject;
 	}
 }

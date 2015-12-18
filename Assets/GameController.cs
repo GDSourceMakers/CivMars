@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
-	//Gui
+	
 	public GameState gameS;
+
+	//Gui
 	public int CanTurnOf;
 	IHasGui OpendGui;
-	public InventoryDesplay defaultInv;
 
 	public Map map;
 	public Player playerclass;
@@ -20,24 +26,45 @@ public class GameController : MonoBehaviour
 	//UI
 	public GUIHandler guiHandler;
 
-	public AssetsLoader buildingRegistry;
+	public AssetsLoader Registry;
 
-	public bool gameIsOn = false;
+	//Map
+	public SavedMapData mapData;
 
-	
+	//Loading
+	AsyncOperation loadingmap;
 
-
+	//Saved
+	public List<SavedMapData.DisplayDeteals> savedMaps = new List<SavedMapData.DisplayDeteals>();
 
 	void Awake()
 	{
-		buildingRegistry = this.GetComponent<AssetsLoader>();
+		Registry = this.GetComponent<AssetsLoader>();
 	}
 
 	void Start()
 	{
+		Registry.CallRegister();
+
+		loadingmap = new AsyncOperation();
 		DontDestroyOnLoad(transform.gameObject);
-		buildingRegistry.CallRegister();
+		StartCoroutine(LoadLevel("Start"));
+
 		gameS = GameState.MainManu;
+	}
+
+
+	public IEnumerator LoadLevel(string a)
+	{
+
+		loadingmap = SceneManager.LoadSceneAsync(a);
+
+		while (!loadingmap.isDone)
+		{
+			yield return loadingmap;
+		}
+
+		loadingmap = null;
 	}
 
 	public void Update()
@@ -49,6 +76,18 @@ public class GameController : MonoBehaviour
 		else if(gameS != GameState.MainManu)
 		{
 			playerclass.GetComponent<Rigidbody2D>().isKinematic = false;
+		}
+	}
+
+	public bool HasOpendGui()
+	{
+		if (OpendGui == null)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
 		}
 	}
 
@@ -79,6 +118,10 @@ public class GameController : MonoBehaviour
 
 	public void CloseGUI(IHasGui hasGui)
 	{
+		if (OpendGui != null)
+		{
+			OpendGui.Close();
+		}
 		OpendGui = null;
 		gameS = GameState.InGame;
 		CanTurnOf = -1;
@@ -86,21 +129,18 @@ public class GameController : MonoBehaviour
 
 	void OnLevelWasLoaded(int level)
 	{
-		if (level == 1)
+		if (SceneManager.GetActiveScene().name == "Main")
 		{
 			guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
 			map = GameObject.Find("Map").GetComponent<Map>();
 			playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-			if (Application.loadedLevelName == "Main" && !gameIsOn)
+			if (gameS == GameState.MainManu)
 			{
-
 				Debug.Log("Jeej!");
 
-				map.BuildMap();
-				map.AddBasicBuildings();
+				map.LoadMap(mapData);
 
-				gameIsOn = true;
 				gameS = GameState.InGame;
 
 				Camera.main.GetComponent<CameraChase>().MapLoaded();
@@ -120,4 +160,57 @@ public class GameController : MonoBehaviour
 		language = num;
 	}
 
+	public void LoadMaps()
+	{
+		string[] files = Directory.GetFiles("./saves", "*.ddc", SearchOption.AllDirectories);
+
+		for (int i = 0; i < savedMaps.Count; i++)
+		{
+			savedMaps.RemoveAt(i);
+		}
+
+		foreach (string file in files)
+		{
+			IFormatter formatter = new BinaryFormatter();
+			Stream stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
+			SavedMapData.DisplayDeteals obj = (SavedMapData.DisplayDeteals)formatter.Deserialize(stream);
+			savedMaps.Add(obj);
+			stream.Close();
+		}
+	}
+
+	public SavedMapData GetSavedMap(string path)
+	{
+		IFormatter formatter = new BinaryFormatter();
+		Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+		SavedMapData obj = (SavedMapData)formatter.Deserialize(stream);
+		stream.Close();
+
+		return obj;
+	}
+
+
+	public void SaveMap()
+	{
+		mapData = map.Save();
+
+		DirectoryInfo a = Directory.CreateDirectory("./saves/" + mapData.name);
+
+		IFormatter formatter = new BinaryFormatter();
+		Stream stream = new FileStream("./saves/" + mapData.name +"/" +mapData.name+".bin", FileMode.Create, FileAccess.Write, FileShare.None);
+		formatter.Serialize(stream, mapData);
+		stream.Close();
+
+		//IFormatter formatter = new BinaryFormatter();
+		stream = new FileStream("./saves/" + mapData.name + "/" + mapData.name + ".ddc", FileMode.Create, FileAccess.Write, FileShare.None);
+		formatter.Serialize(stream, mapData.GetDeteails());
+		stream.Close();
+
+	}
+
+	public void QuitGame()
+	{
+		SceneManager.LoadScene("Start");
+		gameS = GameState.MainManu;
+	}
 }

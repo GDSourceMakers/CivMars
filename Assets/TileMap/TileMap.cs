@@ -24,11 +24,14 @@ public class TileMap : MonoBehaviour
 	public GameObject BackgroundLayer;
 	public GameObject ForegroundLayer;
 
+
+
+	#region Colliders
 	public BoxCollider2D TopCollider;
 	public BoxCollider2D LeftCollider;
 	public BoxCollider2D BottomCollider;
 	public BoxCollider2D RighttCollider;
-
+	#endregion
 
 	public void Awake()
 	{
@@ -409,4 +412,7 @@ public class TileMap : MonoBehaviour
 		//	return BackgroundLayer[v.x, v.y];
 		//}
 	}
+
+
+
 }

@@ -4,6 +4,7 @@ using System;
 
 public class UraniumOreTile : OreTile
 {
+	public string ID = CivMarsInit.BlockSpace + ".UraniumOre";
 
 
 	static Type item = typeof(UraniumOre);
@@ -19,7 +20,7 @@ public class UraniumOreTile : OreTile
 
 	override public void Regystrate()
 	{
-		GameRegystry.RegisterWorldGen(this);
+		GameRegystry.RegisterWorldGen(ID, this);
 	}
 
 	public override float GetMiningTime()
