@@ -144,7 +144,8 @@ public class GreenHouse : Building, IInventory, IHasGui, IBuildable, IRegystrata
 
     public void Regystrate()
     {
-        GameRegystry.RegisterBuildableBuilding(ID, this);
+		base.ID = this.ID;
+		GameRegystry.RegisterBuildableBuilding(ID, this);
     }
 
     #endregion

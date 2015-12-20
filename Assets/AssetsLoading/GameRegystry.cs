@@ -7,6 +7,8 @@ using UnityEngine;
 
 static class GameRegystry
 {
+	public static Dictionary<string, IRegystratabe> all = new Dictionary<string, IRegystratabe>();
+
 	public static Dictionary<String,Building> buildings = new Dictionary<String, Building>();
 
 	public static void RegisterBuildableBuilding(string ID, Building b)
@@ -18,12 +20,12 @@ static class GameRegystry
 		}
 	}
 
+	public static Dictionary<string, IWorldGen> ores = new Dictionary<string, IWorldGen>();
+	//public static List<IWorldGen> ores = new List<IWorldGen>();
 
-	public static List<IWorldGen> ores = new List<IWorldGen>();
-
-	public static void RegisterWorldGen(IWorldGen b)
+	public static void RegisterWorldGen(string ID,IWorldGen b)
 	{
-		ores.Add(b);
+		ores.Add(ID,b);
 		Debug.Log(b.ToString());
 	}
 

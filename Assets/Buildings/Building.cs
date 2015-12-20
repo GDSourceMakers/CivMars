@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [AddComponentMenu("Buildings/Building")]
-public class Building : Tiled, IHasGui, IPointerClickHandler
+public class Building : Tiled, IHasGui, IPointerClickHandler, ISaveble
 {
+	public string ID;
 
 	public List<Item> buildingMaterials;
 
@@ -61,6 +62,25 @@ public class Building : Tiled, IHasGui, IPointerClickHandler
 	{
 		if (!eventData.rawPointerPress.transform.IsChildOf(Graphicks.transform))
 			TogelGui();
+	}
+	#endregion
+
+	#region ISaveble
+
+	public virtual SavedTile Save()
+	{
+		SavedTile s = new SavedTile(ID);
+		return s;
+	}
+
+	public void Load(SavedTile data)
+	{
+		throw new NotImplementedException();
+	}
+
+	public GameObject GetPrefab()
+	{
+		throw new NotImplementedException();
 	}
 	#endregion
 }

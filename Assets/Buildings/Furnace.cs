@@ -16,7 +16,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 
 	public List<CraftingProcess> craftingQueue = new List<CraftingProcess>();
 
-	static public string ID = "CivMars.Furnace";
+	public string ID = "CivMars.Furnace";
 	static Item[] neededMaterials = { new SandOre(1) };
 	public Sprite icon;
 
@@ -148,6 +148,7 @@ public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui,
 
 	public void Regystrate()
 	{
+		base.ID = this.ID;
 		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 

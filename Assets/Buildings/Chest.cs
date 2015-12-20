@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 
 [AddComponentMenu("Buildings/Chest")]
-public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
+public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui, ISaveble
 {
-	static public string ID = "CivMars.Chest";
+	new public static string ID = CivMarsInit.BlockSpace + ".Chest";
 
 	public Text Name;
 	public Text InventoryButtonText;
@@ -83,6 +83,7 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 	public void Regystrate()
 	{
+		base.ID = ID;
 		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 
@@ -146,4 +147,21 @@ public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui
 
 
 	#endregion
+
+	public override SavedTile Save()
+	{
+		return new Saved(this);
+	}
+
+	[Serializable]
+	public class Saved : SavedTile
+	{
+		Inventory inv;
+
+		public  Saved(Chest c):base(Chest.ID)
+		{
+			inv = c.inventory;
+		}
+	}
 }
+

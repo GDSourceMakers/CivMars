@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 
-public class PlanedBuilding : Building
+public class PlanedBuilding : Building, ISaveble, IRegystratabe
 {
+	public new string ID = CivMarsInit.BlockSpace + ".PlanedBuilding";
+
 	Item[] Materials = new Item[1];
 	int[] MaterialsAmount;
 
@@ -181,5 +183,11 @@ public class PlanedBuilding : Building
 				
 			}
 		}
+	}
+
+	public void Regystrate()
+	{
+		base.ID = this.ID;
+		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 }

@@ -5,24 +5,28 @@ using System.Text;
 
 class CoalOreTile : OreTile
 {
+	public new string ID = CivMarsInit.BlockSpace + ".CoalOre";
 
 	static Type item = typeof(CoalOre);
 
 
 	public override void Generate(System.Random r, TileMap map)
 	{
-		chanche = 120;
-		chanche2 = 10;
-		chancheReduce = 5;
-		distance = -1;
-		
 		base.Generate(r, map);
 	}
 
 
 	override public void Regystrate()
 	{
-		GameRegystry.RegisterWorldGen(this);
+		base.ID = this.ID;
+
+		chanche = 0;
+		chanche2 = 250;
+		chancheReduce = 5;
+		distance = -1;
+
+
+		GameRegystry.RegisterWorldGen(ID,this);
 	}
 
 	public override float GetMiningTime()

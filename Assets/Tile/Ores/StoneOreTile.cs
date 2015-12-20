@@ -4,7 +4,7 @@ using System;
 
 public class StoneOreTile : OreTile
 {
-
+	public string ID = CivMarsInit.BlockSpace + ".StoneOre";
 
 	static Type item = typeof(StoneOre);
 
@@ -14,7 +14,7 @@ public class StoneOreTile : OreTile
 		chanche2 = 220;
 		chancheReduce = 20;
 		distance = -1;
-		GameRegystry.RegisterWorldGen(this);
+		GameRegystry.RegisterWorldGen(ID, this);
 	}
 
 	public override void Generate(System.Random r, TileMap map)

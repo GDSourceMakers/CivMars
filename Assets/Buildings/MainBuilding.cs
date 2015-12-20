@@ -4,7 +4,7 @@ using UnityEngine;
 
 [AddComponentMenu("Buildings/Main Building")]
 [System.Serializable]
-public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
+public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe, ISaveble
 {
 	enum States
 	{
@@ -13,7 +13,7 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 		Gas
 	}
 
-	static public string ID = "CivMars.MainBuilding";
+	public static string ID = "CivMars.MainBuilding";
 
 	public Text Name;
 	public Text InventoryButtonText;
@@ -158,11 +158,31 @@ public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe
 	#region IRgeistraste
 	public void Regystrate()
 	{
+		base.ID = ID;
 		GameRegystry.RegisterBuildableBuilding(ID, this);
 	}
 	#endregion
 
+	public GameObject GetPrefab()
+	{
+		return gameObject;
+	}
 
+	public override SavedTile Save()
+	{
+		return new Saved(this);
+	}
+
+	[Serializable]
+	public class Saved : SavedTile
+	{
+		Inventory inv;
+
+		public Saved(MainBuilding c) : base(MainBuilding.ID)
+		{
+			inv = c.inventory;
+		}
+	}
 }
 
 

@@ -2,7 +2,8 @@
 using System.Collections;
 
 [RequireComponent(typeof(TileTransform))]
-public class Tiled : MonoBehaviour {
+public class Tiled : MonoBehaviour
+{
 
 	new public TileTransform transform;
 
