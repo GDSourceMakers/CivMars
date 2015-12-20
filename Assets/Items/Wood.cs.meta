@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Items/Wood.cs.meta
 guid: 353b7bbc064e4924b95183d4b2fe7921
 timeCreated: 1449253873
+=======
+guid: 7a8c4fa770e6a8a40958e41246421235
+timeCreated: 1449255086
+>>>>>>> 8bab1ba1b4fc542a3ef95a7679880a0e5891e788:Assets/Items/ControlCircuit.cs.meta
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
