@@ -8,6 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Collections.Generic;
 
+using CivMarsEngine.Registry;
+
 public class GameController : MonoBehaviour
 {
 	

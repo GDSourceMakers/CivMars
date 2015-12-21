@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
- 
-    public class Generator:Building
-    {
+namespace CivMars
+{
+	public class Generator : Building
+	{
 
-        public MainBuilding main;
-        public int internalsorage;
+		public MainBuilding main;
+		public int internalsorage;
 
-        public void Gen()
-        {}
-        
+		public void Gen()
+		{ }
 
-        public void Transfer()
-        {
-            if (this.internalsorage > 1)
-            {
-                //main.Inventory =+ this.internalsorage;
-            }
-        }
 
-    }
+		public void Transfer()
+		{
+			if (this.internalsorage > 1)
+			{
+				//main.Inventory =+ this.internalsorage;
+			}
+		}
 
+	}
+
+}

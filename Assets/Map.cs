@@ -50,10 +50,10 @@ public class Map : MonoBehaviour
 		int xMpos;
 		xMpos = mapHeight / 2;
 
-		TileTransform mainBuilding = Instantiate(GameRegystry.buildings[MainBuilding.ID].gameObject).GetComponent<TileTransform>();
+		TileTransform mainBuilding = Instantiate(GameRegystry.buildings[CivMars.MainBuilding.ID].gameObject).GetComponent<TileTransform>();
 		Buildings.SetTile(xMpos, xMpos, mainBuilding);
 
-		TileTransform chest = Instantiate(GameRegystry.buildings[Chest.ID].gameObject).GetComponent<TileTransform>();
+		TileTransform chest = Instantiate(GameRegystry.buildings[CivMars.Chest.ID].gameObject).GetComponent<TileTransform>();
 		Buildings.SetTile(xMpos+5, xMpos+5, chest);
 
 	}

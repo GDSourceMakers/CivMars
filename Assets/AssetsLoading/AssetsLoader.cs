@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using CivMars;
 
-public class AssetsLoader : MonoBehaviour
+namespace CivMarsEngine.Registry
 {
-
-	public void CallRegister()
+	public class AssetsLoader : MonoBehaviour
 	{
-		
 
-		CivMarsInit.Init();
+		public void CallRegister()
+		{
+
+
+			CivMarsInit.Init();
+
+		}
 
 	}
 
 }
-
