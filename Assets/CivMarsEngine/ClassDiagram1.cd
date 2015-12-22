@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CivMarsEngine.BuildingWGUI" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAIBIAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\BuildingWGUI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CivMarsEngine.Recipe" Collapsed="true">
+    <Position X="5.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEABAAAAAAAAAAAAAAAAAAAACAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Crafting\Recipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.GameController" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAwAEAQAASgAAAiCACIAIMIEQAABAAAABEAAAAAAAEA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.GasTank" Collapsed="true">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAEAAgAEQAAAAAIgCAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GasSystem\GasTank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.GasTankCluster" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAgAIAAAAAAgAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GasSystem\GasTankCluster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.AccesPanel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAACAAIBIAACgIAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\AccesPanel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CivMarsEngine.GasDesplay" Collapsed="true">
+    <Position X="2" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIYAAAAIECAQAAAAAgCAAAAAgAIAAAABBAQAgAQQgAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\GasDesplay\GasDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.GasDesplayElement" Collapsed="true">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAABDAEhAQAAAAAAAAAAAAEgAAAAAAgAARQAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\GasDesplay\GasDesplayElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.InventoryDesplay" Collapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAkCAAEABAAgCAAAAAAAAAQEABAAACAAwAAQA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\InventoryDesplay\InventoryDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.InventoryDrawedElement" Collapsed="true">
+    <Position X="5.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAABAIAACBQAAAAAAAQAAAAAEgAAAAAAAAAQBgEA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\InventoryDesplay\InventoryDrawedElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.PlayerStatsTabDesplay" Collapsed="true">
+    <Position X="2" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAECAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAg=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Access Panel\PlayerStatsDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.BuildingLister" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAACAAIBIBjAACgAAAAAABAAAEAAAAISCAAIA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Buildables\BuildingLister.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CivMarsEngine.CraftingDesplay" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACSAAIAEAKAAINCwAAAABAICQAABAAABEAAEEAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Crafting Desplay\CraftingDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.CraftingProcess" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAQAAAAAAQAAAAAAEAgAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Crafting Desplay\CraftingProcess.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.QueueItem" Collapsed="true">
+    <Position X="3.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABABAAAAABAAAEAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Crafting Desplay\QueueItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.RecipeButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAiAAAABAAAAAAAAAAAAgAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Crafting Desplay\RecipeButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CivMarsEngine.PlayerInventory" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAEAAAAgAAAAAAAAAAAAABAAACAAgAAQA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Inventory\PlayerInventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.PlayerInventoryDrawedElement" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAIAACBAAAAAAAAAAAAAIAgAAAAAAAAAABgEA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Inventory\PlayerInventoryDrawedElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.NewMap" Collapsed="true">
+    <Position X="10.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAAAAACAAAAAAAIAAAAAAAAABAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\MapListing\NewMap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.SavedMapLister" Collapsed="true">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAAAAABAAAAAAIgAAAACAAAEAAAQAEAAAAAAAEA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\MapListing\SavedMapLister.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.PlayerStatsSidebarDesplay" Collapsed="true">
+    <Position X="10.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQACAAAACAAgAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\PlayerStats\PlayerStatsSidebarDesplay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.InputHandler" Collapsed="true">
+    <Position X="10.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\CivMarsEngine\InputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.Inventory" Collapsed="true">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAgAAAAAAABAAIAABAAAAAAIAAACAAAAAAAASAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\InventorySystem\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CivMarsEngine.Player" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AF4IACAAECAAUCAEAAAAhAAAoACAAQACFCAAAAAASAg=</HashCode>
+      <FileName>Assets\CivMarsEngine\Player\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CivMarsEngine.SpaceSuit" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Player\SpaceSuit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GUIHandler" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACAAAAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\GUIHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseTab" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAgAAAAyAAIBIAAAAAAAAAAAAAAAAAAAAAAACIAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\PauseTab.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Language" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map" Collapsed="true">
+    <Position X="9" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQAJAAACAAQAAAAAAAAAEAAAAAAABADAAAAEACAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMovment" Collapsed="true">
+    <Position X="9" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAgAAAAAAAAAAAAAAAAAQAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Player\PlayerMovment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CivMarsEngine.IGasTank" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GasSystem\IGasTank.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.IBuildable" Collapsed="true">
+    <Position X="2" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgCAAAAAAAAAAAAAAQAhAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\IBuildable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.ICrafter" Collapsed="true">
+    <Position X="3.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAQAAAACBAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\ICrafter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.IHasGui" Collapsed="true">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBIAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\IHasGui.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.IRegystratabe" Collapsed="true">
+    <Position X="10.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\IRegystratabe.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.ISaveble" Collapsed="true">
+    <Position X="2" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\ISaveble.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.IWorldGen" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\Interfaces\IWorldGen.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CivMarsEngine.IInventory" Collapsed="true">
+    <Position X="9" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAAAAECAAAAAAhAAAgAAAAAAABAAAAAAASAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\InventorySystem\IInventory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CivMarsEngine.GasType" Collapsed="true">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIAIAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GasSystem\GasType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CivMarsEngine.BuildingListerStates" Collapsed="true">
+    <Position X="2" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABBAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GUI\Buildables\BuildingLister.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameState" Collapsed="true">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\CivMarsEngine\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
