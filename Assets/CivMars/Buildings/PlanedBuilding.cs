@@ -6,7 +6,7 @@ using System;
 
 namespace CivMarsEngine
 {
-	public class PlanedBuilding : Building, ISaveble, IRegystratabe
+	public class PlanedBuilding : BuildingWGUI, ISaveble, IRegystratabe
 	{
 		public new string ID = "CivMarsEngine.PlanedBuilding";
 

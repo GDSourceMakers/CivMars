@@ -1,4 +1,6 @@
-﻿namespace CivMars
+﻿using CivMarsEngine;
+
+namespace CivMars
 {
 	class ControllChip : Item, IRegystratabe
 	{

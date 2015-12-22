@@ -3,11 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using CivMarsEngine;
 
 namespace CivMars
 {
 	[AddComponentMenu("Buildings/Chest")]
-	public class Chest : Building, IInventory, IBuildable, IRegystratabe, IHasGui, ISaveble
+	public class Chest : BuildingWGUI, IInventory, IBuildable, IRegystratabe, IHasGui, ISaveble
 	{
 		new public static string ID = CivMarsInit.BlockSpace + ".Chest";
 
@@ -18,7 +19,7 @@ namespace CivMars
 
 		public Sprite Icon;
 
-		static Item[] buildingMaterials = { new SandOre(2) };
+		static new Item[] buildingMaterials = { new SandOre(2) };
 
 		bool invOn;
 
@@ -57,7 +58,7 @@ namespace CivMars
 			return Icon;
 		}
 
-		public GameObject GetPrefab()
+		public override GameObject GetPrefab()
 		{
 			return gameObject;
 		}

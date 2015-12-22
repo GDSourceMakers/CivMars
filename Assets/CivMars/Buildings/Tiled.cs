@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(TileTransform))]
-public class Tiled : MonoBehaviour
+namespace CivMarsEngine
 {
 
-	new public TileTransform transform;
+	[RequireComponent(typeof(TileTransform))]
+	public class Tiled : MonoBehaviour
+	{
 
-	protected GameController GameCon;
+		new public TileTransform transform;
 
-	// Use this for initialization
-	public virtual void Awake () {
-		transform = GetComponent<TileTransform>();
+		protected GameController GameCon;
 
-		GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		if (GameCon == null)
+		// Use this for initialization
+		public virtual void Awake()
 		{
-			Debug.LogErrorFormat("Can't find the GameController", this);
-		}
+			transform = GetComponent<TileTransform>();
 
+			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+			if (GameCon == null)
+			{
+				Debug.LogErrorFormat("Can't find the GameController", this);
+			}
+
+		}
 	}
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine.UI;
 using UnityEngine;
-
+using CivMarsEngine;
 
 namespace CivMars
 {
 	[AddComponentMenu("Buildings/Main Building")]
 	[System.Serializable]
-	public class MainBuilding : Building, IInventory, IGasTank, IRegystratabe, ISaveble
+	public class MainBuilding : BuildingWGUI, IInventory, IGasTank, IRegystratabe, ISaveble
 	{
 		enum States
 		{
@@ -16,7 +16,7 @@ namespace CivMars
 			Gas
 		}
 
-		public static string ID = "CivMars.MainBuilding";
+		new public static string ID = "CivMars.MainBuilding";
 
 		public Text Name;
 		public Text InventoryButtonText;
@@ -166,7 +166,7 @@ namespace CivMars
 		}
 		#endregion
 
-		public GameObject GetPrefab()
+		public override GameObject GetPrefab()
 		{
 			return gameObject;
 		}

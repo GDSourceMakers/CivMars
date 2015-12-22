@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using CivMarsEngine;
 
 namespace CivMars
 {
-	public class Furnace : Building, IRegystratabe, IBuildable, IInventory, IHasGui, ICrafter
+	public class Furnace : BuildingWGUI, IRegystratabe, IBuildable, IInventory, IHasGui, ICrafter
 	{
 
 		enum States
@@ -18,7 +19,7 @@ namespace CivMars
 
 		public List<CraftingProcess> craftingQueue = new List<CraftingProcess>();
 
-		public string ID = "CivMars.Furnace";
+		public new string ID = "CivMars.Furnace";
 		static Item[] neededMaterials = { new SandOre(1) };
 		public Sprite icon;
 
@@ -168,7 +169,7 @@ namespace CivMars
 			return icon;
 		}
 
-		public GameObject GetPrefab()
+		public override GameObject GetPrefab()
 		{
 			return gameObject;
 		}

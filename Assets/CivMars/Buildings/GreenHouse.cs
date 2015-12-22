@@ -2,15 +2,16 @@
 using System.Collections;
 using System;
 using UnityEngine.UI;
+using CivMarsEngine;
 
 namespace CivMars
 {
-	public class GreenHouse : Building, IInventory, IHasGui, IBuildable, IRegystratabe
+	public class GreenHouse : BuildingWGUI, IInventory, IHasGui, IBuildable, IRegystratabe
 	{
 		Inventory storage = new Inventory(5);
 		public Sprite icon;
 		Item[] x = { new IronPlate(1), new GlassPlane(1), new Sapling(1) };
-		string ID = "CivMars.GreenHouse";
+		new string ID = "CivMars.GreenHouse";
 		float timeleft = 6000;
 		bool onoff = false;
 
@@ -119,7 +120,7 @@ namespace CivMars
 			return icon;
 		}
 
-		public GameObject GetPrefab()
+		public override GameObject GetPrefab()
 		{
 			return this.gameObject;
 		}

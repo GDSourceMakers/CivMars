@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Item
 {
+	public string name;
 	public int amount;
 	public int maxStackSize;
 	public Sprite texture;

@@ -1,9 +1,11 @@
-﻿namespace CivMars
+﻿using CivMarsEngine;
+
+namespace CivMars
 {
 	class PlasticPlate : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public PlasticPlate(int am) : base(am, 30)

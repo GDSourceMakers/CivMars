@@ -1,12 +1,13 @@
 ﻿using System;
+using CivMarsEngine;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CivMars
 {
-	public class Miner : Building, IInventory, IHasGui, IRegystratabe, IBuildable
+	public class Miner : BuildingWGUI, IInventory, IHasGui, IRegystratabe, IBuildable
 	{
-		public string ID = "CivMars.Miner";
+		new public string ID = "CivMars.Miner";
 		static Item[] neededMaterials = { new SandOre(1) };
 		public Sprite icon;
 
@@ -127,7 +128,7 @@ namespace CivMars
 			return icon;
 		}
 
-		public GameObject GetPrefab()
+		public override GameObject GetPrefab()
 		{
 			return gameObject;
 		}

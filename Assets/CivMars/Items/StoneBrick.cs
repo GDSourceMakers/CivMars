@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CivMarsEngine;
 using UnityEngine;
 
 namespace CivMars
 {
 	public class StoneBrick : Item, IRegystratabe
 	{
-		public string name = "StoneBrick";
+		new public string name = "StoneBrick";
 
 
 		public StoneBrick(int am) : base(am, 100)

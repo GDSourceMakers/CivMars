@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using CivMarsEngine;
 
 public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 {

@@ -1,4 +1,6 @@
 ﻿
+using CivMarsEngine;
+
 namespace CivMars
 {
 	class CopperOre : Item, IRegystratabe

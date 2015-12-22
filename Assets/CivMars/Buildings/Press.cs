@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using CivMarsEngine;
 
 namespace CivMars
 {
-	public class Press : Building, IInventory, IHasGui, IRegystratabe, ICrafter, IBuildable
+	public class Press : BuildingWGUI, IInventory, IHasGui, IRegystratabe, ICrafter, IBuildable
 	{
 
 		enum States
@@ -18,7 +19,7 @@ namespace CivMars
 
 		public List<CraftingProcess> craftingQueue = new List<CraftingProcess>();
 
-		static public string ID = "CivMars.Press";
+		new static public string ID = "CivMars.Press";
 		static Item[] neededMaterials = { new SandOre(1) };
 		public Sprite icon;
 
