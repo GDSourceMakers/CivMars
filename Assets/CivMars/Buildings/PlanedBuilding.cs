@@ -31,8 +31,6 @@ namespace CivMarsEngine
 		public override void Awake()
 		{
 			base.Awake();
-			Graphicks.SetActive(false);
-			this.Graphicks.transform.position = Vector3.zero;
 		}
 
 		void Start()

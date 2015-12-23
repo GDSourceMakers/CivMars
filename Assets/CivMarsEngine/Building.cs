@@ -13,7 +13,7 @@ namespace CivMarsEngine
 
 		//public List<Item> buildingMaterials;
 
-		public GameObject Graphicks;
+		public GameObject graphics;
 		public bool guion;
 
 		public override void Awake()
@@ -21,11 +21,7 @@ namespace CivMarsEngine
 			base.Awake();
 		}
 
-		public void PositionUpdate()
-		{
-			Graphicks.SetActive(false);
-			this.Graphicks.transform.position = Vector3.zero;
-		}
+
 
 		
 

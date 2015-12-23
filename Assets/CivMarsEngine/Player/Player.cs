@@ -22,6 +22,7 @@ namespace CivMarsEngine
 		public int speed;
 
 		public float miningTime;
+		public float fullMiningTime;
 
 		public void Start()
 		{
@@ -62,7 +63,7 @@ namespace CivMarsEngine
 			if (Input.GetButtonUp("Mine") && (GameCon.gameS == GameState.InGame) && mining == null)
 			{
 				Debug.Log("Mine");
-				MineStar();
+				StartMine();
 			}
 		}
 
@@ -106,7 +107,7 @@ namespace CivMarsEngine
 
 		}
 
-		public void MineStar()
+		public void StartMine()
 		{
 
 			TileVector pos = new TileVector((int)Mathf.Round(transform.position.x - 0.5f), -1 * (int)Mathf.Round(transform.position.y + 0.5f));
@@ -120,7 +121,8 @@ namespace CivMarsEngine
 				{
 					mining = ore;
 					//GameCon.guiHandler.actions[0].Action(((OreTile)ore).GetMiningTime(), "Mine");
-					miningTime = ((OreTile)ore).GetMiningTime();
+					fullMiningTime = ((OreTile)ore).GetMiningTime();
+					miningTime = fullMiningTime;
 				}
 			}
 
