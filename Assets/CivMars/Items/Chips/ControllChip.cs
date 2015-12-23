@@ -5,7 +5,7 @@ namespace CivMars
 	class ControllChip : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public ControllChip(int am) : base(am, 30)

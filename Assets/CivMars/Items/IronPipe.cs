@@ -9,7 +9,7 @@ namespace CivMars
 {
 	public class IronPipe : Item, IRegystratabe
 	{
-		public string name = "IronPipe";
+        new public string name = "IronPipe";
 		public IronPipe(int am) : base(am, 10)
 		{
 			texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.IronPipe");

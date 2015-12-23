@@ -8,7 +8,7 @@ namespace CivMars
 {
 	public class IronIngot : Item, IRegystratabe
 	{
-		public string name = "IronIngot";
+		new public string name = "IronIngot";
 
 
 		public IronIngot(int am) : base(am, 10)

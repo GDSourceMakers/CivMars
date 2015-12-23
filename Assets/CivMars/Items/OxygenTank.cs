@@ -9,7 +9,7 @@ namespace CivMars
 	class OxygenTank : Item, IRegystratabe
 	{
 
-		public string name = "OxygenTank";
+        new public string name = "OxygenTank";
 
 
 		public OxygenTank(int am) : base(am, 3)

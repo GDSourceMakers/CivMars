@@ -5,7 +5,7 @@ namespace CivMars
 	class Resin : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public Resin(int am) : base(am, 30)

@@ -7,7 +7,7 @@ namespace CivMars
 {
 	public class UraniumOreTile : OreTile
 	{
-		public string ID = CivMarsInit.BlockSpace + ".UraniumOre";
+        new public string ID = CivMarsInit.BlockSpace + ".UraniumOre";
 
 
 		static Type item = typeof(UraniumOre);

@@ -10,7 +10,7 @@ namespace CivMars
 {
 	public class IronPlate : Item, IRegystratabe
 	{
-		public string name = "IronPlate";
+        new public string name = "IronPlate";
 
 		public IronPlate(int am) : base(am, 10)
 		{

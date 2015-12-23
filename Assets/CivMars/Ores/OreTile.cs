@@ -31,7 +31,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 
 				bool k = map.HasTileOn(pos);
 
-				if (r.Next(0,1000) <= chanche && first && k)
+				if (r.Next(0,1000000) <= chanche && first && k)
 				{
 					first = true;
 					GameObject a = Instantiate(this.gameObject);

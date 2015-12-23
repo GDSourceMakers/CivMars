@@ -8,7 +8,7 @@ using UnityEngine;
 class Wood : Item
 {
 
-    public string name = "Wood";
+    new public string name = "Wood";
 
 
     public Wood(int am) : base(am, 10)

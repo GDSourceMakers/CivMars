@@ -14,6 +14,7 @@ namespace CivMars
 		new string ID = "CivMars.GreenHouse";
 		float timeleft = 6000;
 		bool onoff = false;
+        System.Random random = new System.Random();
 
 		// Use this for initialization
 		void Start()
@@ -29,8 +30,9 @@ namespace CivMars
 				timeleft -= Time.deltaTime;
 				if (timeleft <= 0)
 				{
-					storage.Add(new Wood(10));
-					storage.Add(new Sapling(3));
+					storage.Add(new Wood(random.Next(5,15)));
+					storage.Add(new Sapling(random.Next(1,4)));
+                    storage.Add(new Resin(random.Next(0,2)));
 					if (storage.Remove(new Sapling(1)) != null)
 					{
 						timeleft = 6000;

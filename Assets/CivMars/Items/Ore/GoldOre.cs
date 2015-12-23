@@ -5,18 +5,18 @@ namespace CivMars
 	class GoldOre : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+        new public string name = "GoldOre";
 
 
 		public GoldOre(int am) : base(am, 30)
 		{
-			texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.ControlCircuit");
+			texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.GoldOre");
 			maxStackSize = 30;
 		}
 
 		public GoldOre()
 		{
-			texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.ControlCircuit");
+			texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.GoldOre");
 			maxStackSize = 30;
 		}
 

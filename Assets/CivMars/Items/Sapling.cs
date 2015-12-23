@@ -8,7 +8,7 @@ using UnityEngine;
 class Sapling : Item
 {
 
-    public string name = "Sapling";
+    new public string name = "Sapling";
 
 
     public Sapling(int am) : base(am, 30)

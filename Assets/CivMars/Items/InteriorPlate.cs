@@ -9,7 +9,7 @@ namespace CivMars
 {
 	public class InteriorPlate : Item, IRegystratabe
 	{
-		public string name = "InteriorPlate";
+		new public string name = "InteriorPlate";
 
 		public InteriorPlate(int am) : base(am, 30)
 		{

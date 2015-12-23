@@ -8,7 +8,7 @@ namespace CivMars
 {
 	class RadioTransmitterChip : Item, IRegystratabe
 	{
-		public string name = "RadioTransmitterChip";
+		new public string name = "RadioTransmitterChip";
 
 
 		public RadioTransmitterChip(int am) : base(am, 30)

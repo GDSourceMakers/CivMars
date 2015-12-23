@@ -3,26 +3,26 @@ using CivMarsEngine;
 
 namespace CivMars
 {
-	class CopperOre : Item, IRegystratabe
-	{
+    class CopperOre : Item, IRegystratabe
+    {
 
-		public string name = "ControlCircuit";
+        new public string name = "CopperOre";
 
 
-		public CopperOre(int am) : base(am, 30)
-		{
-			texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.ControlCircuit");
-			maxStackSize = 30;
-		}
+        public CopperOre(int am) : base(am, 30)
+        {
+            texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.CopperOre");
+            maxStackSize = 30;
+        }
 
-		public CopperOre()
-		{
-			texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.ControlCircuit");
-			maxStackSize = 30;
-		}
+        public CopperOre()
+        {
+            texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.CopperOre");
+            maxStackSize = 30;
+        }
 
-		public void Regystrate()
-		{
-		}
-	}
+        public void Regystrate()
+        {
+        }
+    }
 }

@@ -4,7 +4,7 @@ namespace CivMars
 {
 	class SiliconRod : Item, IRegystratabe
 	{
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public SiliconRod(int am) : base(am, 30)

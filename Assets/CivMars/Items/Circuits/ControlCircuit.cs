@@ -5,7 +5,7 @@ namespace CivMars
 	class ControlCircuit : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+        new public string name = "ControlCircuit";
 
 
 		public ControlCircuit(int am) : base(am, 30)

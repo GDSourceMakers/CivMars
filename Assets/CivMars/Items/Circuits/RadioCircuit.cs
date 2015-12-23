@@ -8,7 +8,7 @@ namespace CivMars
 {
 	class RadioCircuit : Item, IRegystratabe
 	{
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public RadioCircuit(int am) : base(am, 30)

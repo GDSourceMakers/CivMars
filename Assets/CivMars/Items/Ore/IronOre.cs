@@ -1,16 +1,28 @@
-﻿namespace CivMars
+﻿
+using CivMarsEngine;
+
+namespace CivMars
 {
-	public class IronOre : Item
-	{
-		public IronOre(int am) : base(am, 4)
-		{
-			maxStackSize = 4;
-		}
+    class IronOre : Item, IRegystratabe
+    {
 
-		public IronOre() : base(4)
-		{
-			maxStackSize = 4;
-		}
+        new public string name = "IronOre";
 
-	}
+
+        public IronOre(int am) : base(am, 30)
+        {
+            texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.IronOre");
+            maxStackSize = 30;
+        }
+
+        public IronOre()
+        {
+            texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.IronOre");
+            maxStackSize = 30;
+        }
+
+        public void Regystrate()
+        {
+        }
+    }
 }

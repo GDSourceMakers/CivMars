@@ -5,7 +5,7 @@ namespace CivMars
 	class GoldIngot : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public GoldIngot(int am) : base(am, 30)

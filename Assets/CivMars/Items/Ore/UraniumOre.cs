@@ -1,19 +1,28 @@
-﻿namespace CivMars
+﻿
+using CivMarsEngine;
+
+namespace CivMars
 {
-	public class UraniumOre : Item
-	{
-		public string name = "Uranium" + "Ore";
+    class UraniumOre : Item, IRegystratabe
+    {
 
-		public UraniumOre(int am) : base(am, 4)
-		{
-			maxStackSize = 4;
-		}
+        new public string name = "UraniumOre";
 
-		public UraniumOre() : base(4)
-		{
-			maxStackSize = 4;
-		}
 
-	}
+        public UraniumOre(int am) : base(am, 30)
+        {
+            texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.UraniumOre");
+            maxStackSize = 30;
+        }
+
+        public UraniumOre()
+        {
+            texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.UraniumOre");
+            maxStackSize = 30;
+        }
+
+        public void Regystrate()
+        {
+        }
+    }
 }
-

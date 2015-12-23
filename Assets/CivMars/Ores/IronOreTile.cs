@@ -7,16 +7,16 @@ namespace CivMars
 {
 	public class IronOreTile : OreTile
 	{
-		public string ID = CivMarsInit.BlockSpace + ".IronOre";
+        new public string ID = CivMarsInit.BlockSpace + ".IronOre";
 
 
 		static Type item = typeof(IronOre);
 
 		public override void Generate(System.Random r, TileMap map)
 		{
-			chanche = 1;
-			chanche2 = 40;
-			chancheReduce = 20;
+			chanche = 500;
+			chanche2 = 4000;
+			chancheReduce = 300;
 			distance = -1;
 			base.Generate(r, map);
 		}

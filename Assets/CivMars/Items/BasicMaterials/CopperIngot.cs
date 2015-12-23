@@ -5,7 +5,7 @@ namespace CivMars
 	class CopperIngot : Item, IRegystratabe
 	{
 
-		public string name = "ControlCircuit";
+		new public string name = "ControlCircuit";
 
 
 		public CopperIngot(int am) : base(am, 30)

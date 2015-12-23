@@ -9,7 +9,7 @@ namespace CivMars
 	class Piston : Item, IRegystratabe
 	{
 
-		public string name = "Piston";
+        new public string name = "Piston";
 
 
 		public Piston(int am) : base(am, 30)

@@ -9,7 +9,7 @@ namespace CivMars
 {
 	public class Roof : Item
 	{
-		public string name = "Roof";
+        new public string name = "Roof";
 
 
 		public Roof(int am) : base(am, 3)

@@ -8,7 +8,7 @@ namespace CivMars
 {
 	class Transistor : Item, IRegystratabe
 	{
-		public string name = "Transistor";
+		new public string name = "Transistor";
 
 
 		public Transistor(int am) : base(am, 30)

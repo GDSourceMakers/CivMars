@@ -1,18 +1,28 @@
-﻿namespace CivMars
+﻿
+using CivMarsEngine;
+
+namespace CivMars
 {
-	public class SandOre : Item
-	{
+    class SandOre : Item, IRegystratabe
+    {
 
-		public SandOre(int am) : base(am)
-		{
-			maxStackSize = 4;
-		}
-
-		public SandOre()
-		{
-			maxStackSize = 4;
-		}
+        new public string name = "SandOre";
 
 
-	}
+        public SandOre(int am) : base(am, 30)
+        {
+            texture = GameRegystry.GetSprite("Textures/Items/", "CivMars.SandOre");
+            maxStackSize = 30;
+        }
+
+        public SandOre()
+        {
+            texture = GameRegystry.GetSprite("Texturas/Items/", "CivMars.SandOre");
+            maxStackSize = 30;
+        }
+
+        public void Regystrate()
+        {
+        }
+    }
 }
