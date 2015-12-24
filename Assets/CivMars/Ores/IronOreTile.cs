@@ -15,7 +15,7 @@ namespace CivMars
 		public override void Generate(System.Random r, TileMap map)
 		{
 			chanche = 500;
-			chanche2 = 4000;
+			chanche2 = 1500;
 			chancheReduce = 300;
 			distance = -1;
 			base.Generate(r, map);

@@ -23,9 +23,9 @@ namespace CivMars
 		{
 			base.ID = this.ID;
 
-			chanche = 0;
-			chanche2 = 250;
-			chancheReduce = 5;
+			chanche = 100;
+			chanche2 = 4000;
+			chancheReduce = 300;
 			distance = -1;
 
 

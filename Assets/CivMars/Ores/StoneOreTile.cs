@@ -13,9 +13,9 @@ namespace CivMars
 
 		override public void Regystrate()
 		{
-			chanche = 20;
-			chanche2 = 220;
-			chancheReduce = 20;
+			chanche = 300;
+			chanche2 = 7000;
+			chancheReduce = 500;
 			distance = -1;
 			GameRegystry.RegisterWorldGen(ID, this);
 		}
