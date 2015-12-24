@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace CivMarsEngine
 {
-	public class BuildingWGUI : Building, IHasGui
+	public class BuildingWGUI : Building, IHasGui, IPointerClickHandler
 	{
 
 		public GameObject SideMenu;
@@ -53,12 +53,11 @@ namespace CivMarsEngine
 			return 1;
 		}
 
-		/*
 		public void OnPointerClick(PointerEventData eventData)
 		{
-			TogelGui();
+			if (!eventData.rawPointerPress.transform.IsChildOf(graphics.transform))
+				TogelGui();
 		}
-		*/
 		#endregion
 
 	}

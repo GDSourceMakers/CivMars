@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CivMarsEngine;
 
- 
-    public class Food:Item
-    {
-    }
+namespace CivMars
+{
 
+	public class Food : Item
+	{
+	}
+}

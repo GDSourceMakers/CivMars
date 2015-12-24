@@ -1,15 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 namespace CivMarsEngine
 {
-	public class BuildingLister : MonoBehaviour, IHasGui
+	public class BuildingLister : MonoBehaviour, IHasGui,IPointerClickHandler
 	{
 		public GameObject buildableDrawElement;
 		public GameObject buildingDesplayCanvas;
-
 		public GameObject planedBuildingPrefab;
+
+		public GraphicRaycaster raycaster;
 
 		bool guion;
 
@@ -49,6 +52,7 @@ namespace CivMarsEngine
 				actual.transform.SetSiblingIndex(i);
 				actual.transform.FindChild("Icon").GetComponent<Image>().sprite = ((IBuildable)GameRegystry.buildings[buildingID[i]]).GetImage();
 				actual.GetComponent<Toggle>().group = toglegroup;
+				actual.transform.localScale = Vector3.one;
 			}
 
 		}
@@ -57,52 +61,33 @@ namespace CivMarsEngine
 		void Update()
 		{
 
-			if (state == BuildingListerStates.Idle)
+			if (Input.GetButtonUp("BuildingList") && (state == BuildingListerStates.Idle|| state == BuildingListerStates.Selecting))
 			{
-				inBuilding.SetActive(false);
-				inSelecting.SetActive(false);
-				if (Input.GetButtonUp("BuildingList"))
-				{
 					Debug.Log("Buildning opening");
-
 					TogelGui();
-				}
 			}
 			else if (state == BuildingListerStates.Building)
 			{
-				inBuilding.SetActive(true);
-				inSelecting.SetActive(false);
-			}
-			else if (state == BuildingListerStates.Selecting)
-			{
-				inBuilding.SetActive(false);
-				inSelecting.SetActive(true);
-				if (Input.GetButtonUp("BuildingList"))
+				if (Input.GetMouseButtonUp(0) && SelectedBuilding != -1 && !EventSystem.current.IsPointerOverGameObject())
 				{
-					Debug.Log("Buildning opening");
+					Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-					TogelGui();
+					TileVector pos = new TileVector(Mathf.Round(ray.x - 0.5f), -1* Mathf.Round(ray.y + 0.5f),TileVectorTypes.ySwaped);
+
+					if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
+					{
+						PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();
+						GameCon.map.Buildings.SetTile(pos.x, pos.y, p.transform);
+
+						p.SetBuilding(((IBuildable)GameRegystry.buildings[buildingID[SelectedBuilding]]));
+
+					}
+					GameCon.CloseGUI(this);
+					Close();
 				}
 			}
 
-			if (Input.GetMouseButtonDown(0) && SelectedBuilding != -1 && state == BuildingListerStates.Building)
-			{
-				Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-				TileVector pos = new TileVector(Mathf.Round(ray.x - 0.5f), -1 * Mathf.Round(ray.y + 0.5f
-					));
-
-				if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
-				{
-					PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();
-					GameCon.map.Buildings.SetTile(pos.x, pos.y, p.transform);
-
-					p.SetBuilding(((IBuildable)GameRegystry.buildings[buildingID[SelectedBuilding]]));
-
-				}
-				GameCon.CloseGUI(this);
-				Close();
-			}
+			
 		}
 
 		public void BuildSelected()
@@ -113,6 +98,9 @@ namespace CivMarsEngine
 				return;
 			}
 
+			inBuilding.SetActive(true);
+			inSelecting.SetActive(false);
+
 			state = BuildingListerStates.Building;
 		}
 
@@ -120,6 +108,8 @@ namespace CivMarsEngine
 		{
 			SelectedBuilding = -1;
 			state = BuildingListerStates.Selecting;
+			inBuilding.SetActive(false);
+			inSelecting.SetActive(true);
 		}
 
 		#region IhasGui
@@ -143,12 +133,17 @@ namespace CivMarsEngine
 		{
 			guion = true;
 			state = BuildingListerStates.Selecting;
+			inBuilding.SetActive(false);
+			inSelecting.SetActive(true);
 		}
 
 		public void Close()
 		{
 			guion = false;
 			state = BuildingListerStates.Idle;
+
+			inBuilding.SetActive(false);
+			inSelecting.SetActive(false);
 		}
 
 		public int ClosingLevel()
@@ -162,7 +157,14 @@ namespace CivMarsEngine
 				return int.MaxValue;
 			}
 		}
+
+		public void OnPointerClick(PointerEventData eventData)
+		{
+			throw new NotImplementedException();
+		}
 		#endregion
+
+
 	}
 
 	public enum BuildingListerStates

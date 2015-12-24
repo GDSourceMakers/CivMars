@@ -392,14 +392,22 @@ public class TileMap : MonoBehaviour
 	/// <returns></returns>
 	public TileTransform GetTileOn(int x, int y)
 	{
-		return tiles[x, y];
+		if (Inside(x, y))
+		{
+			return tiles[x, y];
+		}
+		else
+		{
+			Debug.LogError("x:" + x + ", y:" + y + "Is not inside the map");
+			return null;
+		}
 	}
 
 
 	/// <summary>
 	/// Returns the TileTransform of the tile on coordinates
 	/// </summary>
-	/// <param name="cor">Coordinates in TileVector</param>
+	/// <param name="v">Coordinates in TileVector</param>
 	/// <returns></returns>
 	public TileTransform GetTileOn(TileVector v)
 	{
