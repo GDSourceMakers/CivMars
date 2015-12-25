@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CivMarsEngine;
 
- 
-
-    public class Tool:Item
+public class Tool:Item
     {
     }
 

@@ -54,7 +54,7 @@ namespace CivMarsEngine
 							actual.transform.SetParent(InventoryCanvasPlayer.transform);
 							actual.transform.SetSiblingIndex(i);
 
-
+							actual.transform.localScale = Vector3.one;
 							actual.GetComponent<PlayerInventoryDrawedElement>().Set(player.GetStackInSlot(i), i);
 
 
@@ -75,7 +75,7 @@ namespace CivMarsEngine
 						actual.transform.SetParent(InventoryCanvasPlayer.transform);
 						actual.transform.SetSiblingIndex(i);
 
-
+						actual.transform.localScale = Vector3.one;
 						actual.GetComponent<PlayerInventoryDrawedElement>().Set(player.GetStackInSlot(i), i);
 					}
 				}
@@ -102,6 +102,7 @@ namespace CivMarsEngine
 							actual = Instantiate(InventoryElementBack);
 							actual.transform.SetParent(InventoryCanvasPlayer.transform);
 							actual.transform.SetSiblingIndex(i);
+							actual.transform.localScale = Vector3.one;
 						}
 					}
 					else
@@ -111,6 +112,7 @@ namespace CivMarsEngine
 						actual = Instantiate(InventoryElementBack);
 						actual.transform.SetParent(InventoryCanvasPlayer.transform);
 						actual.transform.SetSiblingIndex(i);
+						actual.transform.localScale = Vector3.one;
 					}
 				}
 				drawedInvPlayer[i] = actual;

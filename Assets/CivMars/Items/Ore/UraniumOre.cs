@@ -1,4 +1,6 @@
-﻿namespace CivMars
+﻿using CivMarsEngine;
+
+namespace CivMars
 {
 	public class UraniumOre : Item
 	{

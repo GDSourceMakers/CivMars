@@ -18,8 +18,8 @@ namespace CivMarsEngine
 		public IInventory thisinv;
 
 
-		public GameObject nameDisplay;
-		public GameObject amountDisplay;
+		public Text nameDisplay;
+		public Text amountDisplay;
 		public Button button;
 
 
@@ -47,8 +47,7 @@ namespace CivMarsEngine
 		public void Set(int setAmount)
 		{
 			this.amount = setAmount;
-			amountDisplay.GetComponent<Text>().text = null;
-			amountDisplay.GetComponent<Text>().text = setAmount.ToString();
+			amountDisplay.text = setAmount.ToString();
 
 			//Debug.Log("updated drawed inv element:  amount: " + amount + " type: " + this.name + " obj: " + this.GetType().ToString());
 		}
@@ -56,9 +55,7 @@ namespace CivMarsEngine
 		public void Set(string setName)
 		{
 			this.drawname_name = setName;
-			//Debug.Log(setName);
-
-			nameDisplay.GetComponent<Text>().text = setName.ToString();
+			nameDisplay.text = setName.ToString();
 		}
 
 		public void Set(string setName, int setAmount)

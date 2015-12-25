@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CivMarsEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace CivMarsEngine
 {
-	public class BuildingWGUI : Building, IHasGui
+	public class BuildingWGUI : Building, IHasGui, IPointerClickHandler
 	{
+
+		public GameObject SideMenu;
+
+		public void PositionUpdate()
+		{
+			SideMenu.SetActive(false);
+			this.SideMenu.transform.position = Vector3.zero;
+		}
 
 		#region IhasGui
 		public void TogelGui()
@@ -30,13 +39,13 @@ namespace CivMarsEngine
 		public virtual void Open()
 		{
 			guion = true;
-			Graphicks.SetActive(true);
+			SideMenu.SetActive(true);
 		}
 
 		public virtual void Close()
 		{
 			guion = false;
-			Graphicks.SetActive(false);
+			SideMenu.SetActive(false);
 		}
 
 		public int ClosingLevel()
@@ -46,7 +55,7 @@ namespace CivMarsEngine
 
 		public void OnPointerClick(PointerEventData eventData)
 		{
-			if (!eventData.rawPointerPress.transform.IsChildOf(Graphicks.transform))
+			if (!eventData.rawPointerPress.transform.IsChildOf(graphics.transform))
 				TogelGui();
 		}
 		#endregion

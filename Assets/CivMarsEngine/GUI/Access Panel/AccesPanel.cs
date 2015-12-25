@@ -10,7 +10,7 @@ namespace CivMarsEngine
 
 		public Building OpenBuilding;
 
-		public bool open;
+		public bool on;
 
 		public GameObject[] AccesTabs;
 
@@ -22,48 +22,53 @@ namespace CivMarsEngine
 		}
 
 
-		public void Update()
+		void Update()
 		{
 			if (Input.GetButtonUp("Inventory"))
 			{
-				Debug.Log("Inventory opening");
 				TogelGui();
 			}
 		}
-
-		#region IhasGui
+		#region IHasGUI
 		public void TogelGui()
 		{
-			if (!open)
+			if (!on)
 			{
-				if (GameCon.AlloweGUI(this as IHasGui))
+				if (GameCon.HasOpendGui())
 				{
-					Open();
+					GameCon.CloseGUI(null);
+				}
+				else
+				{
+					if (GameCon.AlloweGUI(this))
+					{
+						Open();
+					}
 				}
 			}
 			else
 			{
-				GameCon.CloseGUI(this as IHasGui);
+				GameCon.CloseGUI(this);
 				Close();
 			}
 		}
 
 		public void Open()
 		{
-			open = true;
 			Graphicks.SetActive(true);
+			on = true;
 		}
 
 		public void Close()
 		{
-			open = false;
 			Graphicks.SetActive(false);
+			on = false;
 		}
 
 		public int ClosingLevel()
 		{
-			return 10;
+			return int.MaxValue;
 		}
-		#endregion
+#endregion
 	}
 }

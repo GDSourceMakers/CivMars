@@ -18,12 +18,11 @@ namespace CivMars
 			base.Generate(r, map);
 		}
 
-
 		override public void Regystrate()
 		{
 			base.ID = this.ID;
 
-			chanche = 0;
+			chanche = 100;
 			chanche2 = 250;
 			chancheReduce = 5;
 			distance = -1;

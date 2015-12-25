@@ -31,7 +31,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 
 				bool k = map.HasTileOn(pos);
 
-				if (r.Next(0,1000) <= chanche && first && k)
+				if (r.Next(0, 1000) <= chanche && first && k)
 				{
 					first = true;
 					GameObject a = Instantiate(this.gameObject);
@@ -41,7 +41,7 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 
 					a.GetComponent<OreTile>().Spread(r, map, chanche2);
 				}
-
+				
 
 			}
 		}
@@ -57,17 +57,27 @@ public class OreTile : Tiled, IRegystratabe, IWorldGen, ISaveble
 			for (int j = -1; j < 2; j++)
 			{
 				TileVector pos = transform.position + new TileVector(i, j);
-				if ((i != 0 || j != 0) && map.Inside(pos) && map.HasTileOn(pos))
+
+				bool k = !map.HasTileOn(pos);
+
+				if ((i != 0 || j != 0) && map.Inside(pos) && !k)
 				{
-					if (r.Next(1000) <= chancheCurrent)
+					if (r.Next(0, 1000) <= chancheCurrent)
 					{
-						GameObject a = Instantiate(this.gameObject);
+						if (!k)
+						{
+							GameObject a = Instantiate(this.gameObject);
 
-						a.name = (int.Parse(this.name[0].ToString()) + 1).ToString() + "a";
+							a.name = (int.Parse(this.name[0].ToString()) + 1).ToString() + "a";
 
-						map.SetTile(pos.x, pos.y, a.GetComponent<TileTransform>());
+							map.SetTile(pos.x, pos.y, a.GetComponent<TileTransform>());
 
-						a.GetComponent<OreTile>().Spread(r, map, chancheCurrent - chancheReduce);
+							a.GetComponent<OreTile>().Spread(r, map, chancheCurrent - chancheReduce);
+						}
+						else if(map.GetTileOn(pos.x, pos.y).GetComponent<OreTile>().ID == this.ID)
+						{
+							map.GetTileOn(pos.x, pos.y).GetComponent<OreTile>().Spread(r, map, chancheCurrent - chancheReduce);
+						}
 					}
 				}
 			}
