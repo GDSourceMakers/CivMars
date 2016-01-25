@@ -9,18 +9,21 @@ namespace CivMarsEngine
 	public class GasDesplay : MonoBehaviour
 	{
 
-
 		public GameObject GasCanvasPlayer;
 		public GameObject GasCanvasOther;
 
 		public GameObject TankElement;
-		public GameObject TankElementBack;
 
-		public GameObject[] drawedInvPlayer = new GameObject[10];
-		public GameObject[] drawedInvOther = new GameObject[10];
+		public List<GasDesplayElement> drawedInvPlayer_Inv = new List<GasDesplayElement>();
+		public List<GasDesplayElement> drawedInvPlayer_Suit = new List<GasDesplayElement>();
+
+		public List<GasDesplayElement> drawedInvOther = new List<GasDesplayElement>();
 
 		GasTankCluster player;
 		GasTankCluster other;
+
+		IGasTank player_t;
+		IGasTank other_t;
 
 		public GasDesplayElement OutPuting;
 		public GasDesplayElement InPuting;
@@ -34,258 +37,133 @@ namespace CivMarsEngine
 		void Update()
 		{
 			UpdateDesplay();
-			if ((OutPuting != null && InPuting != null) && (OutPuting.tank.gasType == InPuting.tank.gasType || InPuting.tank.gasType == GasType.Null))
+			if ((OutPuting != null && InPuting != null))
 			{
-				OutPuting.tank.Transfer(InPuting.tank, 5f * Time.deltaTime);
-			}
-		}
-
-		public void UpdateData(Building datas)
-		{
-			if (datas is IGasTank)
-			{
-				other = ((IGasTank)datas).GetTankCluster();
+				//OutPuting.tank.Transfer(InPuting.tank, 5f * Time.deltaTime);
 			}
 		}
 
 		public void UpdateDesplay()
 		{
-			if (other == null)
+			if (other_t == null)
 			{
-				UpdateDesplaySection(player, drawedInvPlayer, GasCanvasPlayer.gameObject, true);
-
-				foreach (GameObject item in drawedInvOther)
-				{
-					Destroy(item);
-				}
+				UpdateDesplayPlayer(GameController.instance.playerclass);
 			}
 			else
 			{
-				UpdateDesplaySection(player, other, drawedInvPlayer, GasCanvasPlayer.gameObject, true);
-				UpdateDesplaySection(other, player, drawedInvOther, GasCanvasOther.gameObject, false);
+				UpdateDesplayOther(other_t);
+				UpdateDesplayPlayer(GameController.instance.playerclass);
 			}
 		}
 
-		void UpdateDesplaySection(GasTankCluster TankThis, GasTankCluster TankOthe, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
+		void UpdateDesplayOther(IGasTank TankThis)
 		{
-			for (int i = 0; i < TankThis.size; i++)
+			for (int i = 0; i < drawedInvOther.Count; i++)
 			{
-				GameObject actual = drawed[i];
+				GasDesplayElement actual = drawedInvOther[i];
 
-				//van itt item
-
-				//Van kint valami
-				if (actual != null)
+				if (i <= TankThis.GetTankCount())
 				{
-					//Background element
-					if (actual.GetComponent<GasDesplayElement>() == null)
-					{
-						//Destroy back
-						Destroy(actual);
-						actual = null;
-
-						//Create item
-						actual = null;
-						actual = Instantiate(TankElement);
-						actual.transform.SetParent(drawingCanvas.transform);
-						actual.transform.SetSiblingIndex(i);
-
-
-						actual.GetComponent<GasDesplayElement>().Set(TankThis.GetTank(i), this);
-					}
+					actual.Set(TankThis, true);
 				}
 				else
 				{
-					//create item
-					actual = null;
-					actual = Instantiate(TankElement);
-					actual.transform.SetParent(drawingCanvas.transform);
-					actual.transform.SetSiblingIndex(i);
-
-
-					actual.GetComponent<GasDesplayElement>().Set(TankThis.GetTank(i), this);
+					actual.Set(null, false);
 				}
+			}
+			for (int i = 0; i < TankThis.GetTankCount() - drawedInvOther.Count; i++)
+			{
+				GasDesplayElement actual;
+				actual = Instantiate(TankElement).GetComponent<GasDesplayElement>();
+				actual.transform.SetParent(GasCanvasOther.transform);
+				actual.transform.SetSiblingIndex(i);
 
+				actual.SetUp(drawedInvOther.Count + i, this);
 
-				drawed[i] = actual;
+				actual.Set(TankThis, true);
 			}
 		}
 
-		void UpdateDesplaySection(GasTankCluster TankThis, GameObject[] drawed, GameObject drawingCanvas, bool isplayer)
+		void UpdateDesplayPlayer(IGasTank TankThis)
 		{
-			for (int i = 0; i < TankThis.size; i++)
+			#region Player
+			for (int i = 0; i < drawedInvPlayer_Suit.Count; i++)
 			{
-				GameObject actual = drawed[i];
+				GasDesplayElement actual = drawedInvPlayer_Suit[i];
 
-				//van itt item
-				if (TankThis.GetTank(i).gasType != GasType.Null)
+				if (i <= TankThis.GetTankCount())
 				{
-					//Van kint valami
-					if (actual != null)
-					{
-						//Background element
-						if (actual.GetComponent<GasDesplayElement>() == null)
-						{
-							//Destroy back
-							Destroy(actual);
-							actual = null;
-
-							//Create item
-							actual = null;
-							actual = Instantiate(TankElement);
-							actual.transform.SetParent(drawingCanvas.transform);
-							actual.transform.SetSiblingIndex(i);
-
-
-							actual.GetComponent<GasDesplayElement>().Set(TankThis.GetTank(i), this);
-
-
-						}
-						//Item element
-						else if (actual.GetComponent<GasDesplayElement>() != null)
-						{
-							//update item
-							drawed[i].GetComponent<GasDesplayElement>().Set(TankThis.GetTank(i), this);
-						}
-					}
-					else
-					{
-						//create item
-						actual = null;
-						actual = Instantiate(TankElement);
-						actual.transform.SetParent(drawingCanvas.transform);
-						actual.transform.SetSiblingIndex(i);
-
-						Debug.Log(TankThis.GetTank(i).ToString());
-
-						actual.GetComponent<GasDesplayElement>().Set(TankThis.GetTank(i), this);
-					}
+					actual.GetComponent<GasDesplayElement>().Set(TankThis, true);
 				}
-				//nics item
 				else
 				{
-					//Van kint valami
-					if (actual != null)
-					{
-						// background
-						if (actual.GetComponent<GasDesplayElement>() == null)
-						{
-							//OK
-						}
-						// Item element
-						else if (actual.GetComponent<GasDesplayElement>() != null)
-						{
-							//Destroy older
-							Destroy(actual);
-							actual = null;
-
-							//Create Back
-							actual = null;
-							actual = Instantiate(TankElementBack);
-							actual.transform.SetParent(drawingCanvas.transform);
-							actual.transform.SetSiblingIndex(i);
-						}
-					}
-					else
-					{
-						//Create Back
-						actual = null;
-						actual = Instantiate(TankElementBack);
-						actual.transform.SetParent(drawingCanvas.transform);
-						actual.transform.SetSiblingIndex(i);
-					}
+					actual.GetComponent<GasDesplayElement>().Set(null, false);
 				}
-				drawed[i] = actual;
 			}
+			for (int i = 0; i < TankThis.GetTankCount() - drawedInvPlayer_Suit.Count ; i++)
+			{
+				GasDesplayElement actual;
+				actual = Instantiate(TankElement).GetComponent<GasDesplayElement>();
+				actual.transform.SetParent(GasCanvasPlayer.transform.FindChild("PLayer").transform);
+				actual.transform.SetSiblingIndex(i);
+
+				actual.SetUp(drawedInvPlayer_Suit.Count + i, this);
+
+				actual.Set(TankThis, true);
+			}
+			#endregion
+
+			#region Inv
+			for (int i = 0; i < drawedInvPlayer_Inv.Count; i++)
+			{
+				GasDesplayElement actual = drawedInvPlayer_Inv[i];
+
+				if (i <= TankThis.GetTankCount())
+				{
+					actual.Set(TankThis, true);
+				}
+				else
+				{
+					actual.Set(null, false);
+				}
+			}
+			for (int i = 0; i < TankThis.GetTankCount() - drawedInvPlayer_Inv.Count; i++)
+			{
+				GasDesplayElement actual;
+				actual = Instantiate(TankElement).GetComponent<GasDesplayElement>();
+				actual.transform.SetParent(GasCanvasPlayer.transform.FindChild("Inv").transform);
+				actual.transform.SetSiblingIndex(i);
+
+				actual.SetUp(drawedInvPlayer_Inv.Count + i, this);
+
+				actual.Set(TankThis, true);
+			}
+			#endregion
 		}
 
 
 		public void SetOtherInv(IGasTank OtherInventory)
 		{
-
-			if (OtherInventory != null)
-			{
-				other = OtherInventory.GetTankCluster();
-				foreach (GameObject des in drawedInvOther)
-				{
-					Destroy(des);
-				}
-				drawedInvOther = new GameObject[other.size];
-			}
-			else
-			{
-				foreach (GameObject des in drawedInvOther)
-				{
-					Destroy(des);
-				}
-			}
+			other_t = OtherInventory;
 		}
 
-		public bool SetInput(GasDesplayElement t)
+		public void SetInput(GasDesplayElement t)
 		{
-			if (InPuting != null && InPuting != t)
+			if (InPuting != null)
 			{
-				InPuting.SetInput(false);
+				InPuting.TurnInput(false);
 			}
-			if (t != null)
-			{
-				if (OutPuting != null)
-				{
-					//if (OutPuting.tank.gasType == t.tank.gasType || t.tank.gasType == GasType.Null)
-					//{
-					InPuting = t;
-					return true;
-					//}
-					//else
-					//{
-					//return false;
-					//}
-				}
-				else
-				{
-					InPuting = t;
-					return true;
-				}
-			}
-			else
-			{
-				InPuting = null;
-				return true;
-			}
+			InPuting = t;
 
 		}
 
-		public bool SetOutput(GasDesplayElement t)
+		public void SetOutput(GasDesplayElement t)
 		{
-			if (OutPuting != null && OutPuting != t)
+			if (InPuting != null)
 			{
-				OutPuting.SetOutput(false);
+				InPuting.TurnOutput(false);
 			}
-			if (t != null)
-			{
-				if (InPuting != null)
-				{
-					//if (InPuting.tank.gasType == t.tank.gasType || t.tank.gasType == GasType.Null)
-					//{
-					OutPuting = t;
-					return true;
-					//}
-					//else
-					//{
-					//return false;
-					//}
-				}
-				else
-				{
-					OutPuting = t;
-					return true;
-				}
-			}
-			else
-			{
-				OutPuting = null;
-				return true;
-			}
+			InPuting = t;
 		}
 
 	}

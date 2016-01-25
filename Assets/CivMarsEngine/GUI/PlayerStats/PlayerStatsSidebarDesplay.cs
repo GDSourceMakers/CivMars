@@ -24,6 +24,7 @@ namespace CivMarsEngine
 		// Update is called once per frame
 		void Update()
 		{
+			/*
 			GasTankCluster t = GameCon.playerclass.GetTankCluster();
 
 			OxigenSlider.value = t.GetTank(GasType.Oxigen).amount / t.GetTank(GasType.Oxigen).maxAmount;
@@ -37,6 +38,7 @@ namespace CivMarsEngine
 				//item.transform.position = new Vector3(item.transform.position.x);
 			}
 			*/
+			
 		}
 	}
 }

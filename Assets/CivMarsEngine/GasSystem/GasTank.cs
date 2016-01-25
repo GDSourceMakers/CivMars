@@ -7,9 +7,12 @@ using UnityEngine;
 
 namespace CivMarsEngine
 {
-	public class GasTank
+	public class GasTank: IGasTank
 	{
 		public GasType gasType;
+
+		public Gas gas;
+
 		public float amount;
 		public float maxAmount;
 		public bool locked;
@@ -19,82 +22,89 @@ namespace CivMarsEngine
 			this.maxAmount = max;
 		}
 
-		public bool CanAccept()
+		public GasTank(float max, bool l, Gas g)
 		{
-			return true;
+			this.maxAmount = max;
+			locked = l;
+			gas = g;
 		}
 
-		public float AddAmount(float addAmount)
+		public bool CanAccept(Gas g)
 		{
-			amount += addAmount;
-			if (amount <= maxAmount)
+			if (gas.GetType() == g.GetType())
 			{
-				return 0;
+				return true;
 			}
-			else
+			else if (gas.GetType() == null)
 			{
-				float reamaining = amount - maxAmount;
-				amount = maxAmount;
-				return reamaining;
+				return true;
 			}
+			return false;
 		}
 
-		public float AddAmount(float addAmount, GasType t)
+		public Gas AddGas(Gas g, int i)
 		{
-			if (t == gasType)
+			if (g.GetType() == gas.GetType() || gas.GetType() == null)
 			{
-				return AddAmount(addAmount);
-			}
-			else if (amount == 0 && gasType == GasType.Null)
-			{
-				gasType = t;
-				return AddAmount(addAmount);
-			}
-			return -1;
-		}
-
-		public float RemoveAmount(float remAmount)
-		{
-			float old = amount;
-			amount -= remAmount;
-			if (amount >= 0)
-			{
-				return 0;
-			}
-			else
-			{
-				float reamaining = remAmount - old;
-				amount = 0;
-				if (!locked)
+				amount += g.amount;
+				if (amount <= maxAmount)
 				{
-					gasType = GasType.Null;
-				}
-				return reamaining;
-			}
-		}
-
-		public void RemoveAmount(float remAmount, GasType t)
-		{
-			if (t == gasType)
-			{
-				RemoveAmount(remAmount);
-			}
-		}
-
-		public void Transfer(GasTank other, float transAmount)
-		{
-			GasType b = gasType;
-			if (other.gasType == gasType || other.gasType == GasType.Null)
-			{
-				float rem = this.RemoveAmount(transAmount);
-				if (rem == 0)
-				{
-					other.AddAmount(transAmount, b);
+					g.amount = 0;
+					return g;
 				}
 				else
 				{
-					Debug.Log(rem);
-					other.AddAmount(rem, b);
+					float reamaining = amount - maxAmount;
+					amount = maxAmount;
+
+					g.amount = reamaining;
+					return g;
+                }
+			}
+			return g;
+		}
+
+		public Gas RemoveGas(Gas g, int i)
+		{
+			if (g.GetType() == gas.GetType() || gas.GetType() == null)
+			{
+				float old = amount;
+				amount -= g.amount;
+				if (amount >= 0)
+				{
+					g.amount = 0;
+                    return g;
+				}
+				else
+				{
+					float reamaining = g.amount - old;
+					amount = 0;
+					if (!locked)
+					{
+						gas = null;
+					}
+					g.amount = reamaining;
+					return g;
+				}
+			}
+			return g;
+		}
+
+
+		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
+		{
+			if (ToInv.IsGasValidForSlot(toIndex, this.gas))
+			{
+				Gas rem = (((Gas)Activator.CreateInstance(null, gas.GetType().ToString()).Unwrap()));
+				rem = this.RemoveGas(rem, 0);
+				if (rem.amount == 0)
+				{
+					rem.amount = transferingAmount;
+					ToInv.AddGas(rem, toIndex);
+				}
+				else
+				{
+					ToInv.AddGas(rem, toIndex);
 				}
 			}
 		}
@@ -102,6 +112,43 @@ namespace CivMarsEngine
 		public void SetLocked(bool a)
 		{
 			locked = a;
+		}
+
+		public int GetTankCount()
+		{
+			return 1;
+		}
+
+		public string GetInventoryName()
+		{
+			return "asd";
+		}
+
+		public bool HasCustomInventoryName()
+		{
+			return true;
+		}
+
+		/*
+		public GasTank GetTank(int index)
+		{
+			throw new NotImplementedException();
+		}
+		*/
+
+		public bool IsGasValidForSlot(int slot, Gas givenGas)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool IsUseableByPlayer(Player p)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

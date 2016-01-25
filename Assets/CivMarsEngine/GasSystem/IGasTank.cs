@@ -7,6 +7,66 @@ namespace CivMarsEngine
 {
 	public interface IGasTank
 	{
-		GasTankCluster GetTankCluster();
+		//GasTankCluster GetTankCluster();
+
+
+		/// <summary>
+		/// Returns the number of slots in the inventory.
+		/// </summary>
+		/// <returns></returns>
+		int GetTankCount();
+
+		/// <summary>
+		/// Returns the name of the inventory
+		/// </summary>
+		/// <returns></returns>
+		String GetInventoryName();
+
+		/// <summary>
+		/// Returns if the inventory is named
+		/// </summary>
+		/// <returns>True if named</returns>
+		bool HasCustomInventoryName();
+
+		/*
+		/// <summary>
+		/// Returns the GasTank in slot i
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
+		GasTank GetTank(int index);
+		*/
+
+		/// <summary>
+		/// Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+		/// </summary>
+		/// <param name="slot">Number of the Tabk</param>
+		/// <param name="givenItem">The Gas</param>
+		/// <returns>True if allowed</returns>
+		bool IsGasValidForSlot(int slot, Gas givenGas);
+
+		//Do not make give this method the name canInteractWith because it clashes with Container
+		bool IsUseableByPlayer(Player p);
+
+		//Adds the item to the inventory returns the remained amount
+		Gas AddGas(Gas i, int index);
+
+		//Removes the item from the inventory returns the remained amount
+		Gas RemoveGas(Gas i, int index);
+
+		/// <summary>
+		/// Transfers a all the gas it can fit to a other tank
+		/// </summary>
+		/// <param name="ToInv">other tank to transfer to</param>
+		/// <param name="index">this inventorys index to transfer from</param>
+		void TransferGas(IGasTank ToInv, int index, int thisIndex);
+
+		/// <summary>
+		/// Transfers a specific amount of a item from this inventory to a other
+		/// </summary>
+		/// <param name="Toinv">other inv to transfer to</param>
+		/// <param name="toIndex">this inventorys index to transfer</param>
+		/// <param name="transferingAmount">amount to tramsfer</param>
+		void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount);
 	}
 }

@@ -116,15 +116,21 @@ namespace CivMarsEngine
 
 		public float eventHorizont = 1.5f;
 
+		public float eventHorizontX = 1f;
+		public float eventHorizontY = 1f;
+
 		public RectTransform rectTrans;
 
 		Camera CameraScript;
 		GameController GameCon;
 
+		float xCameraH;
+		float yCameraH;
+
 		void Start()
 		{
 
-
+			
 		}
 
 		// Use this for initialization
@@ -141,6 +147,23 @@ namespace CivMarsEngine
 			}
 
 			loaded = true;
+
+			//xCameraH = CameraScript.orthographicSize * (Screen.width / Screen.height) * (CameraScript.rect.width);
+
+			float f = (float)((float)Screen.width / (float)Screen.height);
+			float s = CameraScript.orthographicSize;
+			float d = CameraScript.orthographicSize * (Screen.width / Screen.height);
+			float a = CameraScript.rect.width;
+			xCameraH = s*f*a;
+
+            Debug.Log("f: "+ f);
+			Debug.Log("s: "+ s);
+			Debug.Log("d: "+ d);
+			Debug.Log("a: "+ a);
+			Debug.Log("xCameraH: "+xCameraH);
+
+			//Debug.Log(xCameraH);
+			yCameraH = CameraScript.orthographicSize * (CameraScript.rect.height);
 		}
 
 		// Update is called once per frame
@@ -160,19 +183,18 @@ namespace CivMarsEngine
 				float xPos = chase.transform.position.x;
 				float yPos = -1 * chase.transform.position.y;
 
-				float xCameraH = CameraScript.orthographicSize * (Screen.width / Screen.height) * (1 - CameraScript.rect.x);
-				float yCameraH = CameraScript.orthographicSize * (1 - CameraScript.rect.y);
-
+				
+				
 				//transform.position = new Vector3(Mathf.Clamp(xPos, xCameraH, GameCon.map.mapHeight - xCameraH),-1 * Mathf.Clamp(-1*yPos, yCameraH, GameCon.map.mapHeight - yCameraH), transform.position.z);
 				transform.position = new Vector3(
 													Mathf.Clamp(
-													xCamPos + OutRangeClamp(xPos, xCamPos - xCameraH / eventHorizont, xCamPos + xCameraH / eventHorizont),
+													xCamPos + OutRangeClamp(xPos, xCamPos - xCameraH * eventHorizontX, xCamPos + xCameraH * eventHorizontX),
 													xCameraH,
 													GameCon.map.mapHeight - xCameraH
 													),
 
 												-1 * Mathf.Clamp(
-													yCamPos + OutRangeClamp(yPos, yCamPos - yCameraH / eventHorizont, yCamPos + yCameraH / eventHorizont),
+													yCamPos + OutRangeClamp(yPos, yCamPos - yCameraH * eventHorizontY, yCamPos + yCameraH * eventHorizontY),
 													yCameraH,
 													GameCon.map.mapHeight - yCameraH
 													),

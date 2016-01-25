@@ -6,15 +6,29 @@ using UnityEngine;
 
 namespace CivMarsEngine
 {
-	public class GasTankCluster
+	public class GasTankCluster: IGasTank
 	{
 		GasTank[] tanks;
 
 		public int size;
 
+		#region Constructor
+
+		public GasTankCluster(int i, float max)
+		{
+			tanks = new GasTank[i];
+
+			size = i;
+			for (int k = 0; k < i; k++)
+			{
+				tanks[k] = new GasTank(max);
+			}
+		}
+
 		public GasTankCluster(int i, float[] max)
 		{
 			tanks = new GasTank[i];
+
 			size = i;
 			for (int k = 0; k < i; k++)
 			{
@@ -22,61 +36,33 @@ namespace CivMarsEngine
 			}
 		}
 
-		public float AddGas(float rAmount, GasType t)
+		public GasTankCluster(GasTank[] t)
 		{
-			float size = rAmount;
-
-			foreach (GasTank item in tanks)
-			{
-
-				if (item.gasType != GasType.Null)
-				{
-
-					if (item.gasType == t)
-					{
-						Debug.Log(item.gasType);
-
-						size = item.AddAmount(rAmount);
-
-						Debug.Log("Inventory added: " + item.gasType + " Amount: " + item.amount);
-						if (size == 0)
-						{
-							return 0;
-						}
-						rAmount = size;
-					}
-				}
-			}
-
-			for (int i = 0; i < 10; i++)
-			{
-				if (tanks[i] == null)
-				{
-					tanks[i].AddAmount(rAmount);
-					return rAmount;
-				}
-			}
-			if (rAmount == 0)
-			{
-				return 0;
-			}
-			else
-			{
-				return rAmount;
-			}
+			tanks = t;
 		}
 
+		#endregion
+
+		public Gas AddGas(Gas g, int index)
+		{
+			return tanks[index].AddAmount(g);
+		}
+
+		public Gas RemoveGas(Gas g, int index)
+		{
+			return tanks[index].RemoveAmount(g);
+		}
 
 		public GasTank GetTank(int i)
 		{
 			return tanks[i];
 		}
 
-		public GasTank GetTank(GasType i)
+		public GasTank GetTank(Gas i)
 		{
-			foreach (var item in tanks)
+			foreach (GasTank item in tanks)
 			{
-				if (item.gasType == i)
+				if (item.gas.GetType() == i.GetType())
 				{
 					return item;
 				}
@@ -85,13 +71,13 @@ namespace CivMarsEngine
 
 		}
 
-		public List<GasTank> GetTanks(GasType i)
+		public List<GasTank> GetTanks(Gas i)
 		{
 			List<GasTank> a = new List<GasTank>();
 
 			foreach (var item in tanks)
 			{
-				if (item.gasType == i)
+				if (item.gas.GetType() == i.GetType())
 				{
 					a.Add(item);
 				}
@@ -102,6 +88,41 @@ namespace CivMarsEngine
 			}
 			return a;
 
+		}
+
+		public int GetTankCount()
+		{
+			return size;
+		}
+
+		public string GetInventoryName()
+		{
+			return "Unnamed gas tank";
+		}
+
+		public bool HasCustomInventoryName()
+		{
+			return true;
+		}
+
+		public bool IsGasValidForSlot(int slot, Gas givenGas)
+		{
+			return tanks[slot].CanAccept(givenGas);
+		}
+
+		public bool IsUseableByPlayer(Player p)
+		{
+			return true;
+		}
+
+		public void TransferGas(IGasTank ToInv, int index)
+		{
+			tanks[index].Transfer(ToInv, tanks[index].amount);
+		}
+
+		public void TransferGasAmount(IGasTank ToInv, int fromindex, int transferingAmount)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

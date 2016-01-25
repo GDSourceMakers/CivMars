@@ -14,6 +14,8 @@ namespace CivMars
 		public const string BlockSpace = "CivMars.block";
 		public const string ItemSpace = "CivMars.item";
 
+		
+
 		[ModInit]
 		public static void Init()
 		{
@@ -55,5 +57,4 @@ namespace CivMars
 
 
 	}
-
 }

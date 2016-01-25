@@ -26,12 +26,8 @@ namespace CivMarsEngine
 
 		public void Start()
 		{
-			GetTankCluster().GetTank(0).gasType = GasType.Oxigen;
-			GetTankCluster().GetTank(0).SetLocked(true);
-			GetTankCluster().GetTank(1).gasType = GasType.CarbonDeOxide;
-			GetTankCluster().GetTank(1).SetLocked(true);
 
-			GetTankCluster().GetTank(0).AddAmount(GetTankCluster().GetTank(0).maxAmount);
+
 			GameCon = GameObject.Find("_GameController").GetComponent<GameController>();
 
 		}

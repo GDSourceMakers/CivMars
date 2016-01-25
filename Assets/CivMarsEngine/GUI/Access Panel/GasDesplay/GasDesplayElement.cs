@@ -7,6 +7,10 @@ namespace CivMarsEngine
 	public class GasDesplayElement : MonoBehaviour
 	{
 
+		bool show;
+
+		int index;
+
 		public Text gasName;
 		public Text amount;
 		public Slider amountSlider;
@@ -14,11 +18,8 @@ namespace CivMarsEngine
 		public Toggle inButton;
 		public Toggle outButton;
 
-		public bool inPressed;
-		public bool outPressed;
-
-		public GasTank tank;
-		GasDesplay other;
+		public IGasTank tank;
+		GasDesplay GasController;
 
 		// Use this for initialization
 		void Start()
@@ -54,102 +55,37 @@ namespace CivMarsEngine
 			ChangedState();
 		}
 
-		public void Set(GasTank thisTnak, GasDesplay otherD)
+		public void Set(IGasTank setTank, bool s)
 		{
-			other = otherD;
+			show = s;
+			gameObject.SetActive(show);
 
-			if (thisTnak != null)
-			{
-				tank = thisTnak;
-			}
-			else
-			{
-				tank = null;
-			}
+			tank = setTank;
 		}
 
-		public void Set(GasTank thisTnak)
+		public void SetUp(int thisTank, GasDesplay controll)
 		{
-			if (thisTnak != null)
-			{
-				tank = thisTnak;
-			}
-			else
-			{
-				tank = null;
-			}
-		}
-
-		public void ChangedState()
-		{
-			if (inButton.isOn != inPressed)
-			{
-				if (inButton.isOn)
-				{
-					if (!(other.SetInput(this)))
-					{
-						inButton.isOn = false;
-					}
-
-					if (outPressed)
-					{
-						other.SetOutput(null);
-					}
-				}
-				else
-				{
-					other.SetInput(null);
-				}
-				inPressed = inButton.isOn;
-				outPressed = outButton.isOn;
-			}
-			if (outButton.isOn != outPressed)
-			{
-				if (outButton.isOn)
-				{
-					if (!(other.SetOutput(this)))
-					{
-						outButton.isOn = false;
-					}
-
-					if (inPressed)
-					{
-						other.SetInput(null);
-					}
-				}
-				else
-				{
-					other.SetOutput(null);
-				}
-				inPressed = inButton.isOn;
-				outPressed = outButton.isOn;
-			}
-			/*
-			if(!h)
-			{
-				if (outPressed)
-				{
-					other.SetOutput(null);
-				}
-				if (inPressed)
-				{
-					other.SetInput(null);
-				}
-				inPressed = inButton.isOn;
-				outPressed = outButton.isOn;
-			}
-			*/
+			index = thisTank;
+			GasController = controll;
 		}
 
 		public void SetInput(bool a)
 		{
-			inPressed = a;
-			inButton.isOn = a;
-		}
+			GasController.SetInput(this);
+        }
 
 		public void SetOutput(bool a)
 		{
-			outPressed = a;
+			GasController.SetInput(this);
+		}
+
+		public void TurnInput(bool a)
+		{
+			inButton.isOn = a;
+		}
+
+		public void TurnOutput(bool a)
+		{
 			outButton.isOn = a;
 		}
 	}

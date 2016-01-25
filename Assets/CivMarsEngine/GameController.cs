@@ -15,6 +15,8 @@ namespace CivMarsEngine
 	public class GameController : MonoBehaviour
 	{
 
+		public static GameController instance;
+
 		public GameState gameS;
 
 		//Gui
@@ -43,6 +45,7 @@ namespace CivMarsEngine
 
 		void Awake()
 		{
+			instance = this;
 			Registry = this.GetComponent<AssetsLoader>();
 		}
 
