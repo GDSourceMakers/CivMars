@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using UnityEngine;
 using CivMars;
 
 namespace CivMarsEngine.Registry
@@ -8,7 +9,6 @@ namespace CivMarsEngine.Registry
 
 		public void CallRegister()
 		{
-
 
 			CivMarsInit.Init();
 

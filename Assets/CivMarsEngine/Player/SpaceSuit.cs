@@ -6,58 +6,67 @@ using UnityEngine;
 
 namespace CivMarsEngine
 {
-	class SpaceSuit : IGasTank
+	public class SpaceSuit : IGasTank
 	{
 		static float[] maxs = { 200f, 200f };
 		GasTankCluster tanks = new GasTankCluster(2, maxs);
 
-		public Gas Add(Gas i, int index)
+		public SpaceSuit()
+		{ }
+
+		public Gas AddGas(Gas i, int index)
 		{
-			return tanks.AddGas(i, index);
+			return ((IGasTank)tanks).AddGas(i, index);
 		}
 
-		public string GetInventoryName()
+		public Gas GetGas(int index)
 		{
-			return "SpaceSuit";
+			return ((IGasTank)tanks).GetGas(index);
 		}
 
-		public GasTank GetTank(int index)
+		public string GetGasInventoryName()
 		{
-			return tanks.GetTank(index);
+			return ((IGasTank)tanks).GetGasInventoryName();
+		}
+
+		public float GetMaxAmount(int index)
+		{
+			return ((IGasTank)tanks).GetMaxAmount(index);
 		}
 
 		public int GetTankCount()
 		{
-			return tanks.size;
+			return ((IGasTank)tanks).GetTankCount();
 		}
 
-		public bool HasCustomInventoryName()
+		public bool HasCustomGasInventoryName()
 		{
-			return true;
+			return ((IGasTank)tanks).HasCustomGasInventoryName();
 		}
 
 		public bool IsGasValidForSlot(int slot, Gas givenGas)
 		{
-			throw new NotImplementedException();
+			return ((IGasTank)tanks).IsGasValidForSlot(slot, givenGas);
 		}
 
 		public bool IsUseableByPlayer(Player p)
 		{
-			throw new NotImplementedException();
+			return ((IGasTank)tanks).IsUseableByPlayer(p);
 		}
 
 		public Gas RemoveGas(Gas i, int index)
 		{
-			return tanks.RemoveGas(i, index);
+			return ((IGasTank)tanks).RemoveGas(i, index);
 		}
 
-		public void TransferGas(IGasTank ToInv, int index)
+		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
 		{
+			((IGasTank)tanks).TransferGas(ToInv, index, thisIndex);
 		}
 
-		public void TransferGasAmount(IGasTank ToInv, int fromindex, int transferingAmount)
+		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
 		{
-			throw new NotImplementedException();
+			((IGasTank)tanks).TransferGasAmount(ToInv, toIndex, thisIndex, transferingAmount);
 		}
 	}
 }

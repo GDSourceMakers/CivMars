@@ -32,27 +32,23 @@ namespace CivMarsEngine
 		{
 			if (tank != null)
 			{
-				if (tank.gasType != GasType.Null)
+				if (tank.GetGas(index) != null)
 				{
-					gasName.text = tank.gasType.ToString();
+					gasName.text = tank.GetGas(index).name;
+
+					amount.text = tank.GetGas(index).amount + " / " + tank.GetMaxAmount(index);
+					amountSlider.value = tank.GetGas(index).amount / tank.GetMaxAmount(index);
+
+					//inButton.gameObject.SetActive(true);
+					//outButton.gameObject.SetActive(true);
 				}
 				else
 				{
 					gasName.text = "Nothing";
 				}
-				amount.text = tank.amount + " / " + tank.maxAmount;
-				amountSlider.value = tank.amount / tank.maxAmount;
 
-				inButton.gameObject.SetActive(true);
-				outButton.gameObject.SetActive(true);
-			}
-			else
-			{
-				//inButton.gameObject.SetActive(false);
-				//outButton.gameObject.SetActive(false);
-			}
 
-			ChangedState();
+			}
 		}
 
 		public void Set(IGasTank setTank, bool s)
@@ -76,7 +72,7 @@ namespace CivMarsEngine
 
 		public void SetOutput(bool a)
 		{
-			GasController.SetInput(this);
+			GasController.SetOutput(this);
 		}
 
 		public void TurnInput(bool a)

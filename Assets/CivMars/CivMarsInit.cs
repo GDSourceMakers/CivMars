@@ -13,8 +13,9 @@ namespace CivMars
 		public const string ModSpace = "CivMars";
 		public const string BlockSpace = "CivMars.block";
 		public const string ItemSpace = "CivMars.item";
+		public const string GasSpace = "CivMars.gas";
 
-		
+
 
 		[ModInit]
 		public static void Init()

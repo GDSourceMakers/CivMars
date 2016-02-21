@@ -43,15 +43,6 @@ namespace CivMarsEngine
 
 		#endregion
 
-		public Gas AddGas(Gas g, int index)
-		{
-			return tanks[index].AddAmount(g);
-		}
-
-		public Gas RemoveGas(Gas g, int index)
-		{
-			return tanks[index].RemoveAmount(g);
-		}
 
 		public GasTank GetTank(int i)
 		{
@@ -69,6 +60,18 @@ namespace CivMarsEngine
 			}
 			return null;
 
+		}
+
+		#region IGasTank
+
+		public Gas AddGas(Gas g, int index)
+		{
+			return tanks[index].AddGas(g,index);
+		}
+
+		public Gas RemoveGas(Gas g, int index)
+		{
+			return tanks[index].RemoveGas(g,index);
 		}
 
 		public List<GasTank> GetTanks(Gas i)
@@ -95,19 +98,19 @@ namespace CivMarsEngine
 			return size;
 		}
 
-		public string GetInventoryName()
+		public string GetGasInventoryName()
 		{
 			return "Unnamed gas tank";
 		}
 
-		public bool HasCustomInventoryName()
+		public bool HasCustomGasInventoryName()
 		{
 			return true;
 		}
 
 		public bool IsGasValidForSlot(int slot, Gas givenGas)
 		{
-			return tanks[slot].CanAccept(givenGas);
+			return tanks[slot].IsGasValidForSlot(0,givenGas);
 		}
 
 		public bool IsUseableByPlayer(Player p)
@@ -115,14 +118,26 @@ namespace CivMarsEngine
 			return true;
 		}
 
-		public void TransferGas(IGasTank ToInv, int index)
+		public void TransferGas(IGasTank ToInv, int toIndex, int thisIndex)
 		{
-			tanks[index].Transfer(ToInv, tanks[index].amount);
+			tanks[thisIndex].TransferGas(ToInv, toIndex, thisIndex);
 		}
 
-		public void TransferGasAmount(IGasTank ToInv, int fromindex, int transferingAmount)
+		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
 		{
-			throw new NotImplementedException();
+			tanks[thisIndex].TransferGasAmount(ToInv, toIndex, thisIndex, transferingAmount);
+        }
+
+		public Gas GetGas(int index)
+		{
+			return tanks[index].gas;
 		}
+
+		public float GetMaxAmount(int index)
+		{
+			return tanks[index].maxAmount;
+		}
+
+		#endregion
 	}
 }

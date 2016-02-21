@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using CivMars;
 
 
 namespace CivMarsEngine
@@ -26,6 +27,8 @@ namespace CivMarsEngine
 
 		public void Start()
 		{
+			GetSuit().AddGas(new Oxigen(100), 0);
+			GetSuit().AddGas(new Oxigen(100), 1);
 
 
 			GameCon = GameObject.Find("_GameController").GetComponent<GameController>();
@@ -35,14 +38,24 @@ namespace CivMarsEngine
 		void Update()
 		{
 			//Breath();
-			GasTank oxigen = GetTankCluster().GetTank(0);
-			GasTank carbonDioxide = GetTankCluster().GetTank(1);
+			Gas oxigen = GetSuit().GetGas(0);
+			Gas carbonDioxide = GetSuit().GetGas(1);
+
+			if (oxigen == null)
+			{
+				oxigen = new Gas(0);
+			}
+
+			if (carbonDioxide == null)
+			{
+				carbonDioxide = new Gas(0);
+			}
 
 			float OxigenTank = oxigen.amount;
-			float OxigenTankFull = oxigen.maxAmount;
+			float OxigenTankFull = GetSuit().GetMaxAmount(0);
 
 			float CarbonDioxideTank = carbonDioxide.amount;
-			float CarbonDioxideTankFull = carbonDioxide.maxAmount;
+			float CarbonDioxideTankFull = GetSuit().GetMaxAmount(1);
 
 			float OxigenHp = Mathf.Clamp((OxigenTank * 5) / OxigenTankFull, 0, 1);
 			float CarbonDioxideHp = Mathf.Clamp(((CarbonDioxideTankFull - CarbonDioxideTank) * 5) / CarbonDioxideTankFull, 0, 1); ;
@@ -70,13 +83,11 @@ namespace CivMarsEngine
 
 		public void Breath()
 		{
-			GetTankCluster().GetTank(0).RemoveAmount(breathAmount * Time.deltaTime, GasType.Oxigen);
-			GetTankCluster().GetTank(1).AddAmount(breathAmount * Time.deltaTime, GasType.CarbonDeOxide);
-		}
+			Gas o = new Gas(breathAmount * Time.deltaTime);
+			Gas c = new Gas(breathAmount * Time.deltaTime);
 
-		public void walk()
-		{
-			throw new System.NotImplementedException();
+			GetSuit().RemoveGas(o, 0);
+			GetSuit().AddGas(c, 1);
 		}
 
 		public void Mine()
@@ -126,9 +137,9 @@ namespace CivMarsEngine
 
 		#region Tank
 
-		public GasTankCluster GetTankCluster()
+		public SpaceSuit GetSuit()
 		{
-			return suit.GetTankCluster();
+			return suit;
 		}
 
 		#endregion
@@ -189,6 +200,62 @@ namespace CivMarsEngine
 		{
 			inventory.TransferItemAmount(Toinv, fromindex, transferingAmount);
 		}
+
+		#endregion
+
+
+		#region IGasTank
+
+		public int GetTankCount()
+		{
+			throw new NotImplementedException();
+		}
+
+		public string GetGasInventoryName()
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool HasCustomGasInventoryName()
+		{
+			throw new NotImplementedException();
+		}
+
+		public Gas GetGas(int index)
+		{
+			throw new NotImplementedException();
+		}
+
+		public float GetMaxAmount(int index)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool IsGasValidForSlot(int slot, Gas givenGas)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Gas AddGas(Gas i, int index)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Gas RemoveGas(Gas i, int index)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
+		{
+			throw new NotImplementedException();
+		}
+
 
 		#endregion
 	}

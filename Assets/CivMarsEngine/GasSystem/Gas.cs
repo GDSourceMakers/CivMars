@@ -5,13 +5,23 @@ using System.Text;
 
 namespace CivMarsEngine
 {
-		public class Gas : IRegystratabe
+	public class Gas : IRegystratabe
+	{
+		public string ID;
+		public string name;
+
+		public float amount;
+
+		public Gas()
 		{
-			public string ID;
-			public string name;
 
-			public float amount;
-
-			public void Regystrate() {}
 		}
+
+		public Gas(float setAmount)
+		{
+			amount = setAmount;
+		}
+
+		public void Regystrate() { }
+	}
 }

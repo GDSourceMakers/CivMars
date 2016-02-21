@@ -19,9 +19,6 @@ namespace CivMarsEngine
 
 		public List<GasDesplayElement> drawedInvOther = new List<GasDesplayElement>();
 
-		GasTankCluster player;
-		GasTankCluster other;
-
 		IGasTank player_t;
 		IGasTank other_t;
 
@@ -30,9 +27,8 @@ namespace CivMarsEngine
 
 		void Start()
 		{
-			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetTankCluster();
+			player_t = GameController.instance.playerclass.GetSuit();
 		}
-
 
 		void Update()
 		{
@@ -47,12 +43,12 @@ namespace CivMarsEngine
 		{
 			if (other_t == null)
 			{
-				UpdateDesplayPlayer(GameController.instance.playerclass);
+				UpdateDesplayPlayer(player_t);
 			}
 			else
 			{
 				UpdateDesplayOther(other_t);
-				UpdateDesplayPlayer(GameController.instance.playerclass);
+				UpdateDesplayPlayer(player_t);
 			}
 		}
 
@@ -81,6 +77,8 @@ namespace CivMarsEngine
 				actual.SetUp(drawedInvOther.Count + i, this);
 
 				actual.Set(TankThis, true);
+
+				drawedInvOther.Add(actual);
 			}
 		}
 
@@ -104,15 +102,18 @@ namespace CivMarsEngine
 			{
 				GasDesplayElement actual;
 				actual = Instantiate(TankElement).GetComponent<GasDesplayElement>();
-				actual.transform.SetParent(GasCanvasPlayer.transform.FindChild("PLayer").transform);
+				actual.transform.SetParent(GasCanvasPlayer.transform);
 				actual.transform.SetSiblingIndex(i);
 
 				actual.SetUp(drawedInvPlayer_Suit.Count + i, this);
 
 				actual.Set(TankThis, true);
+
+				drawedInvPlayer_Suit.Add(actual);
 			}
 			#endregion
 
+			/*
 			#region Inv
 			for (int i = 0; i < drawedInvPlayer_Inv.Count; i++)
 			{
@@ -137,8 +138,12 @@ namespace CivMarsEngine
 				actual.SetUp(drawedInvPlayer_Inv.Count + i, this);
 
 				actual.Set(TankThis, true);
+
+				drawedInvPlayer_Inv.Add(actual);
 			}
 			#endregion
+			*/
+
 		}
 
 

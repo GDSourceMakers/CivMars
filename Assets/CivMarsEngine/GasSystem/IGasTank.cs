@@ -20,22 +20,30 @@ namespace CivMarsEngine
 		/// Returns the name of the inventory
 		/// </summary>
 		/// <returns></returns>
-		String GetInventoryName();
+		String GetGasInventoryName();
 
 		/// <summary>
 		/// Returns if the inventory is named
 		/// </summary>
 		/// <returns>True if named</returns>
-		bool HasCustomInventoryName();
+		bool HasCustomGasInventoryName();
 
-		/*
 		/// <summary>
-		/// Returns the GasTank in slot i
+		/// Returns the Gas in slot i
+		/// with amount
 		/// </summary>
 		/// <param name="i"></param>
 		/// <returns></returns>
-		GasTank GetTank(int index);
-		*/
+		Gas GetGas(int index);
+
+
+		/// <summary>
+		/// Returns the Gas in slot i
+		/// with amount
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
+		float GetMaxAmount(int index);
 
 		/// <summary>
 		/// Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
@@ -58,7 +66,8 @@ namespace CivMarsEngine
 		/// Transfers a all the gas it can fit to a other tank
 		/// </summary>
 		/// <param name="ToInv">other tank to transfer to</param>
-		/// <param name="index">this inventorys index to transfer from</param>
+		/// <param name="index">other inventory1s index to transfer to</param>
+		/// <param name="thisIndex">this inventorys index to transfer from</param>
 		void TransferGas(IGasTank ToInv, int index, int thisIndex);
 
 		/// <summary>

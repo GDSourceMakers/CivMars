@@ -91,11 +91,6 @@ namespace CivMars
 
 		#endregion
 
-		public GasTankCluster GetTankCluster()
-		{
-			return tanks;
-		}
-
 		#region IInventory
 
 		public int GetInventorySize()
@@ -164,6 +159,65 @@ namespace CivMars
 		}
 		#endregion
 
+
+		#region IGasTank
+
+		public int GetTankCount()
+		{
+			return tanks.GetTankCount();
+		}
+
+		public string GetGasInventoryName()
+		{
+			return tanks.GetGasInventoryName();
+		}
+
+		public bool HasCustomGasInventoryName()
+		{
+			return false;
+        }
+
+		public Gas GetGas(int index)
+		{
+			return tanks.GetGas(index);
+        }
+
+		public float GetMaxAmount(int index)
+		{
+			return tanks.GetMaxAmount(index);
+        }
+
+		public bool IsGasValidForSlot(int slot, Gas givenGas)
+		{
+			return tanks.IsGasValidForSlot(slot, givenGas);
+		}
+
+		public Gas AddGas(Gas i, int index)
+		{
+			return tanks.AddGas(i, index);
+        }
+
+		public Gas RemoveGas(Gas i, int index)
+		{
+			return tanks.RemoveGas(i, index);
+        }
+
+		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
+		{
+			tanks.TransferGas(ToInv, index, thisIndex);
+        }
+
+		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
+		{
+			tanks.TransferGasAmount(ToInv, toIndex, thisIndex, transferingAmount);
+		}
+
+
+
+
+		#endregion
+
+
 		public override GameObject GetPrefab()
 		{
 			return gameObject;
@@ -173,6 +227,8 @@ namespace CivMars
 		{
 			return new Saved(this);
 		}
+
+
 
 		[Serializable]
 		public class Saved : SavedTile

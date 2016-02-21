@@ -9,8 +9,6 @@ namespace CivMarsEngine
 {
 	public class GasTank: IGasTank
 	{
-		public GasType gasType;
-
 		public Gas gas;
 
 		public float amount;
@@ -29,9 +27,9 @@ namespace CivMarsEngine
 			gas = g;
 		}
 
-		public bool CanAccept(Gas g)
+		public bool IsGasValidForSlot(int slot, Gas givenGas)
 		{
-			if (gas.GetType() == g.GetType())
+			if (gas.GetType() == givenGas.GetType())
 			{
 				return true;
 			}
@@ -44,18 +42,23 @@ namespace CivMarsEngine
 
 		public Gas AddGas(Gas g, int i)
 		{
-			if (g.GetType() == gas.GetType() || gas.GetType() == null)
+			if (gas == null || g.GetType() == gas.GetType())
 			{
-				amount += g.amount;
-				if (amount <= maxAmount)
+				if (gas == null)
+				{
+					gas = g;
+					gas.amount = 0;
+				}
+				gas.amount += g.amount;
+				if (gas.amount <= maxAmount)
 				{
 					g.amount = 0;
 					return g;
 				}
 				else
 				{
-					float reamaining = amount - maxAmount;
-					amount = maxAmount;
+					float reamaining = gas.amount - maxAmount;
+					gas.amount = maxAmount;
 
 					g.amount = reamaining;
 					return g;
@@ -68,9 +71,9 @@ namespace CivMarsEngine
 		{
 			if (g.GetType() == gas.GetType() || gas.GetType() == null)
 			{
-				float old = amount;
-				amount -= g.amount;
-				if (amount >= 0)
+				float old = gas.amount;
+				gas.amount -= g.amount;
+				if (gas.amount >= 0)
 				{
 					g.amount = 0;
                     return g;
@@ -78,7 +81,7 @@ namespace CivMarsEngine
 				else
 				{
 					float reamaining = g.amount - old;
-					amount = 0;
+					gas.amount = 0;
 					if (!locked)
 					{
 						gas = null;
@@ -90,6 +93,36 @@ namespace CivMarsEngine
 			return g;
 		}
 
+
+		public void SetLocked(bool a)
+		{
+			locked = a;
+		}
+
+		public int GetTankCount()
+		{
+			return 1;
+		}
+
+		public string GetGasInventoryName()
+		{
+			return "asd";
+		}
+
+		public bool HasCustomGasInventoryName()
+		{
+			return true;
+		}
+
+		public bool IsUseableByPlayer(Player p)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
+		{
+			throw new NotImplementedException();
+		}
 
 		public void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount)
 		{
@@ -109,46 +142,14 @@ namespace CivMarsEngine
 			}
 		}
 
-		public void SetLocked(bool a)
+		public Gas GetGas(int index)
 		{
-			locked = a;
+			return gas;
 		}
 
-		public int GetTankCount()
+		public float GetMaxAmount(int index)
 		{
-			return 1;
-		}
-
-		public string GetInventoryName()
-		{
-			return "asd";
-		}
-
-		public bool HasCustomInventoryName()
-		{
-			return true;
-		}
-
-		/*
-		public GasTank GetTank(int index)
-		{
-			throw new NotImplementedException();
-		}
-		*/
-
-		public bool IsGasValidForSlot(int slot, Gas givenGas)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool IsUseableByPlayer(Player p)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
-		{
-			throw new NotImplementedException();
+			return maxAmount;
 		}
 	}
 }
