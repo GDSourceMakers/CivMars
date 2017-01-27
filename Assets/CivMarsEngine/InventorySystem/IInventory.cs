@@ -23,7 +23,7 @@ namespace CivMarsEngine
 		String GetInventoryName();
 
 		/// <summary>
-		/// Returns if the inventory is named
+		/// Returns true if the inventory is named
 		/// </summary>
 		/// <returns>True if named</returns>
 		bool HasCustomInventoryName();
@@ -31,14 +31,14 @@ namespace CivMarsEngine
 		/// <summary>
 		/// Returns the item in slot i
 		/// </summary>
-		/// <param name="i"></param>
+		/// <param name="i">slot index</param>
 		/// <returns></returns>
 		Item GetStackInSlot(int i);
 
 		/// <summary>
 		/// Returns the maximum stack size for a inventory slot.
 		/// </summary>
-		/// <param name="i"></param>
+		/// <param name="i">slot index</param>
 		/// <returns></returns>
 		int GetInventoryStackLimit(int i);
 
@@ -51,12 +51,12 @@ namespace CivMarsEngine
 		bool IsItemValidForSlot(int slot, Item givenItem);
 
 		//Do not make give this method the name canInteractWith because it clashes with Container
-		bool IsUseableByPlayer(Player p_70300_1_);
+		bool IsUseableByPlayer(Player player);
 
 		//Adds the item to the inventory returns the remained amount
 		Item Add(Item i);
 
-		//Removes the item to the inventory returns the remained amount
+		//Removes the item from the inventory returns the remained amount
 		Item Remove(Item i);
 
 		/// <summary>

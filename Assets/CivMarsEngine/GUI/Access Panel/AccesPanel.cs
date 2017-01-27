@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using CivMarsEngine.GUI;
 
 namespace CivMarsEngine
 {
-	public class AccesPanel : MonoBehaviour, IHasGui
+	public class AccesPanel : MonoBehaviour, IGUI
 	{
 		public GameController GameCon;
 
-		public Building OpenBuilding;
+		//public Building OpenBuilding;
 
 		public bool on;
 
@@ -18,9 +19,8 @@ namespace CivMarsEngine
 
 		public void Start()
 		{
-			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+			GameCon = GameController.instance;
 		}
-
 
 		void Update()
 		{
@@ -29,18 +29,21 @@ namespace CivMarsEngine
 				TogelGui();
 			}
 		}
+
 		#region IHasGUI
+
 		public void TogelGui()
 		{
+			/*
 			if (!on)
 			{
-				if (GameCon.HasOpendGui())
+				if (GameCon.guiHandler.HasOpendGui())
 				{
-					GameCon.CloseGUI(null);
+					GameCon.guiHandler.CloseGUI(null);
 				}
 				else
 				{
-					if (GameCon.AlloweGUI(this))
+					if (GameCon.guiHandler.AlloweGUI(this))
 					{
 						Open();
 					}
@@ -48,9 +51,10 @@ namespace CivMarsEngine
 			}
 			else
 			{
-				GameCon.CloseGUI(this);
+				GameCon.guiHandler.CloseGUI(this);
 				Close();
 			}
+			*/
 		}
 
 		public void Open()
@@ -69,6 +73,9 @@ namespace CivMarsEngine
 		{
 			return int.MaxValue;
 		}
+
 #endregion
+
+
 	}
 }

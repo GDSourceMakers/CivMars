@@ -1,4 +1,6 @@
 ﻿
+using BasicUtility.TileMap;
+
 namespace CivMarsEngine
 {
 	public interface IWorldGen

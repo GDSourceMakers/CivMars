@@ -1,41 +1,45 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Language
+namespace CivMarsEngine
 {
-
-
-    static public string[,] Names =
+    public abstract class Language
     {
-    {"CoalOre",     "Coal Ore", "szén érc"  },
-    {"StoneOre",    "Stone",    "kő"        },
-    {"SandOre",     "Sand",     "homok"     },
-    {"IronOre",     "Iron Ore", "vas érc"   },
-    {"UraniumOre",  "Uran Ore", "urán érc"  },
-    {"IronIngot",     "Iron Ingot", ""          },
-    {"CoalOre",     "Coal Ore", ""          }
+
+
+        static public string[,] Names =
+        {
+    {"CoalOre",         "Coal Ore",         "szén érc"  },
+    {"StoneOre",        "Stone",            "kő"        },
+    {"SandOre",         "Sand",             "homok"     },
+    {"IronOre",         "Iron Ore",         "vas érc"   },
+    {"UraniumOre",      "Uran Ore",         "urán érc"  },
+    {"IronIngot",       "Iron Ingot",       ""          },
+    {"CoalOre",         "Coal Ore",         ""          }
     };
 
-    public static string Get(System.Object itemObject, int language)
-    {
-        string name = "Unlocalized Name";
+        //TODO: Change to directory
+        public static string Get(System.Object itemObject, int language)
+        {
+            string name = "Unlocalized Name";
 
-        for (int i = 0; i < 7; i++)
-	    {
-        
-            if (Names[i,0] == itemObject.GetType().ToString())
+            for (int i = 0; i < 7; i++)
             {
-                if (language == 2)
-                {
-                    name = Names[i, 0];
-                    break;
-                }
-                name = Names[i, language+1];
-            }
-        }
 
-        if (name == "Unlocalized Name")
-            Debug.LogError("Cant find: " + itemObject.GetType().ToString());
-        return name;
+                if (Names[i, 0] == itemObject.GetType().ToString())
+                {
+                    if (language == 2)
+                    {
+                        name = Names[i, 0];
+                        break;
+                    }
+                    name = Names[i, language + 1];
+                }
+            }
+
+            if (name == "Unlocalized Name")
+                Debug.LogError("Cant find: " + itemObject.GetType().ToString());
+            return name;
+        }
     }
 }

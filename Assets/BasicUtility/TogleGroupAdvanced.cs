@@ -5,22 +5,25 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TogleGroupAdvanced : ToggleGroup
+namespace BasicUtility
 {
-	public Toggle ActiveToggle()
-	{
-		int a = ActiveToggles().Count();
+    public class TogleGroupAdvanced : ToggleGroup
+    {
+        public Toggle ActiveToggle()
+        {
+            int a = ActiveToggles().Count();
 
-		for (int i = 0; i < a; i++)
-		{
+            for (int i = 0; i < a; i++)
+            {
 
-		}
+            }
 
-		IEnumerator<Toggle> g = ActiveToggles().GetEnumerator();
-		g.MoveNext();
-		Toggle d = g.Current;
+            IEnumerator<Toggle> g = ActiveToggles().GetEnumerator();
+            g.MoveNext();
+            Toggle d = g.Current;
 
-		return d;
-	}
+            return d;
+        }
+    }
+
 }
-

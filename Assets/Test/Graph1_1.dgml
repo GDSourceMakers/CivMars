@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="InventoryCluseter" Bounds="542.20485596197,130.113770413099,116.173333333333,25.96" Label="Inventory Cluseter" UseManualLocation="True" />
+    <Node Id="InventoryHandler" Bounds="375.680481066113,-22.845179531049,115,25.96" Label="Inventory Handler" UseManualLocation="True" />
+    <Node Id="InventorySlot" Bounds="242.965676916876,87.114820565751,113.536666666667,85.9602" Group="Expanded" Label="Inventory Slot" UseManualLocation="True" />
+    <Node Id="SlotIndex" Bounds="263.62901025021,127.114920565751,72.21,25.96" Label="Slot index" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="InventoryHandler" Target="InventoryCluseter" Bounds="447.361418753679,3.11482284545899,132.110304932341,120.922310118808" />
+    <Link Source="InventoryHandler" Target="InventorySlot" Bounds="346.92443602426,3.11482284545899,73.8801233809289,77.4862702116668" />
+    <Link Source="InventorySlot" Target="SlotIndex" Category="Contains" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+</DirectedGraph>

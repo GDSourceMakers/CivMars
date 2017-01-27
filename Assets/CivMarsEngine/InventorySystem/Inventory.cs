@@ -5,7 +5,7 @@ using System;
 namespace CivMarsEngine
 {
 	[System.Serializable]
-	public class Inventory
+	public class Inventory : IInventory
 	{
 
 		public Item[] inventory;
@@ -145,7 +145,7 @@ namespace CivMarsEngine
 		/// </summary>
 		/// <param name="i">index</param>
 		/// <returns>Item</returns>
-		public Item Get(int i)
+		public Item GetStackInSlot(int i)
 		{
 			return inventory[i];
 		}
@@ -157,9 +157,9 @@ namespace CivMarsEngine
 		/// <param name="fromindex">this inventorys index to transfer</param>
 		public void TransferItem(IInventory ToInv, int fromindex)
 		{
-			Item r = ToInv.Add(this.Get(fromindex));
+			Item r = ToInv.Add(this.GetStackInSlot(fromindex));
 			if (r != null)
-				this.Remove(fromindex, this.Get(fromindex).amount - r.amount);
+				this.Remove(fromindex, this.GetStackInSlot(fromindex).amount - r.amount);
 			else
 				this.Remove(fromindex);
 		}
@@ -186,9 +186,39 @@ namespace CivMarsEngine
 			{
 				addable.amount = transferingAmount - remaining;
 			}
-			Item r = ToInv.Add(this.Get(fromindex));
-			this.Remove(fromindex, this.Get(fromindex).amount - r.amount);
+			Item r = ToInv.Add(this.GetStackInSlot(fromindex));
+			this.Remove(fromindex, this.GetStackInSlot(fromindex).amount - r.amount);
 			Check(fromindex);
+		}
+
+		public int GetInventorySize()
+		{
+			return size;
+		}
+
+		public string GetInventoryName()
+		{
+			return "None";
+		}
+
+		public bool HasCustomInventoryName()
+		{
+			return false;
+		}
+
+		public int GetInventoryStackLimit(int i)
+		{
+			return 256;
+		}
+
+		public bool IsItemValidForSlot(int slot, Item givenItem)
+		{
+			return true;
+		}
+
+		public bool IsUseableByPlayer(Player player)
+		{
+			return true;
 		}
 
 

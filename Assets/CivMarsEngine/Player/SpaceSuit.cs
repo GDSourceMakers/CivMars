@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace CivMarsEngine
 {
+	//TODO: Should be an item
 	public class SpaceSuit : IGasTank
 	{
 		static float[] maxs = { 200f, 200f };

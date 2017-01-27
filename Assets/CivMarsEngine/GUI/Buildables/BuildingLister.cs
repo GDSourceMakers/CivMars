@@ -3,10 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using BasicUtility.TileMap;
+using BasicUtility;
+using CivMarsEngine.Registry;
+using CivMarsEngine.GUI;
 
 namespace CivMarsEngine
 {
-	public class BuildingLister : MonoBehaviour, IHasGui,IPointerClickHandler
+	public class BuildingLister : MonoBehaviour, IGUI ,IPointerClickHandler
 	{
 		public GameObject buildableDrawElement;
 		public GameObject buildingDesplayCanvas;
@@ -31,13 +35,13 @@ namespace CivMarsEngine
 
 		void Start()
 		{
-			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            GameCon = GameController.instance;
 			toglegroup = transform.FindChild("InSelecting").FindChild("Panel").GetComponent<TogleGroupAdvanced>();
 			state = BuildingListerStates.Idle;
 
 			buildingID = new List<string>();
 
-			foreach (KeyValuePair<string, Building> item in GameRegystry.buildings)
+			foreach (KeyValuePair<string, Tile> item in GameRegystry.tiels)
 			{
 				if (item.Value is IBuildable)
 				{
@@ -50,7 +54,7 @@ namespace CivMarsEngine
 				GameObject actual = Instantiate(buildableDrawElement);
 				actual.transform.SetParent(buildingDesplayCanvas.transform);
 				actual.transform.SetSiblingIndex(i);
-				actual.transform.FindChild("Icon").GetComponent<Image>().sprite = ((IBuildable)GameRegystry.buildings[buildingID[i]]).GetImage();
+				actual.transform.FindChild("Icon").GetComponent<Image>().sprite = ((IBuildable)GameRegystry.tiels[buildingID[i]]).GetImage();
 				actual.GetComponent<Toggle>().group = toglegroup;
 				actual.transform.localScale = Vector3.one;
 			}
@@ -70,19 +74,21 @@ namespace CivMarsEngine
 			{
 				if (Input.GetMouseButtonUp(0) && SelectedBuilding != -1 && !EventSystem.current.IsPointerOverGameObject())
 				{
-					Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					//Vector3 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-					TileVector pos = new TileVector(Mathf.Round(ray.x - 0.5f), -1* Mathf.Round(ray.y + 0.5f),TileVectorTypes.ySwaped);
-
+					//TileVector pos = new TileVector(Mathf.Round(ray.x - 0.5f), -1* Mathf.Round(ray.y + 0.5f),TileVectorTypes.ySwaped);
+                    //TODO: Layers...
+                    /*
 					if (GameCon.map.Buildings.GetTileOn((int)pos.x, (int)pos.y) == null)
 					{
-						PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();
+						//PlanedBuilding p = Instantiate(planedBuildingPrefab).GetComponent<PlanedBuilding>();
 						GameCon.map.Buildings.SetTile(pos.x, pos.y, p.transform);
 
-						p.SetBuilding(((IBuildable)GameRegystry.buildings[buildingID[SelectedBuilding]]));
+						p.SetBuilding(((IBuildable)GameRegystry.tiels[buildingID[SelectedBuilding]]));
 
 					}
-					GameCon.CloseGUI(this);
+                    */
+					//GameCon.CloseGUI(this);
 					Close();
 				}
 			}
@@ -115,6 +121,7 @@ namespace CivMarsEngine
 		#region IhasGui
 		public void TogelGui()
 		{
+			/*
 			if (!guion)
 			{
 				if (GameCon.AlloweGUI(this as IHasGui))
@@ -127,6 +134,7 @@ namespace CivMarsEngine
 				GameCon.CloseGUI(this as IHasGui);
 				Close();
 			}
+			*/
 		}
 
 		public void Open()

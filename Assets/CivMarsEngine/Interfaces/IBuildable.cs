@@ -15,6 +15,7 @@ namespace CivMarsEngine
 
 		GameObject GetPrefab();
 
+		//TODO: What?
 		Image GetBuildedState();
 
 		Item[] GetNeededMaterials();

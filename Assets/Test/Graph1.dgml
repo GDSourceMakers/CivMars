@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" Layout="Sugiyama" ZoomLevel="-1" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="AccesPanel" Bounds="148.445572606701,9.21507406252822,234.766674194336,141.920221972656" Group="Expanded" Label="Acces Panel" />
+    <Node Id="BUildingTank" Bounds="384.1239344395,253.716340342818,91.8533333333334,25.96" Label="BUilding Tank" />
+    <Node Id="BuildingGuiCustom" Bounds="413.212339273368,37.7561822556601,195,145.96" Group="Expanded" Label="Building Gui Custom" />
+    <Node Id="BuildingInv" Bounds="251.793829963589,181.135074062528,82.33,25.96" Label="Building Inv" />
+    <Node Id="BuildingInv1" Bounds="433.212339273368,77.7561822556601,155,85.96" Group="Expanded" Label="Building Inv" UseManualLocation="True" />
+    <Node Id="BuildingInventory" Bounds="384.123931998094,309.676324168502,116.473333333333,25.96" Label="Building Inventory" />
+    <Node Id="BuildingStats" Bounds="505.97725882101,253.716340342818,91.9200000000001,25.96" Label="Building Stats" />
+    <Node Id="DefaultBuildingInv" Bounds="364.123929963588,213.71618225566,253.773333333334,141.9203" Group="Expanded" Label="Default Building Inv" />
+    <Node Id="GuiManagger" Bounds="22.8654726067012,142.962371492013,95.58,25.96" Label="Gui Managger" />
+    <Node Id="InventoryHandler" Bounds="453.212339273368,117.75618225566,115,25.96" Label="Inventory Handler" />
+    <Node Id="PLayerInventory" Bounds="168.445572606701,105.175196035184,105.15,25.96" Label="Player Inventory" />
+    <Node Id="PlayerStats" Bounds="168.445574539481,49.2151740625282,80.5966666666667,25.96" Label="Player Stats" />
+    <Node Id="PlayerTanks" Bounds="279.042246801037,49.2151893213173,84.17,25.96" Label="Player Tanks" />
+    <Node Id="SideBar" Bounds="148.445572606701,181.135074062528,63.07,25.96" Label="Side Bar" />
+  </Nodes>
+  <Links>
+    <Link Source="AccesPanel" Target="PLayerInventory" Category="Contains" />
+    <Link Source="AccesPanel" Target="PlayerStats" Category="Contains" />
+    <Link Source="AccesPanel" Target="PlayerTanks" Category="Contains" />
+    <Link Source="BuildingGuiCustom" Target="BuildingInv1" Category="Contains" />
+    <Link Source="BuildingInv" Target="BuildingGuiCustom" Bounds="326.857584067779,151.287697221942,77.9498373015517,29.847376840586" />
+    <Link Source="BuildingInv" Target="DefaultBuildingInv" Bounds="321.345272274836,207.095074062528,34.5937516705184,15.8183576427051" />
+    <Link Source="BuildingInv1" Target="InventoryHandler" Category="Contains" />
+    <Link Source="DefaultBuildingInv" Target="BUildingTank" Category="Contains" />
+    <Link Source="DefaultBuildingInv" Target="BuildingInventory" Category="Contains" />
+    <Link Source="DefaultBuildingInv" Target="BuildingStats" Category="Contains" />
+    <Link Source="GuiManagger" Target="AccesPanel" Bounds="104.091466899849,129.000939960254,35.9641251941509,13.9614315317594" />
+    <Link Source="GuiManagger" Target="BuildingInv" Bounds="118.445472606701,164.14860588062,124.478179728228,21.3747043129733" />
+    <Link Source="GuiManagger" Target="SideBar" Bounds="107.829675700618,168.922371492013,32.281552507168,11.2716485269218" />
+  </Links>
+  <Categories>
+    <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="Group" Label="Group" Description="Display the node as a group" DataType="Microsoft.VisualStudio.GraphModel.GraphGroupStyle" />
+    <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
+    <Property Id="IsContainment" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="OutgoingActionLabel" Label="OutgoingActionLabel" Description="OutgoingActionLabel" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="ZoomLevel" DataType="System.String" />
+  </Properties>
+  <Paths>
+    <Path Id="3db71763-2632-0e65-e4ba-f4bbcb5831f9.OutputPath" Value="P:\Unity\CivMarsProject\CivMars2\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework" />
+  </Paths>
+</DirectedGraph>

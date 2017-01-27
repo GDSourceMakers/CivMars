@@ -110,16 +110,15 @@ namespace CivMarsEngine
 	public class CameraChase : MonoBehaviour
 	{
 
-
 		public Transform chase;
 		public bool loaded = false;
 
-		public float eventHorizont = 1.5f;
+		//public float eventHorizont = 1.5f;
 
 		public float eventHorizontX = 1f;
 		public float eventHorizontY = 1f;
 
-		public RectTransform rectTrans;
+		//public RectTransform rectTrans;
 
 		Camera CameraScript;
 		GameController GameCon;
@@ -130,39 +129,33 @@ namespace CivMarsEngine
 		void Start()
 		{
 
-			
+           // MapLoaded();
 		}
 
 		// Use this for initialization
 		public void MapLoaded()
 		{
-
 			CameraScript = this.GetComponent<Camera>();
-			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+			GameCon = GameController.instance;
 
-			if (GameCon.map == null)
+			if (GameCon == null)
 			{
 				Debug.LogError("Can't find GameController");
-				Debug.Break();
+				//Debug.Break();
 			}
 
 			loaded = true;
-
-			//xCameraH = CameraScript.orthographicSize * (Screen.width / Screen.height) * (CameraScript.rect.width);
-
+			
 			float f = (float)((float)Screen.width / (float)Screen.height);
 			float s = CameraScript.orthographicSize;
-			float d = CameraScript.orthographicSize * (Screen.width / Screen.height);
 			float a = CameraScript.rect.width;
 			xCameraH = s*f*a;
 
             Debug.Log("f: "+ f);
 			Debug.Log("s: "+ s);
-			Debug.Log("d: "+ d);
 			Debug.Log("a: "+ a);
 			Debug.Log("xCameraH: "+xCameraH);
 
-			//Debug.Log(xCameraH);
 			yCameraH = CameraScript.orthographicSize * (CameraScript.rect.height);
 		}
 
@@ -171,10 +164,9 @@ namespace CivMarsEngine
 		{
 			if (chase == null)
 			{
-
 				return;
-
 			}
+			//TODO Chnage loaded to something
 			if (loaded)
 			{
 				float xCamPos = transform.position.x;
@@ -183,20 +175,18 @@ namespace CivMarsEngine
 				float xPos = chase.transform.position.x;
 				float yPos = -1 * chase.transform.position.y;
 
-				
-				
 				//transform.position = new Vector3(Mathf.Clamp(xPos, xCameraH, GameCon.map.mapHeight - xCameraH),-1 * Mathf.Clamp(-1*yPos, yCameraH, GameCon.map.mapHeight - yCameraH), transform.position.z);
 				transform.position = new Vector3(
 													Mathf.Clamp(
 													xCamPos + OutRangeClamp(xPos, xCamPos - xCameraH * eventHorizontX, xCamPos + xCameraH * eventHorizontX),
 													xCameraH,
-													GameCon.map.mapHeight - xCameraH
+													MapManagger.instance.mapHeight - xCameraH
 													),
 
 												-1 * Mathf.Clamp(
 													yCamPos + OutRangeClamp(yPos, yCamPos - yCameraH * eventHorizontY, yCamPos + yCameraH * eventHorizontY),
 													yCameraH,
-													GameCon.map.mapHeight - yCameraH
+                                                    MapManagger.instance.mapHeight - yCameraH
 													),
 												transform.position.z);
 			}

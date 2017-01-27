@@ -22,7 +22,7 @@ namespace CivMarsEngine
 		// Use this for initialization
 		void Awake()
 		{
-			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            GameCon = GameController.instance;
 		}
 
 		// Update is called once per frame

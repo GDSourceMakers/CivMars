@@ -22,12 +22,12 @@ namespace CivMarsEngine
 			set
 			{
 				r_materials = value;
-				bool k = true;
+			    //bool k = true;
 				for (int i = 0; i < recipe.Materials.Length; i++)
 				{
 					if (r_materials[i] != 0)
 					{
-						k = false;
+						//k = false;
 					}
 				}
 			}

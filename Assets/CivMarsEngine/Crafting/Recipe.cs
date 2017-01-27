@@ -12,7 +12,7 @@ namespace CivMarsEngine
 		public Item Crafted;
 		public float time;
 
-
+		//TODO: Add desc.
 		public Recipe(string ID, Item[] m, Item c, float t)
 		{
 			buildingID = ID;

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using CivMarsEngine;
-
+using BasicUtility;
 
 namespace CivMarsEngine
 {
@@ -52,7 +52,7 @@ namespace CivMarsEngine
 			else
 			{
 				GameCon.mapData = GameCon.GetSavedMap(GameCon.savedMaps[num.transform.GetSiblingIndex()].path);
-				StartCoroutine(GameCon.LoadLevel("Main"));
+				//StartCoroutine(GameCon.LoadLevel("Main"));
 			}
 		}
 

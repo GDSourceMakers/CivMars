@@ -7,7 +7,7 @@ namespace CivMarsEngine
 	[AddComponentMenu("Inventory/Inventory Element")]
 	public class InventoryDrawedElement : MonoBehaviour
 	{
-		GameController GameCon;
+		//GameController GameCon;
 
 		public bool isPlayer;
 		public string drawname_name;
@@ -26,7 +26,7 @@ namespace CivMarsEngine
 		// Use this for initialization
 		void Awake()
 		{
-			GameCon = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+           // GameCon = GameController.instance;
 		}
 
 		// Update is called once per frame

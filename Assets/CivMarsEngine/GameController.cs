@@ -9,216 +9,184 @@ using System.IO;
 using System.Collections.Generic;
 
 using CivMarsEngine.Registry;
+using CivMarsEngine.GUI;
 
 namespace CivMarsEngine
 {
-	public class GameController : MonoBehaviour
-	{
+    public class GameController : MonoBehaviour
+    {
 
-		public static GameController instance;
+        public static GameController instance;
 
-		public GameState gameS;
+        public GameState gameS;
 
-		//Gui
-		public int CanTurnOf;
-		IHasGui OpendGui;
-
-		public Map map;
-		public Player playerclass;
-
-		//settings
-		public int language;
-
-		//UI
-		public GUIHandler guiHandler;
-
-		public AssetsLoader Registry;
-
-		//Map
-		public SavedMapData mapData;
-
-		//Loading
-		AsyncOperation loadingmap;
-
-		//Saved
-		public List<SavedMapData.DisplayDeteals> savedMaps = new List<SavedMapData.DisplayDeteals>();
-
-		void Awake()
-		{
-			instance = this;
-			Registry = this.GetComponent<AssetsLoader>();
-		}
-
-		void Start()
-		{
-			Registry.CallRegister();
-
-			loadingmap = new AsyncOperation();
-			DontDestroyOnLoad(transform.gameObject);
-			StartCoroutine(LoadLevel("Start"));
-
-			gameS = GameState.MainManu;
-		}
+        public AssetsLoader Registry;
 
 
-		public IEnumerator LoadLevel(string a)
-		{
+        //Gui
+        public GUIManagger guiHandler;
 
-			loadingmap = SceneManager.LoadSceneAsync(a);
+        public MapManagger map;
+        public Player playerclass;
 
-			while (!loadingmap.isDone)
-			{
-				yield return loadingmap;
-			}
+        //settings
+        public int language;
 
-			loadingmap = null;
-		}
+        //Map
+        public SavedMapData mapData;
 
-		public void Update()
-		{
-			if (gameS == GameState.Gui)
-			{
-				playerclass.GetComponent<Rigidbody2D>().isKinematic = true;
-			}
-			else if (gameS != GameState.MainManu)
-			{
-				playerclass.GetComponent<Rigidbody2D>().isKinematic = false;
-			}
-		}
+        //Loading
+        AsyncOperation loadingMap;
 
-		public bool HasOpendGui()
-		{
-			if (OpendGui == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
-		}
+        //Saved
+        public List<SavedMapData.DisplayDeteals> savedMaps = new List<SavedMapData.DisplayDeteals>();
 
-		public bool AlloweGUI(IHasGui hasGui)
-		{
-			if (OpendGui != null)
-			{
-				CanTurnOf = OpendGui.ClosingLevel();
-			}
-			if (CanTurnOf <= hasGui.ClosingLevel())
-			{
-				if (OpendGui != null)
-				{
-					OpendGui.Close();
-				}
-				OpendGui = hasGui;
+        void Awake()
+        {
+            instance = this;
+            Registry = this.GetComponent<AssetsLoader>();
+            //SceneManager.sceneLoaded += LevelLoaded;
+        }
 
-				CanTurnOf = hasGui.ClosingLevel();
+        void Start()
+        {
+            Registry.CallRegister();
 
-				gameS = GameState.Gui;
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+            loadingMap = new AsyncOperation();
+            //DontDestroyOnLoad(transform.gameObject);
+            StartCoroutine(LoadLevel("MainMenu"));
 
-		public void CloseGUI(IHasGui hasGui)
-		{
-			if (OpendGui != null)
-			{
-				OpendGui.Close();
-			}
-			OpendGui = null;
-			gameS = GameState.InGame;
-			CanTurnOf = -1;
-		}
+            gameS = GameState.MainManu;
+        }
 
-		void OnLevelWasLoaded(int level)
-		{
-			if (SceneManager.GetActiveScene().name == "Main")
-			{
-				guiHandler = GameObject.Find("_GUIHandler").GetComponent<GUIHandler>();
-				map = GameObject.Find("Map").GetComponent<Map>();
-				playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        IEnumerator LoadLevel(string a)
+        {
+            loadingMap = SceneManager.LoadSceneAsync(a, LoadSceneMode.Additive);
 
-				if (gameS == GameState.MainManu)
-				{
-					Debug.Log("Jeej!");
+            while (!loadingMap.isDone)
+            {
+                yield return loadingMap;
+            }
 
-					map.LoadMap(mapData);
+            loadingMap = null;
+        }
 
-					gameS = GameState.InGame;
+        #region Map loading
 
-					Camera.main.GetComponent<CameraChase>().MapLoaded();
-				}
+        public MapLoadingProgress load;
 
-			}
+        public void StartGame()
+        {
+            SceneManager.UnloadSceneAsync("MainMenu");
+            //Debug.Log("Load");
+            StartCoroutine(LoadGameMap());
+        }
 
-		}
+        IEnumerator LoadGameMap()
+        {
+            load = new MapLoadingProgress();
 
-		public void TogleAccesPanel()
-		{
-			guiHandler.AccesPanel.TogelGui();
-		}
+            loadingMap = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Additive);
 
-		public void ChangeLanguage(int num)
-		{
-			language = num;
-		}
+            while (!loadingMap.isDone)
+            {
+                load.progress = loadingMap.progress * 50;
+                yield return load;
+            }
+            loadingMap = null;
 
-		public void LoadMaps()
-		{
-			string[] files = Directory.GetFiles("./saves", "*.ddc", SearchOption.AllDirectories);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
 
-			for (int i = 0; i < savedMaps.Count; i++)
-			{
-				savedMaps.RemoveAt(i);
-			}
+            map = MapManagger.instance;
+            guiHandler = GUIManagger.instance;
+            playerclass = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
-			foreach (string file in files)
-			{
-				IFormatter formatter = new BinaryFormatter();
-				Stream stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-				SavedMapData.DisplayDeteals obj = (SavedMapData.DisplayDeteals)formatter.Deserialize(stream);
-				savedMaps.Add(obj);
-				stream.Close();
-			}
-		}
+            yield return StartCoroutine(map.LoadMap(mapData, load));
 
-		public SavedMapData GetSavedMap(string path)
-		{
-			IFormatter formatter = new BinaryFormatter();
-			Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-			SavedMapData obj = (SavedMapData)formatter.Deserialize(stream);
-			stream.Close();
+            gameS = GameState.InGame;
 
-			return obj;
-		}
+            Camera.main.GetComponent<CameraChase>().MapLoaded();
+
+            load.isDone = true;
+        }
+
+        public class MapLoadingProgress
+        {
+            public float progress;
+            public bool isDone;
+        }
+
+        #endregion
+
+        public void Update()
+        {
+            if (gameS == GameState.Gui)
+            {
+                playerclass.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+            else if (gameS != GameState.MainManu)
+            {
+                playerclass.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
+        }
 
 
-		public void SaveMap()
-		{
-			mapData = map.Save();
+        public void ChangeLanguage(int num)
+        {
+            language = num;
+        }
 
-			DirectoryInfo a = Directory.CreateDirectory("./saves/" + mapData.name);
+        public void LoadMaps()
+        {
+            string[] files = Directory.GetFiles("./saves", "*.ddc", SearchOption.AllDirectories);
 
-			IFormatter formatter = new BinaryFormatter();
-			Stream stream = new FileStream("./saves/" + mapData.name + "/" + mapData.name + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
-			formatter.Serialize(stream, mapData);
-			stream.Close();
+            for (int i = 0; i < savedMaps.Count; i++)
+            {
+                savedMaps.RemoveAt(i);
+            }
 
-			//IFormatter formatter = new BinaryFormatter();
-			stream = new FileStream("./saves/" + mapData.name + "/" + mapData.name + ".ddc", FileMode.Create, FileAccess.Write, FileShare.None);
-			formatter.Serialize(stream, mapData.GetDeteails());
-			stream.Close();
+            foreach (string file in files)
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
+                SavedMapData.DisplayDeteals obj = (SavedMapData.DisplayDeteals)formatter.Deserialize(stream);
+                savedMaps.Add(obj);
+                stream.Close();
+            }
+        }
 
-		}
+        public SavedMapData GetSavedMap(string path)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+            SavedMapData obj = (SavedMapData)formatter.Deserialize(stream);
+            stream.Close();
 
-		public void QuitGame()
-		{
-			SceneManager.LoadScene("Start");
-			gameS = GameState.MainManu;
-		}
-	}
+            return obj;
+        }
+
+        public void SaveMap()
+        {
+            mapData = map.Save();
+
+            //DirectoryInfo a = Directory.CreateDirectory("./saves/" + mapData.name);
+
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("./saves/" + mapData.name + "/" + mapData.name + ".bin", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, mapData);
+            stream.Close();
+
+            //IFormatter formatter = new BinaryFormatter();
+            stream = new FileStream("./saves/" + mapData.name + "/" + mapData.name + ".ddc", FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, mapData.GetDeteails());
+            stream.Close();
+
+        }
+
+        public void QuitGame()
+        {
+            SceneManager.LoadScene("Start");
+            gameS = GameState.MainManu;
+        }
+    }
 }

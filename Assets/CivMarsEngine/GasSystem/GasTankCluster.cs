@@ -14,23 +14,23 @@ namespace CivMarsEngine
 
 		#region Constructor
 
-		public GasTankCluster(int i, float max)
+		public GasTankCluster(int count, float max)
 		{
-			tanks = new GasTank[i];
+			tanks = new GasTank[count];
 
-			size = i;
-			for (int k = 0; k < i; k++)
+			size = count;
+			for (int k = 0; k < count; k++)
 			{
 				tanks[k] = new GasTank(max);
 			}
 		}
 
-		public GasTankCluster(int i, float[] max)
+		public GasTankCluster(int count, float[] max)
 		{
-			tanks = new GasTank[i];
+			tanks = new GasTank[count];
 
-			size = i;
-			for (int k = 0; k < i; k++)
+			size = count;
+			for (int k = 0; k < count; k++)
 			{
 				tanks[k] = new GasTank(max[k]);
 			}

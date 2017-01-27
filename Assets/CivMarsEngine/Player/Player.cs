@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using CivMars;
-
+//using CivMars;
+using BasicUtility.TileMap;
 
 namespace CivMarsEngine
 {
 	public class Player : MonoBehaviour, IGasTank, IInventory
 	{
-		public GameController GameCon;
+		GameController GameCon;
 
 		SpaceSuit suit = new SpaceSuit();
 
 		public float health = 1;
 
-		OreTile mining;
+		//OreTile mining;
 
 		public Inventory inventory = new Inventory(10);
 
@@ -27,12 +27,15 @@ namespace CivMarsEngine
 
 		public void Start()
 		{
-			GetSuit().AddGas(new Oxigen(100), 0);
-			GetSuit().AddGas(new Oxigen(100), 1);
+			//GetSuit().AddGas(new Oxigen(100), 0);
+			//GetSuit().AddGas(new Oxigen(100), 1);
 
 
-			GameCon = GameObject.Find("_GameController").GetComponent<GameController>();
-
+			GameCon = GameController.instance;
+            if (GameCon == null)
+            {
+                Debug.Log("Testing mode (Can't find GameController)");
+            }
 		}
 
 		void Update()
@@ -67,13 +70,16 @@ namespace CivMarsEngine
 				) / Mathf.Pow(10, 2);
 			//Debug.Log("Deadly Carbon percent: " + CarbonDioxideHp + "  Deadly Oxigen percent: " + OxigenHp + "  health: "+ health);
 
-			Mine();
+			//Mine();
 
+			//TODO: Inputs
+            /*
 			if (Input.GetButtonUp("Mine") && (GameCon.gameS == GameState.InGame) && mining == null)
 			{
 				Debug.Log("Mine");
 				StartMine();
 			}
+            */
 		}
 
 		public void Eat()
@@ -90,6 +96,7 @@ namespace CivMarsEngine
 			GetSuit().AddGas(c, 1);
 		}
 
+        /*
 		public void Mine()
 		{
 			if (mining != null)
@@ -116,7 +123,8 @@ namespace CivMarsEngine
 
 		public void StartMine()
 		{
-
+			//TODO: make get tile under function
+			//TODO: layers..
 			TileVector pos = new TileVector((int)Mathf.Round(transform.position.x - 0.5f), -1 * (int)Mathf.Round(transform.position.y + 0.5f));
 			TileTransform tile = GameCon.map.Generated.GetTileOn(pos);
 
@@ -134,6 +142,7 @@ namespace CivMarsEngine
 			}
 
 		}
+        */
 
 		#region Tank
 
@@ -163,7 +172,7 @@ namespace CivMarsEngine
 
 		public Item GetStackInSlot(int i)
 		{
-			return inventory.Get(i);
+			return inventory.GetStackInSlot(i);
 		}
 
 		public int GetInventoryStackLimit(int i)

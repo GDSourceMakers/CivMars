@@ -119,6 +119,7 @@ namespace CivMarsEngine
 			throw new NotImplementedException();
 		}
 
+		//TODO: Implement TransferGas
 		public void TransferGas(IGasTank ToInv, int index, int thisIndex)
 		{
 			throw new NotImplementedException();

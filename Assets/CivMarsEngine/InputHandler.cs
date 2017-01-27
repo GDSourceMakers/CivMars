@@ -4,6 +4,7 @@ using CivMarsEngine;
 
 namespace CivMarsEngine
 {
+	/*
 	public class InputHandler : MonoBehaviour
 	{
 
@@ -36,6 +37,7 @@ namespace CivMarsEngine
 			}
 
 		}
-	*/
+	
 	}
+	*/
 }

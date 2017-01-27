@@ -38,15 +38,14 @@ namespace CivMarsEngine
 
 
 		/// <summary>
-		/// Returns the Gas in slot i
-		/// with amount
+		/// Returns the max amount of gas in slot i
 		/// </summary>
 		/// <param name="i"></param>
 		/// <returns></returns>
 		float GetMaxAmount(int index);
 
 		/// <summary>
-		/// Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+		/// Returns true if automation is allowed to insert the given Gas (ignoring stack size) into the given slot.
 		/// </summary>
 		/// <param name="slot">Number of the Tabk</param>
 		/// <param name="givenItem">The Gas</param>
@@ -56,25 +55,26 @@ namespace CivMarsEngine
 		//Do not make give this method the name canInteractWith because it clashes with Container
 		bool IsUseableByPlayer(Player p);
 
-		//Adds the item to the inventory returns the remained amount
+		//Adds the Gas to the inventory returns the remained amount
 		Gas AddGas(Gas i, int index);
 
-		//Removes the item from the inventory returns the remained amount
+		//Removes the Gas from the inventory returns the remained amount
 		Gas RemoveGas(Gas i, int index);
 
 		/// <summary>
-		/// Transfers a all the gas it can fit to a other tank
+		/// Transfers all the gas it can fit to a other tank
 		/// </summary>
 		/// <param name="ToInv">other tank to transfer to</param>
-		/// <param name="index">other inventory1s index to transfer to</param>
+		/// <param name="index">other tank's index to transfer to</param>
 		/// <param name="thisIndex">this inventorys index to transfer from</param>
 		void TransferGas(IGasTank ToInv, int index, int thisIndex);
 
 		/// <summary>
-		/// Transfers a specific amount of a item from this inventory to a other
+		/// Transfers a specific amount of a Gas from this inventory to a other
 		/// </summary>
-		/// <param name="Toinv">other inv to transfer to</param>
-		/// <param name="toIndex">this inventorys index to transfer</param>
+		/// <param name="Toinv">other tank to transfer to</param>
+		/// <param name="toIndex">other tank's index to transfer to</param>
+		/// <param name="thisIndex">this tank's index to transfer from</param>
 		/// <param name="transferingAmount">amount to tramsfer</param>
 		void TransferGasAmount(IGasTank ToInv, int toIndex, int thisIndex, int transferingAmount);
 	}
